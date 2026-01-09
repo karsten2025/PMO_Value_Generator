@@ -141,11 +141,6 @@ export default function PortfolioSelector() {
                         {portfolio.description}
                       </div>
                     )}
-                    {portfolio.organization && (
-                      <div className="text-xs text-slate-500 mt-1">
-                        {portfolio.organization}
-                      </div>
-                    )}
                   </div>
                   {selectedPortfolio?.id === portfolio.id && (
                     <div className="w-2 h-2 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
