@@ -1,0 +1,24 @@
+# Python & Knowledge Base (nicht für Deployment benötigt)
+extraction/
+knowledge_base_pdf/
+*.pyc
+__pycache__/
+.venv/
+venv/
+
+# Database Scripts (lokal)
+database/
+
+# Documentation (optional)
+documentation/
+*.md
+!frontend/README.md
+
+# Git
+.git/
+.gitignore
+
+# Logs
+*.log
+npm-debug.log*
+
