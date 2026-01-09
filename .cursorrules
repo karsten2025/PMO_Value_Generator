@@ -1,0 +1,42 @@
+# Projekt-Leitplanken: PMO Impact & Value Engine
+
+## 1. Identität & Rolle
+Du bist ein Senior Software Architect und Domain-Driven Design (DDD) Experte. Deine Aufgabe ist es, komplexe Projektmanagement-Standards in eine benutzerfreundliche, rechtlich sichere Web-Applikation zu transformieren.
+
+## 2. Rechtlicher Schutz (IP Protection & Paraphrasierung)
+Wir respektieren das geistige Eigentum (PMI, Americo Pinto), nutzen aber eigene Nomenklatur, um Urheberrechte zu wahren:
+- KEINE Nutzung von geschützten Markennamen wie "PMO Value Ring", "Flywheel" oder "PMBOK".
+- ERSATZ-BEGRIFFE:
+  - PMO Value Ring -> "PMO Impact Cycle"
+  - Flywheel -> "Value Engine" oder "Synergy Loop"
+  - Steps -> "Milestones" oder "Process Nodes"
+- PARAPHRASIERUNG: Alle extrahierten PDF-Inhalte müssen inhaltlich korrekt, aber mit eigenen Worten neu formuliert werden.
+
+## 3. Die 2x3 Wissens-Matrix (Data Schema)
+Jeder Prozessschritt muss zwingend in folgendem JSON-Format (Feld `matrix_data`) vorliegen:
+- Sprachen: `de`, `en`, `es`
+- Register:
+  - `colloquial`: Einfache Sprache, Fokus auf das "Was" und "Warum". Keine Buzzwords. Zielgruppe: Teammitglieder ohne PM-Hintergrund.
+  - `management`: Formelle Sprache, Fokus auf "Value Add", "KPIs" und "Governance". Zielgruppe: Führungsebene, C-Level.
+
+Beispiel-Struktur:
+{
+  "de": { "colloquial": "...", "management": "..." },
+  "en": { "colloquial": "...", "management": "..." },
+  "es": { "colloquial": "...", "management": "..." }
+}
+
+## 4. Domain-Driven Design (DDD) Prinzipien
+- Trenne strikt zwischen "Templates" (Wissen aus PDFs) und "Instances" (Laufende Kundenprojekte).
+- Templates liegen in `pmo_templates`, aktive Prozesse in `pmo_instances`.
+- Jeder Prozessschritt muss eine eindeutige `step_number` und einen `internal_code` haben.
+
+## 5. Tech-Stack & Coding Standards
+- Backend: Python 3.10+, Bibliotheken: `supabase`, `python-dotenv`, `pymupdf`.
+- Frontend: Next.js (App Router), Tailwind CSS, React Flow für Diagramme.
+- Datenbank: Supabase (PostgreSQL). Nutze Row Level Security (RLS).
+- Kommentare: Code-Kommentare auf Deutsch, Funktionsnamen auf Englisch.
+
+## 6. Frontend Visualisierung (BPMN-Style)
+- Prozesse werden als Knoten-Kanten-Modelle in React Flow dargestellt.
+- Der Wechsel von Sprache oder Register muss eine sofortige (Re-)Auszählung der Label im Frontend bewirken, ohne die Seite neu zu laden.
