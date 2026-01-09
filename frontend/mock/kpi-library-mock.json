@@ -1,0 +1,1121 @@
+{
+  "meta": {
+    "library_name": "PMO Impact Cycle KPI Library",
+    "version": "1.0.0",
+    "total_kpis": 30,
+    "description": "3 KPIs per Impact Cycle step (Strategic, Tactical, Operational)"
+  },
+  "kpis": [
+    {
+      "id": "DIS_AWR_STR_001",
+      "step_number": 1,
+      "internal_code": "DIS_AWR",
+      "kpi_type": "strategic",
+      "title": "Stakeholder Awareness Index",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Wissensstand der Beteiligten",
+          "management": "Stakeholder-Awareness-Index"
+        },
+        "en": {
+          "colloquial": "Who Knows About Us",
+          "management": "Stakeholder Awareness Index"
+        },
+        "es": {
+          "colloquial": "Conocimiento de los Interesados",
+          "management": "Índice de Conciencia de Interesados"
+        }
+      },
+      "unit": "Score (0-100)",
+      "icon": "target",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie viele Leute wissen überhaupt, was das PMO macht? Wir messen, ob unsere Botschaft bei den wichtigen Personen ankommt.",
+          "management": "Quantifizierung der PMO-Sichtbarkeit im Stakeholder-Netzwerk durch systematische Awareness-Befragungen. Indikator für strategische Positionierung."
+        },
+        "en": {
+          "colloquial": "How many people actually know what the PMO does? We measure whether our message reaches the important people.",
+          "management": "Quantification of PMO visibility in the stakeholder network through systematic awareness surveys. Indicator for strategic positioning."
+        },
+        "es": {
+          "colloquial": "¿Cuántas personas saben realmente qué hace la PMO? Medimos si nuestro mensaje llega a las personas importantes.",
+          "management": "Cuantificación de la visibilidad de la PMO en la red de interesados mediante encuestas sistemáticas de concienciación."
+        }
+      }
+    },
+    {
+      "id": "DIS_AWR_TAC_001",
+      "step_number": 1,
+      "internal_code": "DIS_AWR",
+      "kpi_type": "tactical",
+      "title": "Communication Campaign Reach",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Reichweite der Info-Aktionen",
+          "management": "Kommunikationskampagnen-Reichweite"
+        },
+        "en": {
+          "colloquial": "People Reached",
+          "management": "Communication Campaign Reach"
+        },
+        "es": {
+          "colloquial": "Alcance de Campañas Informativas",
+          "management": "Alcance de Campañas de Comunicación"
+        }
+      },
+      "unit": "Anzahl Empfänger",
+      "icon": "users",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie viele Menschen haben wir mit unseren Info-Aktionen erreicht? Zählt Workshops, E-Mails, Meetings.",
+          "management": "Reichweite der PMO-Kommunikationskampagnen gemessen an Teilnehmerzahlen und Engagement-Raten. Steuerungsgröße für taktische Kommunikationsplanung."
+        },
+        "en": {
+          "colloquial": "How many people did we reach with our info campaigns? Counts workshops, emails, meetings.",
+          "management": "Reach of PMO communication campaigns measured by participant numbers and engagement rates. Control metric for tactical communication planning."
+        },
+        "es": {
+          "colloquial": "¿A cuántas personas alcanzamos con nuestras campañas informativas? Cuenta talleres, correos electrónicos, reuniones.",
+          "management": "Alcance de las campañas de comunicación de la PMO medido por números de participantes y tasas de compromiso."
+        }
+      }
+    },
+    {
+      "id": "DIS_AWR_OPS_001",
+      "step_number": 1,
+      "internal_code": "DIS_AWR",
+      "kpi_type": "operational",
+      "title": "Training Completion Rate",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Schulungs-Abschlussquote",
+          "management": "Training-Completion-Rate"
+        },
+        "en": {
+          "colloquial": "Training Finished",
+          "management": "Training Completion Rate"
+        },
+        "es": {
+          "colloquial": "Tasa de Finalización de Capacitación",
+          "management": "Tasa de Finalización de Capacitación"
+        }
+      },
+      "unit": "%",
+      "icon": "check-circle",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie viele Leute haben die angebotenen Schulungen tatsächlich abgeschlossen? Zeigt, ob die Trainings ankommen.",
+          "management": "Prozentsatz absolvierter PMO-Trainingsmodule im Verhältnis zu angemeldeten Teilnehmern. Qualitätsindikator für Schulungsexzellenz."
+        },
+        "en": {
+          "colloquial": "How many people actually completed the offered trainings? Shows if the training is being adopted.",
+          "management": "Percentage of completed PMO training modules relative to registered participants. Quality indicator for training excellence."
+        },
+        "es": {
+          "colloquial": "¿Cuántas personas realmente completaron las capacitaciones ofrecidas? Muestra si la formación está siendo adoptada.",
+          "management": "Porcentaje de módulos de capacitación PMO completados en relación con participantes registrados."
+        }
+      }
+    },
+    {
+      "id": "DIS_NEA_STR_001",
+      "step_number": 2,
+      "internal_code": "DIS_NEA",
+      "kpi_type": "strategic",
+      "title": "Business Impact Priority Score",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Geschäftswirkung-Prioritätswert",
+          "management": "Business-Impact-Prioritätsscore"
+        },
+        "en": {
+          "colloquial": "Most Important Problems",
+          "management": "Business Impact Priority Score"
+        },
+        "es": {
+          "colloquial": "Puntuación de Prioridad de Impacto Empresarial",
+          "management": "Puntuación de Prioridad de Impacto Empresarial"
+        }
+      },
+      "unit": "Score (0-100)",
+      "icon": "target",
+      "matrix": {
+        "de": {
+          "colloquial": "Welche Probleme sind am wichtigsten für die Firma? Wir bewerten, wo wir den größten Unterschied machen können.",
+          "management": "Priorisierung identifizierter Anforderungen nach strategischem Geschäftswert und Alignment zu Unternehmenszielen. Grundlage für Portfolio-Optimierung."
+        },
+        "en": {
+          "colloquial": "Which problems are most important for the company? We assess where we can make the biggest difference.",
+          "management": "Prioritization of identified requirements based on strategic business value and alignment to corporate objectives."
+        },
+        "es": {
+          "colloquial": "¿Qué problemas son más importantes para la empresa? Evaluamos dónde podemos marcar la mayor diferencia.",
+          "management": "Priorización de requisitos identificados según valor estratégico empresarial y alineación con objetivos corporativos."
+        }
+      }
+    },
+    {
+      "id": "DIS_NEA_TAC_001",
+      "step_number": 2,
+      "internal_code": "DIS_NEA",
+      "kpi_type": "tactical",
+      "title": "Stakeholder Interview Coverage",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Stakeholder-Gesprächsabdeckung",
+          "management": "Stakeholder-Interview-Abdeckung"
+        },
+        "en": {
+          "colloquial": "People We Talked To",
+          "management": "Stakeholder Interview Coverage"
+        },
+        "es": {
+          "colloquial": "Cobertura de Entrevistas con Interesados",
+          "management": "Cobertura de Entrevistas con Interesados"
+        }
+      },
+      "unit": "%",
+      "icon": "users",
+      "matrix": {
+        "de": {
+          "colloquial": "Haben wir mit allen wichtigen Leuten gesprochen? Misst, ob wir niemanden vergessen haben.",
+          "management": "Anteil abgedeckter Schlüssel-Stakeholder durch strukturierte Assessment-Interviews. Governance-Kennzahl für Requirements-Vollständigkeit."
+        },
+        "en": {
+          "colloquial": "Did we talk to all the important people? Measures if we didn't miss anyone.",
+          "management": "Proportion of key stakeholders covered through structured assessment interviews. Governance metric for requirements completeness."
+        },
+        "es": {
+          "colloquial": "¿Hablamos con todas las personas importantes? Mide si no nos perdimos a nadie.",
+          "management": "Proporción de interesados clave cubiertos mediante entrevistas de evaluación estructuradas."
+        }
+      }
+    },
+    {
+      "id": "DIS_NEA_OPS_001",
+      "step_number": 2,
+      "internal_code": "DIS_NEA",
+      "kpi_type": "operational",
+      "title": "Requirements Documentation Quality",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Dokumentationsqualität",
+          "management": "Anforderungs-Dokumentationsqualität"
+        },
+        "en": {
+          "colloquial": "Documentation Quality",
+          "management": "Requirements Documentation Quality"
+        },
+        "es": {
+          "colloquial": "Calidad de Documentación",
+          "management": "Calidad de Documentación de Requisitos"
+        }
+      },
+      "unit": "Score (1-5)",
+      "icon": "file-text",
+      "matrix": {
+        "de": {
+          "colloquial": "Sind unsere Notizen klar und verständlich aufgeschrieben? Qualität der Dokumentation.",
+          "management": "Qualitätsbewertung erfasster Anforderungen nach Klarheit, Vollständigkeit und Nachvollziehbarkeit. Prozessqualitäts-Indikator."
+        },
+        "en": {
+          "colloquial": "Are our notes clearly and understandably written? Quality of documentation.",
+          "management": "Quality assessment of captured requirements based on clarity, completeness, and traceability. Process quality indicator."
+        },
+        "es": {
+          "colloquial": "¿Nuestras notas están escritas de manera clara y comprensible? Calidad de la documentación.",
+          "management": "Evaluación de calidad de requisitos capturados según claridad, completitud y trazabilidad."
+        }
+      }
+    },
+    {
+      "id": "PLN_VPR_STR_001",
+      "step_number": 3,
+      "internal_code": "PLN_VPR",
+      "kpi_type": "strategic",
+      "title": "Expected ROI Projection",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Erwartete Rendite",
+          "management": "ROI-Projektion"
+        },
+        "en": {
+          "colloquial": "Expected Profit",
+          "management": "Expected ROI Projection"
+        },
+        "es": {
+          "colloquial": "Rendimiento Esperado",
+          "management": "Proyección ROI Esperada"
+        }
+      },
+      "unit": "%",
+      "icon": "trending-up",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie viel Gewinn erwarten wir für jeden investierten Euro? Zeigt, ob sich die Sache lohnt.",
+          "management": "Prognostizierter Return on Investment der PMO-Initiative basierend auf quantifizierter Value Proposition. Strategische Investitionsentscheidungs-Kennzahl."
+        },
+        "en": {
+          "colloquial": "How much profit do we expect for each euro invested? Shows if it's worth it.",
+          "management": "Projected Return on Investment of the PMO initiative based on quantified value proposition. Strategic investment decision metric."
+        },
+        "es": {
+          "colloquial": "¿Cuánto beneficio esperamos por cada euro invertido? Muestra si vale la pena.",
+          "management": "Retorno de inversión proyectado de la iniciativa PMO basado en propuesta de valor cuantificada."
+        }
+      }
+    },
+    {
+      "id": "PLN_VPR_TAC_001",
+      "step_number": 3,
+      "internal_code": "PLN_VPR",
+      "kpi_type": "tactical",
+      "title": "Success Criteria Completeness",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Erfolgskriterien-Vollständigkeit",
+          "management": "Success Criteria Completeness"
+        },
+        "en": {
+          "colloquial": "Goals Are Measurable",
+          "management": "Success Criteria Completeness"
+        },
+        "es": {
+          "colloquial": "Completitud de Criterios de Éxito",
+          "management": "Completitud de Criterios de Éxito"
+        }
+      },
+      "unit": "%",
+      "icon": "list-checks",
+      "matrix": {
+        "de": {
+          "colloquial": "Haben wir für alle Nutzenversprechen klare Messwerte definiert? Sind die Ziele messbar?",
+          "management": "Vollständigkeit definierter, messbarer Erfolgskriterien je Value-Statement. Governance-Indikator für Evidence-Based Management."
+        },
+        "en": {
+          "colloquial": "Did we define clear measurements for all benefit promises? Are the goals measurable?",
+          "management": "Completeness of defined, measurable success criteria per value statement. Governance indicator for evidence-based management."
+        },
+        "es": {
+          "colloquial": "¿Definimos mediciones claras para todas las promesas de beneficio? ¿Son medibles los objetivos?",
+          "management": "Completitud de criterios de éxito definidos y medibles por declaración de valor."
+        }
+      }
+    },
+    {
+      "id": "PLN_VPR_OPS_001",
+      "step_number": 3,
+      "internal_code": "PLN_VPR",
+      "kpi_type": "operational",
+      "title": "Value Proposition Approval Time",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Freigabezeit für Nutzen-Beschreibung",
+          "management": "Value-Proposition-Freigabezeit"
+        },
+        "en": {
+          "colloquial": "Approval Time",
+          "management": "Value Proposition Approval Time"
+        },
+        "es": {
+          "colloquial": "Tiempo de Aprobación de Propuesta de Valor",
+          "management": "Tiempo de Aprobación de Propuesta de Valor"
+        }
+      },
+      "unit": "Tage",
+      "icon": "clock",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie lange dauert es, bis alle Entscheider unsere Nutzen-Beschreibung absegnen?",
+          "management": "Durchlaufzeit von Value-Proposition-Erstellung bis zur formellen Stakeholder-Freigabe. Prozesseffizienz-Kennzahl."
+        },
+        "en": {
+          "colloquial": "How long does it take until all decision-makers approve our benefit description?",
+          "management": "Cycle time from value proposition creation to formal stakeholder approval. Process efficiency metric."
+        },
+        "es": {
+          "colloquial": "¿Cuánto tiempo tarda hasta que todos los tomadores de decisiones aprueben nuestra descripción de beneficios?",
+          "management": "Tiempo de ciclo desde la creación de la propuesta de valor hasta la aprobación formal."
+        }
+      }
+    },
+    {
+      "id": "PLN_SDE_STR_001",
+      "step_number": 4,
+      "internal_code": "PLN_SDE",
+      "kpi_type": "strategic",
+      "title": "Service Portfolio Alignment",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Angebots-Ausrichtung",
+          "management": "Service-Portfolio-Alignment"
+        },
+        "en": {
+          "colloquial": "Service Fit",
+          "management": "Service Portfolio Alignment"
+        },
+        "es": {
+          "colloquial": "Alineación de Servicios",
+          "management": "Alineación de Cartera de Servicios"
+        }
+      },
+      "unit": "Score (0-100)",
+      "icon": "target",
+      "matrix": {
+        "de": {
+          "colloquial": "Passen unsere geplanten Angebote zu den Unternehmenszielen? Strategische Ausrichtung der Services.",
+          "management": "Alignment-Score des PMO-Service-Portfolios zu strategischen Geschäftszielen. Indikator für Portfolio-Strategic-Fit."
+        },
+        "en": {
+          "colloquial": "Do our planned offerings match company goals? Strategic alignment of services.",
+          "management": "Alignment score of PMO service portfolio to strategic business objectives. Indicator for portfolio strategic fit."
+        },
+        "es": {
+          "colloquial": "¿Nuestras ofertas planificadas coinciden con los objetivos de la empresa?",
+          "management": "Puntuación de alineación de la cartera de servicios PMO con objetivos estratégicos empresariales."
+        }
+      }
+    },
+    {
+      "id": "PLN_SDE_TAC_001",
+      "step_number": 4,
+      "internal_code": "PLN_SDE",
+      "kpi_type": "tactical",
+      "title": "SLA Definition Coverage",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Service-Vereinbarungs-Abdeckung",
+          "management": "SLA-Definitions-Abdeckung"
+        },
+        "en": {
+          "colloquial": "Service Agreements Defined",
+          "management": "SLA Definition Coverage"
+        },
+        "es": {
+          "colloquial": "Cobertura de Acuerdos de Servicio",
+          "management": "Cobertura de Definición SLA"
+        }
+      },
+      "unit": "%",
+      "icon": "file-check",
+      "matrix": {
+        "de": {
+          "colloquial": "Für wie viele unserer Angebote haben wir klare Service-Vereinbarungen?",
+          "management": "Anteil definierter Service Level Agreements an Gesamt-Services. Governance-Kennzahl für Service-Katalog-Reife."
+        },
+        "en": {
+          "colloquial": "For how many of our offerings do we have clear service agreements?",
+          "management": "Proportion of defined Service Level Agreements to total services. Governance metric for service catalog maturity."
+        },
+        "es": {
+          "colloquial": "¿Para cuántas de nuestras ofertas tenemos acuerdos de servicio claros?",
+          "management": "Proporción de Acuerdos de Nivel de Servicio definidos respecto al total de servicios."
+        }
+      }
+    },
+    {
+      "id": "PLN_SDE_OPS_001",
+      "step_number": 4,
+      "internal_code": "PLN_SDE",
+      "kpi_type": "operational",
+      "title": "Design Review Iterations",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Überarbeitungs-Durchgänge",
+          "management": "Design-Review-Iterationen"
+        },
+        "en": {
+          "colloquial": "Revisions Needed",
+          "management": "Design Review Iterations"
+        },
+        "es": {
+          "colloquial": "Rondas de Revisión",
+          "management": "Iteraciones de Revisión de Diseño"
+        }
+      },
+      "unit": "Anzahl",
+      "icon": "refresh-cw",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie oft mussten wir unsere Lösungs-Entwürfe überarbeiten? Zeigt Effizienz im Design-Prozess.",
+          "management": "Anzahl erforderlicher Design-Iterationen bis zur Freigabe. Prozessqualitäts- und Effizienz-Indikator."
+        },
+        "en": {
+          "colloquial": "How many times did we have to revise our solution designs?",
+          "management": "Number of required design iterations until approval. Process quality and efficiency indicator."
+        },
+        "es": {
+          "colloquial": "¿Cuántas veces tuvimos que revisar nuestros diseños de solución?",
+          "management": "Número de iteraciones de diseño requeridas hasta la aprobación."
+        }
+      }
+    },
+    {
+      "id": "IMP_ONB_STR_001",
+      "step_number": 5,
+      "internal_code": "IMP_ONB",
+      "kpi_type": "strategic",
+      "title": "Service Adoption Rate",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Nutzungsquote neuer Angebote",
+          "management": "Service-Adoption-Rate"
+        },
+        "en": {
+          "colloquial": "People Using It",
+          "management": "Service Adoption Rate"
+        },
+        "es": {
+          "colloquial": "Tasa de Uso de Nuevos Servicios",
+          "management": "Tasa de Adopción de Servicios"
+        }
+      },
+      "unit": "%",
+      "icon": "trending-up",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie viele der Zielgruppe nutzen unsere neuen Angebote tatsächlich? Erfolg der Einführung.",
+          "management": "Anteil aktiver Nutzer am Gesamt-Zielpublikum neuer PMO-Services. Strategischer Indikator für Change-Management-Erfolg."
+        },
+        "en": {
+          "colloquial": "How many of the target audience actually use our new offerings?",
+          "management": "Proportion of active users to total target audience of new PMO services. Strategic indicator for change management success."
+        },
+        "es": {
+          "colloquial": "¿Cuántos del público objetivo realmente usan nuestras nuevas ofertas?",
+          "management": "Proporción de usuarios activos respecto al público objetivo total de nuevos servicios PMO."
+        }
+      }
+    },
+    {
+      "id": "IMP_ONB_TAC_001",
+      "step_number": 5,
+      "internal_code": "IMP_ONB",
+      "kpi_type": "tactical",
+      "title": "Training Session Attendance",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Teilnehmerzahl Trainings",
+          "management": "Training-Session-Teilnahme"
+        },
+        "en": {
+          "colloquial": "Training Attendees",
+          "management": "Training Session Attendance"
+        },
+        "es": {
+          "colloquial": "Participantes de Capacitación",
+          "management": "Asistencia a Sesiones de Capacitación"
+        }
+      },
+      "unit": "Anzahl Teilnehmer",
+      "icon": "users",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie viele Leute kommen zu unseren Einführungs-Trainings? Interesse am neuen Service.",
+          "management": "Teilnehmerzahl an Service-Onboarding-Trainings. Taktische Steuerungsgröße für Rollout-Kapazitätsplanung."
+        },
+        "en": {
+          "colloquial": "How many people come to our launch trainings?",
+          "management": "Number of participants in service onboarding training. Tactical control metric for rollout capacity planning."
+        },
+        "es": {
+          "colloquial": "¿Cuántas personas vienen a nuestros entrenamientos de lanzamiento?",
+          "management": "Número de participantes en capacitación de incorporación de servicios."
+        }
+      }
+    },
+    {
+      "id": "IMP_ONB_OPS_001",
+      "step_number": 5,
+      "internal_code": "IMP_ONB",
+      "kpi_type": "operational",
+      "title": "Onboarding Cycle Time",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Einarbeitungszeit",
+          "management": "Onboarding-Durchlaufzeit"
+        },
+        "en": {
+          "colloquial": "Time to Get Started",
+          "management": "Onboarding Cycle Time"
+        },
+        "es": {
+          "colloquial": "Tiempo de Incorporación",
+          "management": "Tiempo de Ciclo de Incorporación"
+        }
+      },
+      "unit": "Tage",
+      "icon": "clock",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie lange dauert es, bis ein neuer Nutzer mit dem Service arbeiten kann?",
+          "management": "Durchschnittliche Dauer vom ersten Kontakt bis zur produktiven Service-Nutzung. Effizienz-Kennzahl für Onboarding-Prozess."
+        },
+        "en": {
+          "colloquial": "How long does it take until a new user can work with the service?",
+          "management": "Average duration from first contact to productive service usage. Efficiency metric for onboarding process."
+        },
+        "es": {
+          "colloquial": "¿Cuánto tiempo tarda hasta que un nuevo usuario pueda trabajar con el servicio?",
+          "management": "Duración promedio desde el primer contacto hasta el uso productivo del servicio."
+        }
+      }
+    },
+    {
+      "id": "IMP_OPS_STR_001",
+      "step_number": 6,
+      "internal_code": "IMP_OPS",
+      "kpi_type": "strategic",
+      "title": "Customer Satisfaction (CSAT)",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Kundenzufriedenheit",
+          "management": "Customer Satisfaction (CSAT)"
+        },
+        "en": {
+          "colloquial": "Customer Happiness",
+          "management": "Customer Satisfaction (CSAT)"
+        },
+        "es": {
+          "colloquial": "Satisfacción del Cliente",
+          "management": "Satisfacción del Cliente (CSAT)"
+        }
+      },
+      "unit": "Score (1-5)",
+      "icon": "heart",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie zufrieden sind unsere Kunden mit unserer täglichen Arbeit? Die wichtigste Frage überhaupt.",
+          "management": "Kundenzufriedenheits-Index basierend auf regelmäßigen Service-Befragungen. Strategischer Wert-Indikator für PMO-Performance."
+        },
+        "en": {
+          "colloquial": "How satisfied are our customers with our daily work?",
+          "management": "Customer satisfaction index based on regular service surveys. Strategic value indicator for PMO performance."
+        },
+        "es": {
+          "colloquial": "¿Qué tan satisfechos están nuestros clientes con nuestro trabajo diario?",
+          "management": "Índice de satisfacción del cliente basado en encuestas de servicio regulares."
+        }
+      }
+    },
+    {
+      "id": "IMP_OPS_TAC_001",
+      "step_number": 6,
+      "internal_code": "IMP_OPS",
+      "kpi_type": "tactical",
+      "title": "Resource Utilization Rate",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Team-Auslastung",
+          "management": "Ressourcen-Auslastungsquote"
+        },
+        "en": {
+          "colloquial": "Team Busy Level",
+          "management": "Resource Utilization Rate"
+        },
+        "es": {
+          "colloquial": "Utilización del Equipo",
+          "management": "Tasa de Utilización de Recursos"
+        }
+      },
+      "unit": "%",
+      "icon": "activity",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie gut nutzen wir unser Team aus? Sind alle beschäftigt oder haben wir Leerlauf?",
+          "management": "Auslastungsquote der PMO-Ressourcen (FTE). Taktische Governance-Kennzahl für Kapazitätssteuerung und Workforce-Optimierung."
+        },
+        "en": {
+          "colloquial": "How well do we utilize our team? Is everyone busy or do we have idle time?",
+          "management": "Utilization rate of PMO resources (FTE). Tactical governance metric for capacity management."
+        },
+        "es": {
+          "colloquial": "¿Qué tan bien utilizamos nuestro equipo?",
+          "management": "Tasa de utilización de recursos PMO (FTE). Métrica táctica de gobernanza para gestión de capacidad."
+        }
+      }
+    },
+    {
+      "id": "IMP_OPS_OPS_001",
+      "step_number": 6,
+      "internal_code": "IMP_OPS",
+      "kpi_type": "operational",
+      "title": "SLA Compliance Rate",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Einhaltung der Zusagen",
+          "management": "SLA-Erfüllungsquote"
+        },
+        "en": {
+          "colloquial": "Promises Kept",
+          "management": "SLA Compliance Rate"
+        },
+        "es": {
+          "colloquial": "Tasa de Cumplimiento de Promesas",
+          "management": "Tasa de Cumplimiento SLA"
+        }
+      },
+      "unit": "%",
+      "icon": "check-circle",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie oft halten wir unsere zugesagten Lieferzeiten und Qualitätsstandards ein?",
+          "management": "Erfüllungsquote vereinbarter Service Level Agreements. Kernindikator für operative Exzellenz und Service-Qualität."
+        },
+        "en": {
+          "colloquial": "How often do we meet our promised delivery times and quality standards?",
+          "management": "Fulfillment rate of agreed Service Level Agreements. Core indicator for operational excellence."
+        },
+        "es": {
+          "colloquial": "¿Con qué frecuencia cumplimos nuestros tiempos de entrega prometidos?",
+          "management": "Tasa de cumplimiento de Acuerdos de Nivel de Servicio acordados."
+        }
+      }
+    },
+    {
+      "id": "OPT_MON_STR_001",
+      "step_number": 7,
+      "internal_code": "OPT_MON",
+      "kpi_type": "strategic",
+      "title": "Value Delivery Trend",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Nutzen-Entwicklung",
+          "management": "Value-Delivery-Trend"
+        },
+        "en": {
+          "colloquial": "Getting Better or Worse",
+          "management": "Value Delivery Trend"
+        },
+        "es": {
+          "colloquial": "Desarrollo de Valor",
+          "management": "Tendencia de Entrega de Valor"
+        }
+      },
+      "unit": "Trend-Index",
+      "icon": "trending-up",
+      "matrix": {
+        "de": {
+          "colloquial": "Wird der Nutzen, den wir liefern, besser oder schlechter? Richtung der Entwicklung.",
+          "management": "Trendanalyse der Value-Delivery-Metriken über Zeit. Strategischer Frühindikator für Portfolio-Performance."
+        },
+        "en": {
+          "colloquial": "Is the value we deliver getting better or worse?",
+          "management": "Trend analysis of value delivery metrics over time. Strategic leading indicator for portfolio performance."
+        },
+        "es": {
+          "colloquial": "¿El valor que entregamos está mejorando o empeorando?",
+          "management": "Análisis de tendencia de métricas de entrega de valor a lo largo del tiempo."
+        }
+      }
+    },
+    {
+      "id": "OPT_MON_TAC_001",
+      "step_number": 7,
+      "internal_code": "OPT_MON",
+      "kpi_type": "tactical",
+      "title": "Dashboard Update Frequency",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Dashboard-Aktualisierungen",
+          "management": "Dashboard-Update-Frequenz"
+        },
+        "en": {
+          "colloquial": "How Often We Update",
+          "management": "Dashboard Update Frequency"
+        },
+        "es": {
+          "colloquial": "Actualizaciones del Panel",
+          "management": "Frecuencia de Actualización del Panel"
+        }
+      },
+      "unit": "Updates/Monat",
+      "icon": "bar-chart",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie oft aktualisieren wir unsere Übersichts-Dashboards? Aktualität der Daten.",
+          "management": "Frequenz der KPI-Dashboard-Aktualisierungen. Governance-Indikator für Reporting-Disziplin und Datenaktualität."
+        },
+        "en": {
+          "colloquial": "How often do we update our overview dashboards?",
+          "management": "Frequency of KPI dashboard updates. Governance indicator for reporting discipline."
+        },
+        "es": {
+          "colloquial": "¿Con qué frecuencia actualizamos nuestros paneles de control?",
+          "management": "Frecuencia de actualizaciones del panel de KPI."
+        }
+      }
+    },
+    {
+      "id": "OPT_MON_OPS_001",
+      "step_number": 7,
+      "internal_code": "OPT_MON",
+      "kpi_type": "operational",
+      "title": "Metric Collection Accuracy",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Messgenauigkeit",
+          "management": "Datenerfassungs-Genauigkeit"
+        },
+        "en": {
+          "colloquial": "Data Quality",
+          "management": "Metric Collection Accuracy"
+        },
+        "es": {
+          "colloquial": "Precisión de Medición",
+          "management": "Precisión de Recopilación de Métricas"
+        }
+      },
+      "unit": "%",
+      "icon": "check-circle",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie genau sind unsere gemessenen Zahlen? Fehlerquote bei der Datenerfassung.",
+          "management": "Datenqualitäts-Score erfasster Performance-Metriken. Prozessqualitäts-Kennzahl für Measurement-System-Integrität."
+        },
+        "en": {
+          "colloquial": "How accurate are our measured numbers?",
+          "management": "Data quality score of captured performance metrics. Process quality metric for measurement system integrity."
+        },
+        "es": {
+          "colloquial": "¿Qué tan precisos son nuestros números medidos?",
+          "management": "Puntuación de calidad de datos de métricas de rendimiento capturadas."
+        }
+      }
+    },
+    {
+      "id": "OPT_IMP_STR_001",
+      "step_number": 8,
+      "internal_code": "OPT_IMP",
+      "kpi_type": "strategic",
+      "title": "Service Maturity Index",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Reife der Angebote",
+          "management": "Service-Maturity-Index"
+        },
+        "en": {
+          "colloquial": "How Mature We Are",
+          "management": "Service Maturity Index"
+        },
+        "es": {
+          "colloquial": "Madurez de Servicios",
+          "management": "Índice de Madurez de Servicios"
+        }
+      },
+      "unit": "Level (1-5)",
+      "icon": "award",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie ausgereift sind unsere Angebote? Von 'gerade gestartet' bis 'erstklassig optimiert'.",
+          "management": "Reifegrad-Bewertung des PMO-Service-Portfolios nach etablierten Maturity-Frameworks. Strategischer Entwicklungsindikator."
+        },
+        "en": {
+          "colloquial": "How mature are our offerings? From 'just started' to 'world-class optimized'.",
+          "management": "Maturity assessment of PMO service portfolio based on established maturity frameworks."
+        },
+        "es": {
+          "colloquial": "¿Qué tan maduras son nuestras ofertas?",
+          "management": "Evaluación de madurez de la cartera de servicios PMO basada en marcos de madurez establecidos."
+        }
+      }
+    },
+    {
+      "id": "OPT_IMP_TAC_001",
+      "step_number": 8,
+      "internal_code": "OPT_IMP",
+      "kpi_type": "tactical",
+      "title": "Improvement Initiative Pipeline",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Verbesserungs-Warteschlange",
+          "management": "Improvement-Initiative-Pipeline"
+        },
+        "en": {
+          "colloquial": "Ideas in Queue",
+          "management": "Improvement Initiative Pipeline"
+        },
+        "es": {
+          "colloquial": "Cola de Mejoras",
+          "management": "Pipeline de Iniciativas de Mejora"
+        }
+      },
+      "unit": "Anzahl",
+      "icon": "list",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie viele Verbesserungs-Ideen haben wir in der Warteschlange? Zeigt Innovationskraft.",
+          "management": "Anzahl aktiver und geplanter Optimierungsinitiativen in der Improvement-Roadmap. Taktischer Indikator für kontinuierliche Weiterentwicklung."
+        },
+        "en": {
+          "colloquial": "How many improvement ideas do we have in the queue?",
+          "management": "Number of active and planned optimization initiatives in the improvement roadmap."
+        },
+        "es": {
+          "colloquial": "¿Cuántas ideas de mejora tenemos en la cola?",
+          "management": "Número de iniciativas de optimización activas y planificadas en la hoja de ruta de mejora."
+        }
+      }
+    },
+    {
+      "id": "OPT_IMP_OPS_001",
+      "step_number": 8,
+      "internal_code": "OPT_IMP",
+      "kpi_type": "operational",
+      "title": "Enhancement Deployment Speed",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Umsetzungs-Geschwindigkeit",
+          "management": "Enhancement-Deployment-Speed"
+        },
+        "en": {
+          "colloquial": "Speed to Implement",
+          "management": "Enhancement Deployment Speed"
+        },
+        "es": {
+          "colloquial": "Velocidad de Implementación",
+          "management": "Velocidad de Despliegue de Mejoras"
+        }
+      },
+      "unit": "Tage",
+      "icon": "zap",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie schnell bringen wir Verbesserungen in die Praxis? Von Idee bis zur Umsetzung.",
+          "management": "Durchschnittliche Time-to-Market für identifizierte und priorisierte Verbesserungsmaßnahmen. Agilität- und Prozesseffizienz-Kennzahl."
+        },
+        "en": {
+          "colloquial": "How quickly do we bring improvements into practice?",
+          "management": "Average time-to-market for identified and prioritized improvement measures."
+        },
+        "es": {
+          "colloquial": "¿Qué tan rápido llevamos las mejoras a la práctica?",
+          "management": "Tiempo promedio de comercialización para medidas de mejora identificadas."
+        }
+      }
+    },
+    {
+      "id": "IMP_VDL_STR_001",
+      "step_number": 9,
+      "internal_code": "IMP_VDL",
+      "kpi_type": "strategic",
+      "title": "Realized ROI",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Tatsächliche Rendite",
+          "management": "Realisierter ROI"
+        },
+        "en": {
+          "colloquial": "Actual Profit Made",
+          "management": "Realized ROI"
+        },
+        "es": {
+          "colloquial": "Rendimiento Real",
+          "management": "ROI Realizado"
+        }
+      },
+      "unit": "%",
+      "icon": "dollar-sign",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie viel Gewinn haben wir tatsächlich erwirtschaftet? Der echte, messbare Nutzen.",
+          "management": "Tatsächlich realisierter Return on Investment der PMO-Initiative. Strategische Value-Realization-Kennzahl und Business-Case-Validierung."
+        },
+        "en": {
+          "colloquial": "How much profit did we actually generate?",
+          "management": "Actually realized Return on Investment of the PMO initiative. Strategic value realization metric."
+        },
+        "es": {
+          "colloquial": "¿Cuánto beneficio generamos realmente?",
+          "management": "Retorno de inversión realmente realizado de la iniciativa PMO."
+        }
+      }
+    },
+    {
+      "id": "IMP_VDL_TAC_001",
+      "step_number": 9,
+      "internal_code": "IMP_VDL",
+      "kpi_type": "tactical",
+      "title": "Benefit Realization Report Frequency",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Erfolgsberichte pro Jahr",
+          "management": "Benefit-Realization-Report-Frequenz"
+        },
+        "en": {
+          "colloquial": "How Often We Report",
+          "management": "Benefit Realization Report Frequency"
+        },
+        "es": {
+          "colloquial": "Informes de Éxito por Año",
+          "management": "Frecuencia de Informes de Realización de Beneficios"
+        }
+      },
+      "unit": "Reports/Jahr",
+      "icon": "file-text",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie oft berichten wir über die erreichten Ergebnisse? Regelmäßigkeit der Erfolgsberichte.",
+          "management": "Frequenz formeller Benefit-Realization-Reports an Stakeholder und Governance-Gremien. Transparenz- und Governance-Kennzahl."
+        },
+        "en": {
+          "colloquial": "How often do we report on achieved results?",
+          "management": "Frequency of formal benefit realization reports to stakeholders. Transparency and governance metric."
+        },
+        "es": {
+          "colloquial": "¿Con qué frecuencia informamos sobre los resultados logrados?",
+          "management": "Frecuencia de informes formales de realización de beneficios a interesados."
+        }
+      }
+    },
+    {
+      "id": "IMP_VDL_OPS_001",
+      "step_number": 9,
+      "internal_code": "IMP_VDL",
+      "kpi_type": "operational",
+      "title": "Outcome Measurement Completeness",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Vollständigkeit der Ergebnismessung",
+          "management": "Outcome-Measurement-Completeness"
+        },
+        "en": {
+          "colloquial": "Results Measured",
+          "management": "Outcome Measurement Completeness"
+        },
+        "es": {
+          "colloquial": "Completitud de Medición de Resultados",
+          "management": "Completitud de Medición de Resultados"
+        }
+      },
+      "unit": "%",
+      "icon": "check-circle",
+      "matrix": {
+        "de": {
+          "colloquial": "Für wie viele unserer Ziele haben wir Ergebnisse gemessen? Vollständigkeit der Erfolgsmessung.",
+          "management": "Anteil quantifizierter Outcomes an definierten Success-Criteria. Prozessqualitäts-Kennzahl für Outcome-Tracking-Vollständigkeit."
+        },
+        "en": {
+          "colloquial": "For how many of our goals did we measure results?",
+          "management": "Proportion of quantified outcomes to defined success criteria. Process quality metric."
+        },
+        "es": {
+          "colloquial": "¿Para cuántos de nuestros objetivos medimos resultados?",
+          "management": "Proporción de resultados cuantificados respecto a criterios de éxito definidos."
+        }
+      }
+    },
+    {
+      "id": "IMP_REC_STR_001",
+      "step_number": 10,
+      "internal_code": "IMP_REC",
+      "kpi_type": "strategic",
+      "title": "Executive Sponsorship Score",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Rückhalt vom Management",
+          "management": "Executive-Sponsorship-Score"
+        },
+        "en": {
+          "colloquial": "Boss Support",
+          "management": "Executive Sponsorship Score"
+        },
+        "es": {
+          "colloquial": "Apoyo de la Dirección",
+          "management": "Puntuación de Patrocinio Ejecutivo"
+        }
+      },
+      "unit": "Score (0-100)",
+      "icon": "briefcase",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie stark unterstützen uns die Chefs? Rückhalt vom Management für weitere Investitionen.",
+          "management": "Quantifizierung der Executive-Unterstützung für PMO-Investitionen und strategische Initiativen. Legitimationsindikator für Portfolio-Erweiterung."
+        },
+        "en": {
+          "colloquial": "How strongly do the bosses support us?",
+          "management": "Quantification of executive support for PMO investments and strategic initiatives."
+        },
+        "es": {
+          "colloquial": "¿Qué tan fuerte nos apoyan los jefes?",
+          "management": "Cuantificación del apoyo ejecutivo para inversiones PMO e iniciativas estratégicas."
+        }
+      }
+    },
+    {
+      "id": "IMP_REC_TAC_001",
+      "step_number": 10,
+      "internal_code": "IMP_REC",
+      "kpi_type": "tactical",
+      "title": "Net Promoter Score (NPS)",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Weiterempfehlungsrate",
+          "management": "Net Promoter Score (NPS)"
+        },
+        "en": {
+          "colloquial": "Would Recommend Us",
+          "management": "Net Promoter Score (NPS)"
+        },
+        "es": {
+          "colloquial": "Tasa de Recomendación",
+          "management": "Puntuación Neta del Promotor (NPS)"
+        }
+      },
+      "unit": "Score (-100 bis +100)",
+      "icon": "thumbs-up",
+      "matrix": {
+        "de": {
+          "colloquial": "Würden unsere Kunden uns weiterempfehlen? Die Weiterempfehlungsrate.",
+          "management": "Net Promoter Score zur Messung der Stakeholder-Loyalität und Weiterempfehlungsbereitschaft. Taktischer Reputations-Indikator."
+        },
+        "en": {
+          "colloquial": "Would our customers recommend us?",
+          "management": "Net Promoter Score for measuring stakeholder loyalty and willingness to recommend."
+        },
+        "es": {
+          "colloquial": "¿Nuestros clientes nos recomendarían?",
+          "management": "Puntuación neta del promotor para medir la lealtad de los interesados."
+        }
+      }
+    },
+    {
+      "id": "IMP_REC_OPS_001",
+      "step_number": 10,
+      "internal_code": "IMP_REC",
+      "kpi_type": "operational",
+      "title": "Testimonial Collection Rate",
+      "title_matrix": {
+        "de": {
+          "colloquial": "Gesammelte Erfolgsgeschichten",
+          "management": "Testimonial-Sammlungsrate"
+        },
+        "en": {
+          "colloquial": "Success Stories Collected",
+          "management": "Testimonial Collection Rate"
+        },
+        "es": {
+          "colloquial": "Historias de Éxito Recopiladas",
+          "management": "Tasa de Recopilación de Testimonios"
+        }
+      },
+      "unit": "Testimonials/Quartal",
+      "icon": "message-square",
+      "matrix": {
+        "de": {
+          "colloquial": "Wie viele positive Rückmeldungen sammeln wir systematisch? Erfolgsgeschichten dokumentieren.",
+          "management": "Anzahl erfasster Stakeholder-Testimonials und Success-Stories pro Quartal. Prozessindikator für systematische Erfolgs-Amplifikation."
+        },
+        "en": {
+          "colloquial": "How many positive feedback items do we systematically collect?",
+          "management": "Number of captured stakeholder testimonials and success stories per quarter."
+        },
+        "es": {
+          "colloquial": "¿Cuántos comentarios positivos recopilamos sistemáticamente?",
+          "management": "Número de testimonios de interesados e historias de éxito capturadas por trimestre."
+        }
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,61 @@
+{
+  "alignment_widget": {
+    "strategic": {
+      "de": { 
+        "colloquial": "Das große Ziel", 
+        "management": "Strategic Alignment & Portfolio Value" 
+      },
+      "en": { 
+        "colloquial": "The Big Goal", 
+        "management": "Strategic Business Alignment" 
+      },
+      "es": { 
+        "colloquial": "El Objetivo Mayor", 
+        "management": "Alineación Estratégica" 
+      }
+    },
+    "tactical": {
+      "de": { 
+        "colloquial": "Planung & Leute", 
+        "management": "Tactical Capacity & Resource Optimization" 
+      },
+      "en": { 
+        "colloquial": "Planning & People", 
+        "management": "Tactical Governance & Capacity" 
+      },
+      "es": { 
+        "colloquial": "Planificación y Equipo", 
+        "management": "Gobernanza Táctica y Capacidad" 
+      }
+    },
+    "operational": {
+      "de": { 
+        "colloquial": "Tägliche Arbeit", 
+        "management": "Operational Excellence & Performance Tracking" 
+      },
+      "en": { 
+        "colloquial": "Day-to-day Work", 
+        "management": "Operational Execution & SLA Metrics" 
+      },
+      "es": { 
+        "colloquial": "Trabajo Diario", 
+        "management": "Excelencia Operativa y Métricas" 
+      }
+    },
+    "save_button": {
+      "de": { 
+        "colloquial": "Eingaben merken", 
+        "management": "Deliverables in Instanz sichern" 
+      },
+      "en": { 
+        "colloquial": "Keep changes", 
+        "management": "Commit Evidence to Instance" 
+      },
+      "es": { 
+        "colloquial": "Guardar cambios", 
+        "management": "Confirmar Evidencia en Instancia" 
+      }
+    }
+  }
+}
+
