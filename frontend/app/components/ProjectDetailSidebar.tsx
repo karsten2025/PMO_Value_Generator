@@ -61,7 +61,7 @@ export default function ProjectDetailSidebar({
             return {
               id: kv.id,
               kpi_library_id: kv.kpi_id,
-              kpi_type: 'operational',
+              kpi_type: 'operational' as const,
               title: 'Unknown KPI',
               description: 'No definition found',
               unit: '%',
