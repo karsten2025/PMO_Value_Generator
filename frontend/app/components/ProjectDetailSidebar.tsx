@@ -55,7 +55,7 @@ export default function ProjectDetailSidebar({
       if (kpiValues) {
         // Enriche mit KPI-Library Daten
         const enriched: EnrichedKPI[] = kpiValues.map((kv: KPIValue) => {
-          const kpiDef = kpiLibrary.find((k: any) => k.id === kv.kpi_id);
+          const kpiDef = kpiLibrary.kpis.find((k: any) => k.id === kv.kpi_id);
           
           if (!kpiDef) {
             return {
