@@ -79,7 +79,7 @@ export default function ProjectDetailSidebar({
           return {
             id: kv.id,
             kpi_library_id: kv.kpi_id,
-            kpi_type: kpiDef.kpi_type,
+            kpi_type: kpiDef.kpi_type as 'strategic' | 'tactical' | 'operational',
             title,
             description,
             unit: kpiDef.unit,
