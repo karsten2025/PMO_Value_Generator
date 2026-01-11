@@ -545,3 +545,4 @@ Vor Full-Implementation jeder AI-Feature:
 **Document Owner**: Karsten  
 **Status**: Draft → Review → Approved → In Progress
 
+

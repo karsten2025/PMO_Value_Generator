@@ -15,14 +15,16 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { ReactFlow, Background, Controls } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { Languages, User, Target, Layers, Settings, TrendingUp, Users as UsersIcon, CheckCircle, LayoutGrid, Network } from 'lucide-react';
+import { Languages, User, Target, Layers, Settings, TrendingUp, Users as UsersIcon, CheckCircle, LayoutGrid, Network, MessageSquare } from 'lucide-react';
 import uiLabels from '../mock/ui-labels-matrix.json';
 import kpiLibrary from '../mock/kpi-library-mock.json';
 import ImpactNode from './components/ImpactNode';
 import PortfolioHealthHub from './components/PortfolioHealthHub';
 import PortfolioSelector from './components/PortfolioSelector';
 import PortfolioProjectList from './components/PortfolioProjectList';
+import ChatInterface from './components/ChatInterface';
 import { usePortfolio } from '@/app/contexts/PortfolioContext';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 import { supabase, InstanceMetric } from '@/lib/supabase';
 
 // 1. Die 2x3 Matrix Daten (Rechtlich sicher: "PMO Impact Cycle")
@@ -255,10 +257,11 @@ const nodeTypes = {
 export default function FlywheelPage() {
   // Portfolio Context
   const { selectedPortfolio } = usePortfolio();
+  const { language: contextLanguage, register: contextRegister, setLanguage: setContextLanguage, setRegister: setContextRegister } = useLanguage();
 
-  // UI State
-  const [lang, setLang] = useState<'de' | 'en' | 'es'>('de');
-  const [mode, setMode] = useState<'colloquial' | 'management'>('colloquial');
+  // UI State - Sync with LanguageContext
+  const [lang, setLangState] = useState<'de' | 'en' | 'es'>(contextLanguage.toLowerCase() as 'de' | 'en' | 'es');
+  const [mode, setModeState] = useState<'colloquial' | 'management'>(contextRegister);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
   const [strategicNotes, setStrategicNotes] = useState<string>('');
   const [tacticalNotes, setTacticalNotes] = useState<string>('');
@@ -268,6 +271,24 @@ export default function FlywheelPage() {
   
   // View State: Impact Cycle oder Projects List
   const [view, setView] = useState<'cycle' | 'projects'>('cycle');
+  const [isChatOpen, setIsChatOpen] = useState(false); // Chatbot state
+  
+  // Sync local state with LanguageContext
+  const setLang = (newLang: 'de' | 'en' | 'es') => {
+    setLangState(newLang);
+    setContextLanguage(newLang.toUpperCase() as 'DE' | 'EN' | 'ES');
+  };
+  
+  const setMode = (newMode: 'colloquial' | 'management') => {
+    setModeState(newMode);
+    setContextRegister(newMode);
+  };
+  
+  // Sync from LanguageContext on mount
+  useEffect(() => {
+    setLangState(contextLanguage.toLowerCase() as 'de' | 'en' | 'es');
+    setModeState(contextRegister);
+  }, [contextLanguage, contextRegister]);
   
   // DB State
   const [instanceMetrics, setInstanceMetrics] = useState<InstanceMetric[]>([]);
@@ -675,6 +696,16 @@ export default function FlywheelPage() {
               <Languages size={16} /> Management
             </button>
           </div>
+
+          {/* Chatbot Button */}
+          <button
+            onClick={() => setIsChatOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 hover:from-purple-700 hover:via-pink-700 hover:to-purple-700 rounded-lg transition-all shadow-lg hover:shadow-pink-500/50 animate-gradient"
+            title="PMO Knowledge Assistant"
+          >
+            <MessageSquare size={18} />
+            <span className="font-medium">AI Assistant</span>
+          </button>
         </div>
       </header>
 
@@ -1015,6 +1046,9 @@ export default function FlywheelPage() {
           )}
         </aside>
       </main>
+
+      {/* Chatbot Interface */}
+      <ChatInterface isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </div>
   );
 }

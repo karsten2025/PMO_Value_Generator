@@ -11,7 +11,6 @@
 
 -- Lösche Tabellen zuerst (CASCADE entfernt automatisch Abhängigkeiten)
 DROP TABLE IF EXISTS pmo_kpi_values CASCADE;
-DROP TABLE IF EXISTS pmo_instance_metrics CASCADE;
 DROP TABLE IF EXISTS pmo_instances CASCADE;
 DROP TABLE IF EXISTS pmo_kpi_library CASCADE;
 DROP TABLE IF EXISTS pmo_projects CASCADE;
@@ -41,17 +40,26 @@ CREATE TABLE pmo_portfolios (
 CREATE TABLE pmo_projects (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     name TEXT NOT NULL,
+    name_matrix JSONB,                -- 2x3 Matrix für mehrsprachige Namen
     description TEXT,
+    description_matrix JSONB,         -- 2x3 Matrix für mehrsprachige Beschreibungen
     portfolio_id UUID REFERENCES pmo_portfolios(id) ON DELETE CASCADE,
     start_date DATE,
     end_date DATE,
     status TEXT DEFAULT 'active',
+    strategic_alignment TEXT CHECK (strategic_alignment IN ('strategic', 'tactical', 'operational')),
+    impact_score TEXT CHECK (impact_score IN ('low', 'medium', 'high')),
+    risk_level TEXT CHECK (risk_level IN ('low', 'medium', 'high')),
+    project_owner TEXT,
+    budget NUMERIC,
+    tags TEXT[],
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 CREATE INDEX idx_projects_portfolio ON pmo_projects(portfolio_id);
 CREATE INDEX idx_projects_status ON pmo_projects(status);
+CREATE INDEX idx_projects_alignment ON pmo_projects(strategic_alignment);
 
 -- ============================================================================
 -- SCHRITT 4: PROCESS TEMPLATES (Neu)
@@ -115,7 +123,7 @@ CREATE INDEX idx_instances_status ON pmo_instances(status);
 -- ============================================================================
 
 CREATE TABLE pmo_kpi_library (
-    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    id TEXT PRIMARY KEY,              -- String-ID (z.B. 'DIS_AWR_STR_001')
     step_number INTEGER NOT NULL,     -- 1 bis 10 (Flywheel/Impact Cycle Schritte)
     kpi_category TEXT CHECK (kpi_category IN ('strategic', 'tactical', 'operational')),
     matrix_data JSONB NOT NULL,       -- Die 2x3 Matrix für Namen & Beschreibung (DE/EN/ES x Colloquial/Management)
@@ -134,8 +142,9 @@ CREATE INDEX idx_kpi_category ON pmo_kpi_library(kpi_category);
 CREATE TABLE pmo_kpi_values (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     portfolio_id UUID REFERENCES pmo_portfolios(id) ON DELETE CASCADE,
-    instance_id UUID REFERENCES pmo_instances(id) ON DELETE CASCADE,
-    kpi_id UUID REFERENCES pmo_kpi_library(id) ON DELETE CASCADE,
+    project_id UUID REFERENCES pmo_projects(id) ON DELETE CASCADE,
+    instance_id UUID REFERENCES pmo_instances(id) ON DELETE SET NULL,  -- Optional (NULL erlaubt)
+    kpi_id TEXT REFERENCES pmo_kpi_library(id) ON DELETE CASCADE,       -- String-ID
     target_value NUMERIC,             -- Zielwert (Soll)
     actual_value NUMERIC,             -- Ist-Wert
     step_id TEXT,                     -- Verknüpfung zum Flywheel-Knoten (z.B. 'milestone_1')
@@ -143,6 +152,7 @@ CREATE TABLE pmo_kpi_values (
 );
 
 CREATE INDEX idx_kpi_values_portfolio ON pmo_kpi_values(portfolio_id);
+CREATE INDEX idx_kpi_values_project ON pmo_kpi_values(project_id);
 CREATE INDEX idx_kpi_values_instance ON pmo_kpi_values(instance_id);
 CREATE INDEX idx_kpi_values_kpi ON pmo_kpi_values(kpi_id);
 CREATE INDEX idx_kpi_values_step ON pmo_kpi_values(step_id);

@@ -42,3 +42,19 @@ body {
 .animate-pulse-glow-center {
   animation: pulse-glow-center 2s ease-in-out infinite;
 }
+
+/* AI Assistant Button Gradient Animation */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+

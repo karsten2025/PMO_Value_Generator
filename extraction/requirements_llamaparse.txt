@@ -1,0 +1,42 @@
+# LlamaParse & Vector DB Requirements
+# Installiere mit: pip install -r requirements_llamaparse.txt
+
+# === CORE: PDF Extraktion ===
+llama-parse>=0.5.0                 # LlamaParse SDK
+llama-index-core>=0.11.0           # Vector DB & RAG Framework (Core)
+llama-index-embeddings-openai>=0.2.0      # OpenAI Embeddings (optional)
+llama-index-vector-stores-chroma>=0.2.0   # ChromaDB Integration
+llama-index>=0.11.0                # Main package
+
+# === VECTOR DATABASE ===
+chromadb==0.4.22                   # Vector DB (kostenlos, lokal)
+# Alternativ: pinecone-client, weaviate-client, qdrant-client
+
+# === TEXT PROCESSING ===
+tiktoken>=0.7.0                    # Token counting (für Chunking)
+
+# === UTILITIES ===
+python-dotenv==1.0.0               # Für API-Keys (.env)
+rich==13.7.0                       # Beautiful terminal output
+tqdm==4.66.1                       # Progress bars
+
+# === ANALYSIS & COMPARISON ===
+pandas>=2.0.0                      # Für Quality Comparison
+# difflib ist Python Standard Library - nicht installieren!
+
+# === MULTI-LANGUAGE SUPPORT (2x3 Matrix) ===
+deep-translator==1.11.4            # Google Translate (kostenlos)
+langdetect==1.0.9                  # Sprach-Erkennung
+openai==1.10.0                     # Für Register-Adaptation (optional)
+
+# === EXISTING (aus deinem Projekt) ===
+# pymupdf>=1.23.8  # OPTIONAL: Nur für Quality Comparison, kann Build-Probleme verursachen
+supabase>=2.0.0                    # Falls du extrahierte Daten speichern willst
+sentence-transformers==2.7.0       # For HuggingFace Embeddings
+banks==2.2.0                       # Missing dependency for llama-index
+
+# === API SERVER ===
+fastapi==0.109.0                   # REST API Framework
+uvicorn==0.27.0                    # ASGI Server
+pydantic==2.5.0                    # Data validation
+

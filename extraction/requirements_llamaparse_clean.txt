@@ -1,0 +1,36 @@
+# ========================================
+# PMO Value Generator - LlamaParse Dependencies
+# MINIMAL & CLEAN VERSION
+# ========================================
+
+# === CORE: PDF Extraction & RAG ===
+llama-parse>=0.5.0
+llama-index>=0.11.0
+llama-index-core>=0.11.0
+llama-index-vector-stores-chroma>=0.2.0
+llama-index-embeddings-openai>=0.2.0
+
+# === VECTOR DATABASE ===
+chromadb>=0.4.22
+
+# === MULTI-LANGUAGE SUPPORT (2x3 Matrix) ===
+deep-translator>=1.11.4
+langdetect>=1.0.9
+
+# === TEXT PROCESSING ===
+tiktoken>=0.7.0
+
+# === UTILITIES ===
+python-dotenv>=1.0.0
+rich>=13.7.0
+tqdm>=4.66.1
+
+# === ANALYSIS ===
+pandas>=2.0.0
+
+# === OPTIONAL: Register-Adaptation ===
+openai>=1.10.0
+
+# === EXISTING: Supabase ===
+supabase>=2.0.0
+
