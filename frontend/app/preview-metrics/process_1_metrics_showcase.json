@@ -1,0 +1,431 @@
+{
+  "meta": {
+    "generated_at": "2026-01-13",
+    "version": "showcase",
+    "process": {
+      "step_id": 1,
+      "internal_code": "DIS_AWR",
+      "title_en": "Awareness & Education",
+      "title_de": "Bewusstseinsbildung & Schulung",
+      "title_es": "Concienciación & Educación",
+      "description_en": "Building awareness of PMO value through stakeholder communication and education. Strategic positioning through targeted campaigns and training programs.",
+      "description_de": "Aufbau von PMO-Wertbewusstsein durch Stakeholder-Kommunikation und Schulung. Strategische Positionierung durch gezielte Kampagnen und Trainingsprogramme.",
+      "description_es": "Creación de conciencia del valor de PMO mediante comunicación y educación de stakeholders. Posicionamiento estratégico mediante campañas dirigidas y programas de capacitación."
+    },
+    "total_metrics": 15,
+    "metrics_per_category": 3,
+    "note": "Ultra-minimalist showcase version - 3 best metrics per category"
+  },
+  "metrics": {
+    "input": [
+      {
+        "name_en": "Training Budget Utilization",
+        "name_de": "Auslastung des Schulungsbudgets",
+        "name_es": "Utilización del Presupuesto de Capacitación",
+        "unit": "€",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viel des Schulungsbudgets wurde verwendet?",
+            "management": "Ein Maß dafür, wie effizient das Schulungsbudget genutzt wird."
+          },
+          "en": {
+            "colloquial": "How much of the training budget has been used?",
+            "management": "A measure of how efficiently the training budget is being utilized."
+          },
+          "es": {
+            "colloquial": "¿Cuánto del presupuesto de capacitación se ha utilizado?",
+            "management": "Una medida de cuán eficientemente se está utilizando el presupuesto de capacitación."
+          }
+        },
+        "calculation_method": "Total training expenses incurred divided by the allocated training budget.",
+        "recommended_for": [
+          "large_pmo",
+          "startup_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Trainer Hours Invested",
+        "name_de": "Stunden Investiert von Trainern",
+        "name_es": "Horas Invertidas por Instructores",
+        "unit": "hours",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Stunden haben die Trainer investiert?",
+            "management": "Die Anzahl der Stunden, die Trainer in Schulungsaktivitäten investieren."
+          },
+          "en": {
+            "colloquial": "How many hours have trainers invested?",
+            "management": "The number of hours trainers are investing in training activities."
+          },
+          "es": {
+            "colloquial": "¿Cuántas horas han invertido los instructores?",
+            "management": "El número de horas que los instructores invierten en actividades de capacitación."
+          }
+        },
+        "calculation_method": "Sum of all hours logged by trainers for training sessions.",
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Training Material Prepared",
+        "name_de": "Vorbereitete Schulungsmaterialien",
+        "name_es": "Material de Capacitación Preparado",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Schulungsmaterialien wurden vorbereitet?",
+            "management": "Die Anzahl der erstellten Schulungsmaterialien zur Unterstützung von Trainingsinitiativen."
+          },
+          "en": {
+            "colloquial": "How many training materials have been prepared?",
+            "management": "The count of training materials created to support training initiatives."
+          },
+          "es": {
+            "colloquial": "¿Cuántos materiales de capacitación se han preparado?",
+            "management": "El conteo de materiales de capacitación creados para apoyar iniciativas de capacitación."
+          }
+        },
+        "calculation_method": "Total number of training documents, slides, and other materials produced.",
+        "recommended_for": [
+          "large_pmo",
+          "startup_pmo",
+          "agile_org"
+        ]
+      }
+    ],
+    "process": [
+      {
+        "name_en": "Stakeholder Engagement Sessions",
+        "name_de": "Stakeholder-Engagement-Sitzungen",
+        "name_es": "Sesiones de Compromiso de Stakeholders",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Regelmäßige Sitzungen mit Stakeholdern, um ihre Bedürfnisse zu verstehen.",
+            "management": "Strategische Engagementsitzungen zur Sicherstellung der Stakeholder-Unterstützung und -Ausrichtung."
+          },
+          "en": {
+            "colloquial": "Regular meetings with stakeholders to understand their needs.",
+            "management": "Strategic engagement sessions to ensure stakeholder support and alignment."
+          },
+          "es": {
+            "colloquial": "Reuniones regulares con stakeholders para entender sus necesidades.",
+            "management": "Sesiones de compromiso estratégico para asegurar el apoyo y alineación de stakeholders."
+          }
+        },
+        "calculation_method": "Count the number of engagement sessions held with stakeholders.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "E-Learning Module Completions",
+        "name_de": "Abschlüsse von E-Learning-Modulen",
+        "name_es": "Completaciones de Módulos de E-Learning",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Anzahl der abgeschlossenen Online-Lernmodule.",
+            "management": "Überwachung der Abschlussrate von E-Learning-Modulen zur Bewertung der Bildungsbeteiligung."
+          },
+          "en": {
+            "colloquial": "Number of completed online learning modules.",
+            "management": "Tracking e-learning module completion rate to assess educational engagement."
+          },
+          "es": {
+            "colloquial": "Número de módulos de aprendizaje en línea completados.",
+            "management": "Seguimiento de la tasa de finalización de módulos de e-learning para evaluar la participación educativa."
+          }
+        },
+        "calculation_method": "Count the number of e-learning modules completed by participants.",
+        "recommended_for": [
+          "startup_pmo",
+          "agile_org"
+        ]
+      },
+      {
+        "name_en": "Awareness Workshops Held",
+        "name_de": "Abgehaltene Awareness-Workshops",
+        "name_es": "Talleres de Concienciación Realizados",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Anzahl der durchgeführten Workshops zur Steigerung des PMO-Bewusstseins.",
+            "management": "Durchführung von Workshops zur Förderung des Verständnisses und der Wertschätzung des PMO innerhalb der Organisation."
+          },
+          "en": {
+            "colloquial": "Number of workshops conducted to increase PMO awareness.",
+            "management": "Conducting workshops to foster understanding and appreciation of the PMO within the organization."
+          },
+          "es": {
+            "colloquial": "Número de talleres realizados para aumentar la conciencia del PMO.",
+            "management": "Realización de talleres para fomentar la comprensión y apreciación del PMO dentro de la organización."
+          }
+        },
+        "calculation_method": "Count the number of awareness workshops conducted.",
+        "recommended_for": [
+          "large_pmo",
+          "startup_pmo"
+        ]
+      }
+    ],
+    "output": [
+      {
+        "name_en": "Number of Workshops Conducted",
+        "name_de": "Anzahl der durchgeführten Workshops",
+        "name_es": "Número de talleres realizados",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Workshops wir abgehalten haben.",
+            "management": "Die Anzahl der durchgeführten Workshops zeigt das Engagement zur Weiterbildung."
+          },
+          "en": {
+            "colloquial": "How many workshops we've held.",
+            "management": "The number of workshops conducted reflects our commitment to ongoing education."
+          },
+          "es": {
+            "colloquial": "Cuántos talleres hemos realizado.",
+            "management": "El número de talleres realizados refleja nuestro compromiso con la educación continua."
+          }
+        },
+        "calculation_method": "Count the total number of workshops conducted within a given period.",
+        "recommended_for": [
+          "large_pmo",
+          "agile_org",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "People Trained",
+        "name_de": "Anzahl der geschulten Personen",
+        "name_es": "Personas capacitadas",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Leute wir geschult haben.",
+            "management": "Die Anzahl der geschulten Personen zeigt die Reichweite unserer Bildungsinitiativen."
+          },
+          "en": {
+            "colloquial": "How many people we've trained.",
+            "management": "The number of people trained indicates the reach of our educational initiatives."
+          },
+          "es": {
+            "colloquial": "Cuántas personas hemos capacitado.",
+            "management": "El número de personas capacitadas indica el alcance de nuestras iniciativas educativas."
+          }
+        },
+        "calculation_method": "Count the total number of individuals who completed training programs.",
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Training Materials Created",
+        "name_de": "Erstellte Schulungsmaterialien",
+        "name_es": "Materiales de capacitación creados",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Schulungsmaterialien wir erstellt haben.",
+            "management": "Die Anzahl der erstellten Schulungsmaterialien zeigt die Investition in Bildungsressourcen."
+          },
+          "en": {
+            "colloquial": "How many training materials we've created.",
+            "management": "The number of training materials created reflects investment in educational resources."
+          },
+          "es": {
+            "colloquial": "Cuántos materiales de capacitación hemos creado.",
+            "management": "El número de materiales de capacitación creados refleja la inversión en recursos educativos."
+          }
+        },
+        "calculation_method": "Count the total number of new training materials developed.",
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry",
+          "agile_org"
+        ]
+      }
+    ],
+    "outcome": [
+      {
+        "name_en": "PMO Awareness Level",
+        "name_de": "PMO Bewusstseinsgrad",
+        "name_es": "Nivel de Conciencia del PMO",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Leute kennen den PMO und was er macht?",
+            "management": "Der Prozentsatz der Stakeholder, die den PMO und seine Funktionen kennen."
+          },
+          "en": {
+            "colloquial": "How many people know about the PMO and what it does?",
+            "management": "The percentage of stakeholders who are aware of the PMO and its functions."
+          },
+          "es": {
+            "colloquial": "¿Cuántas personas conocen el PMO y lo que hace?",
+            "management": "El porcentaje de interesados que están al tanto del PMO y sus funciones."
+          }
+        },
+        "calculation_method": "Survey stakeholders and calculate the percentage who recognize PMO functions.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Stakeholder Knowledge Improvement",
+        "name_de": "Verbesserung des Stakeholder-Wissens",
+        "name_es": "Mejora del Conocimiento de los Interesados",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viel besser verstehen die Stakeholder den PMO?",
+            "management": "Der Prozentsatz der Stakeholder, deren Wissen über den PMO sich verbessert hat."
+          },
+          "en": {
+            "colloquial": "How much better do stakeholders understand the PMO?",
+            "management": "The percentage of stakeholders whose understanding of the PMO has improved."
+          },
+          "es": {
+            "colloquial": "¿Cuánto mejor entienden los interesados el PMO?",
+            "management": "El porcentaje de interesados cuyo entendimiento del PMO ha mejorado."
+          }
+        },
+        "calculation_method": "Pre and post-training assessments to determine improvement in knowledge.",
+        "recommended_for": [
+          "startup_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Acceptance Rate",
+        "name_de": "Akzeptanzrate",
+        "name_es": "Tasa de Aceptación",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Leute akzeptieren die PMO-Initiativen?",
+            "management": "Der Prozentsatz der Stakeholder, die PMO-Initiativen akzeptieren."
+          },
+          "en": {
+            "colloquial": "How many people accept the PMO initiatives?",
+            "management": "The percentage of stakeholders who accept PMO initiatives."
+          },
+          "es": {
+            "colloquial": "¿Cuántas personas aceptan las iniciativas del PMO?",
+            "management": "El porcentaje de interesados que aceptan las iniciativas del PMO."
+          }
+        },
+        "calculation_method": "Calculate the percentage of stakeholders who agree to adopt PMO initiatives.",
+        "recommended_for": [
+          "startup_pmo",
+          "transformation_pmo"
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "name_en": "Training Satisfaction Score",
+        "name_de": "Training-Zufriedenheitspunktzahl",
+        "name_es": "Puntuación de satisfacción de la formación",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Punktzahl, die zeigt, wie zufrieden die Teilnehmer mit dem Training waren.",
+            "management": "Diese Punktzahl ermittelt die Zufriedenheit der Teilnehmer mit den Schulungsprogrammen und ermöglicht strategische Anpassungen."
+          },
+          "en": {
+            "colloquial": "Score indicating how satisfied participants are with the training.",
+            "management": "This score assesses participant satisfaction with training programs, allowing for strategic adjustments."
+          },
+          "es": {
+            "colloquial": "Puntuación que indica cuán satisfechos están los participantes con la formación.",
+            "management": "Esta puntuación evalúa la satisfacción de los participantes con los programas de formación, permitiendo ajustes estratégicos."
+          }
+        },
+        "calculation_method": "Average score from participant satisfaction surveys post-training.",
+        "recommended_for": [
+          "large_pmo",
+          "startup_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Net Promoter Score (NPS)",
+        "name_de": "Net Promoter Score (NPS)",
+        "name_es": "Puntuación de Promotor Neto (NPS)",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Messen Sie, wie wahrscheinlich es ist, dass Stakeholder unsere PMO empfehlen.",
+            "management": "Der NPS zeigt die Empfehlungsbereitschaft der Stakeholder und dient als Indikator für die wahrgenommene PMO-Wertschöpfung."
+          },
+          "en": {
+            "colloquial": "Measures how likely stakeholders are to recommend our PMO.",
+            "management": "NPS indicates stakeholder willingness to recommend the PMO, serving as a perceived value indicator."
+          },
+          "es": {
+            "colloquial": "Mide qué tan probable es que los interesados recomienden nuestro PMO.",
+            "management": "El NPS indica la disposición de los interesados a recomendar el PMO, sirviendo como indicador de valor percibido."
+          }
+        },
+        "calculation_method": "Percentage of promoters minus percentage of detractors from feedback surveys.",
+        "recommended_for": [
+          "large_pmo",
+          "agile_org",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Feedback Response Rate",
+        "name_de": "Feedback-Antwortquote",
+        "name_es": "Tasa de respuesta de comentarios",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Prozentsatz der Teilnehmer, die auf Feedbackanfragen antworten.",
+            "management": "Eine hohe Antwortquote zeigt das Engagement und die Bereitschaft zur Zusammenarbeit der Stakeholder bei der PMO-Bewertung."
+          },
+          "en": {
+            "colloquial": "Percentage of participants responding to feedback requests.",
+            "management": "A high response rate indicates stakeholder engagement and willingness to collaborate in PMO evaluation."
+          },
+          "es": {
+            "colloquial": "Porcentaje de participantes que responden a solicitudes de comentarios.",
+            "management": "Una alta tasa de respuesta indica el compromiso y la disposición de los interesados a colaborar en la evaluación del PMO."
+          }
+        },
+        "calculation_method": "Number of feedback responses received divided by total feedback requests, multiplied by 100.",
+        "recommended_for": [
+          "large_pmo",
+          "agile_org",
+          "transformation_pmo"
+        ]
+      }
+    ]
+  }
+}
+

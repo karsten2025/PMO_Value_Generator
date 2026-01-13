@@ -652,6 +652,285 @@ Después del Año 2, es pura generación de beneficios.
 ❌ Demasiada burocracia (Formularios, Formularios...)
 ❌ Sin flexibilidad (Talla Única Para Todos)
 ❌ Sin medición de éxito (Estamos bien...)`
+  },
+
+  // Metric Pools & Category Tabs
+  metricpools: {
+    de: `🎯 **Wie funktioniert die Metrik-Auswahl?**
+
+**DAS SIEHST DU:**
+5 farbige Buttons (Tabs) oben auf der Seite:
+📥 **INPUT** (Blau) → 📤 **OUTPUT** (Grün) → 🎯 **OUTCOME** (Orange) → 🔄 **FEEDBACK** (Türkis)
+⚙️ **PROCESS** (Lila) in der Mitte
+
+**SO FUNKTIONIERT'S (Schritt für Schritt):**
+
+1️⃣ **Klick auf einen Tab** (z.B. "INPUT-Metriken")
+   → Du siehst jetzt 10 Metrik-Karten
+
+2️⃣ **Lies die Beschreibungen**
+   → Jede Karte erklärt, was gemessen wird
+   → Unten steht die Berechnungsmethode
+
+3️⃣ **Klick auf eine Karte zum Auswählen**
+   → Blauer Rahmen = ausgewählt ✅
+   → Grauer Rahmen = nicht ausgewählt
+
+4️⃣ **Wähle bis zu 5 Metriken pro Tab**
+   → Du brauchst nicht alle!
+   → Starte mit 2-3 wichtigen Metriken
+
+5️⃣ **Wiederhole für alle 5 Tabs**
+   → Am Ende: Maximal 25 Metriken (5 Tabs × 5 Metriken)
+
+═══════════════════════════════════════════════════
+
+**WARUM 5 KATEGORIEN?**
+
+Jeder Prozess durchläuft 5 Phasen:
+
+📥 **INPUT** = Was stecke ich rein?
+   Beispiel: Budget, Zeit, Personen
+
+⚙️ **PROCESS** = Was mache ich konkret?
+   Beispiel: Workshops, Meetings, E-Mails
+
+📤 **OUTPUT** = Was kommt dabei raus?
+   Beispiel: Dokumente, geschulte Personen
+
+🎯 **OUTCOME** = Was hat sich verändert?
+   Beispiel: Wissensstand gestiegen, Akzeptanz erhöht
+
+🔄 **FEEDBACK** = Was sagen die Leute?
+   Beispiel: Zufriedenheit, Verbesserungsideen
+
+**Denk an's Kochen:**
+Zutaten kaufen → Kochen → Essen servieren → Alle satt → "War lecker!"
+
+═══════════════════════════════════════════════════
+
+**LAW OF REQUISITE VARIETY** (Warum so viele Metriken?)
+
+Jedes PMO ist anders!
+- Startup-PMO: 5-10 Metriken reichen
+- Enterprise-PMO: 20-25 Metriken nötig
+- Agiles PMO: Fokus auf Feedback & Outcome
+- Klassisches PMO: Fokus auf Input & Output
+
+**Das Tool passt sich AN DICH an, nicht umgekehrt!**
+
+═══════════════════════════════════════════════════
+
+**HÄUFIGE FRAGEN:**
+
+**Q: Muss ich alle 5 Kategorien ausfüllen?**
+A: Nein! Starte mit 1-2 Kategorien (z.B. Input + Output).
+   Später kannst du mehr hinzufügen.
+
+**Q: Kann ich Metriken später ändern?**
+A: Ja! Das System ist flexibel. Du kannst jederzeit
+   zurückkommen und Metriken ändern.
+
+**Q: Was ist der Unterschied zwischen OUTPUT und OUTCOME?**
+A: OUTPUT = Direktes Ergebnis (25 Personen geschult)
+   OUTCOME = Wirkung (Wissensstand von 45% auf 78%)
+
+═══════════════════════════════════════════════════
+
+**TIPP FÜR DEN START:**
+
+Fang einfach an:
+1. INPUT: 2 Metriken (Budget + Zeit)
+2. PROCESS: 2 Metriken (Workshops + Meetings)
+3. OUTPUT: 1 Metrik (Geschulte Personen)
+4. OUTCOME: Erstmal weglassen (später!)
+5. FEEDBACK: Erstmal weglassen (später!)
+
+**Total: 5 Metriken = Perfekter MVP!**`,
+
+    en: `🎯 **How Does Metric Selection Work?**
+
+**WHAT YOU SEE:**
+5 colored buttons (tabs) at the top of the page:
+📥 **INPUT** (Blue) → 📤 **OUTPUT** (Green) → 🎯 **OUTCOME** (Orange) → 🔄 **FEEDBACK** (Turquoise)
+⚙️ **PROCESS** (Purple) in the middle
+
+**HOW IT WORKS (Step by Step):**
+
+1️⃣ **Click on a tab** (e.g., "INPUT Metrics")
+   → You now see 10 metric cards
+
+2️⃣ **Read the descriptions**
+   → Each card explains what is measured
+   → Calculation method is shown at the bottom
+
+3️⃣ **Click on a card to select**
+   → Blue border = selected ✅
+   → Gray border = not selected
+
+4️⃣ **Choose up to 5 metrics per tab**
+   → You don't need all of them!
+   → Start with 2-3 important metrics
+
+5️⃣ **Repeat for all 5 tabs**
+   → In the end: Maximum 25 metrics (5 tabs × 5 metrics)
+
+═══════════════════════════════════════════════════
+
+**WHY 5 CATEGORIES?**
+
+Every process goes through 5 phases:
+
+📥 **INPUT** = What do I put in?
+   Example: Budget, time, people
+
+⚙️ **PROCESS** = What do I actually do?
+   Example: Workshops, meetings, emails
+
+📤 **OUTPUT** = What comes out?
+   Example: Documents, trained people
+
+🎯 **OUTCOME** = What has changed?
+   Example: Knowledge increased, acceptance improved
+
+🔄 **FEEDBACK** = What do people say?
+   Example: Satisfaction, improvement ideas
+
+**Think of cooking:**
+Buy ingredients → Cook → Serve food → Everyone full → "Was tasty!"
+
+═══════════════════════════════════════════════════
+
+**LAW OF REQUISITE VARIETY** (Why so many metrics?)
+
+Every PMO is different!
+- Startup PMO: 5-10 metrics are enough
+- Enterprise PMO: 20-25 metrics needed
+- Agile PMO: Focus on Feedback & Outcome
+- Classic PMO: Focus on Input & Output
+
+**The tool adapts to YOU, not the other way around!**
+
+═══════════════════════════════════════════════════
+
+**COMMON QUESTIONS:**
+
+**Q: Do I have to fill all 5 categories?**
+A: No! Start with 1-2 categories (e.g., Input + Output).
+   You can add more later.
+
+**Q: Can I change metrics later?**
+A: Yes! The system is flexible. You can come back
+   anytime and change metrics.
+
+**Q: What's the difference between OUTPUT and OUTCOME?**
+A: OUTPUT = Direct result (25 people trained)
+   OUTCOME = Impact (knowledge from 45% to 78%)
+
+═══════════════════════════════════════════════════
+
+**TIP FOR GETTING STARTED:**
+
+Keep it simple:
+1. INPUT: 2 metrics (Budget + Time)
+2. PROCESS: 2 metrics (Workshops + Meetings)
+3. OUTPUT: 1 metric (People Trained)
+4. OUTCOME: Skip for now (later!)
+5. FEEDBACK: Skip for now (later!)
+
+**Total: 5 metrics = Perfect MVP!**`,
+
+    es: `🎯 **¿Cómo funciona la selección de métricas?**
+
+**LO QUE VES:**
+5 botones de colores (pestañas) en la parte superior de la página:
+📥 **ENTRADA** (Azul) → 📤 **SALIDA** (Verde) → 🎯 **RESULTADO** (Naranja) → 🔄 **RETROALIMENTACIÓN** (Turquesa)
+⚙️ **PROCESO** (Púrpura) en el medio
+
+**CÓMO FUNCIONA (Paso a Paso):**
+
+1️⃣ **Haz clic en una pestaña** (p. ej., "Métricas de ENTRADA")
+   → Ahora ves 10 tarjetas de métricas
+
+2️⃣ **Lee las descripciones**
+   → Cada tarjeta explica qué se mide
+   → El método de cálculo se muestra en la parte inferior
+
+3️⃣ **Haz clic en una tarjeta para seleccionar**
+   → Borde azul = seleccionado ✅
+   → Borde gris = no seleccionado
+
+4️⃣ **Elige hasta 5 métricas por pestaña**
+   → ¡No necesitas todas!
+   → Comienza con 2-3 métricas importantes
+
+5️⃣ **Repite para las 5 pestañas**
+   → Al final: Máximo 25 métricas (5 pestañas × 5 métricas)
+
+═══════════════════════════════════════════════════
+
+**¿POR QUÉ 5 CATEGORÍAS?**
+
+Cada proceso pasa por 5 fases:
+
+📥 **ENTRADA** = ¿Qué pongo?
+   Ejemplo: Presupuesto, tiempo, personas
+
+⚙️ **PROCESO** = ¿Qué hago realmente?
+   Ejemplo: Talleres, reuniones, correos electrónicos
+
+📤 **SALIDA** = ¿Qué sale?
+   Ejemplo: Documentos, personas capacitadas
+
+🎯 **RESULTADO** = ¿Qué ha cambiado?
+   Ejemplo: Conocimiento aumentado, aceptación mejorada
+
+🔄 **RETROALIMENTACIÓN** = ¿Qué dice la gente?
+   Ejemplo: Satisfacción, ideas de mejora
+
+**Piensa en cocinar:**
+Comprar ingredientes → Cocinar → Servir comida → Todos llenos → "¡Estaba rico!"
+
+═══════════════════════════════════════════════════
+
+**LEY DE VARIEDAD REQUERIDA** (¿Por qué tantas métricas?)
+
+¡Cada PMO es diferente!
+- PMO de Startup: 5-10 métricas son suficientes
+- PMO Empresarial: 20-25 métricas necesarias
+- PMO Ágil: Enfoque en Retroalimentación y Resultado
+- PMO Clásico: Enfoque en Entrada y Salida
+
+**¡La herramienta se adapta a TI, no al revés!**
+
+═══════════════════════════════════════════════════
+
+**PREGUNTAS FRECUENTES:**
+
+**P: ¿Tengo que completar las 5 categorías?**
+R: ¡No! Comienza con 1-2 categorías (p. ej., Entrada + Salida).
+   Puedes agregar más más tarde.
+
+**P: ¿Puedo cambiar las métricas más tarde?**
+R: ¡Sí! El sistema es flexible. Puedes volver en
+   cualquier momento y cambiar métricas.
+
+**P: ¿Cuál es la diferencia entre SALIDA y RESULTADO?**
+R: SALIDA = Resultado directo (25 personas capacitadas)
+   RESULTADO = Impacto (conocimiento del 45% al 78%)
+
+═══════════════════════════════════════════════════
+
+**CONSEJO PARA EMPEZAR:**
+
+Mantenlo simple:
+1. ENTRADA: 2 métricas (Presupuesto + Tiempo)
+2. PROCESO: 2 métricas (Talleres + Reuniones)
+3. SALIDA: 1 métrica (Personas Capacitadas)
+4. RESULTADO: Omitir por ahora (¡más tarde!)
+5. RETROALIMENTACIÓN: Omitir por ahora (¡más tarde!)
+
+**Total: 5 métricas = ¡MVP perfecto!**`
   }
 };
 
@@ -660,6 +939,11 @@ Después del Año 2, es pura generación de beneficios.
  */
 export function matchPMOQuestion(question: string): keyof typeof PMO_KNOWLEDGE | null {
   const q = question.toLowerCase();
+  
+  // Metric Pool / Category Tab Fragen
+  if (q.match(/metr.*pool|metr.*auswahl|category.*tab|kategorie|tab|input.*output|5.*kategor|logic.*model|requisite.*variety|wie.*funktioniert.*metr|wie.*wähle.*ich|wie.*benutze|leiste|button/i)) {
+    return 'metricpools';
+  }
   
   // KPI-Fragen
   if (q.match(/kpi|kennzahl|metr|indicator|wichtigst.*pmo/i)) {

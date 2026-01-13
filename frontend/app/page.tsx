@@ -15,7 +15,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { ReactFlow, Background, Controls } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { Languages, User, Target, Layers, Settings, TrendingUp, Users as UsersIcon, CheckCircle, LayoutGrid, Network, MessageSquare } from 'lucide-react';
+import { Languages, User, Target, TrendingUp, Users as UsersIcon, CheckCircle, LayoutGrid, Network, MessageSquare } from 'lucide-react';
 import uiLabels from '../mock/ui-labels-matrix.json';
 import kpiLibrary from '../mock/kpi-library-mock.json';
 import ImpactNode from './components/ImpactNode';
@@ -263,9 +263,6 @@ export default function FlywheelPage() {
   const [lang, setLangState] = useState<'de' | 'en' | 'es'>(contextLanguage.toLowerCase() as 'de' | 'en' | 'es');
   const [mode, setModeState] = useState<'colloquial' | 'management'>(contextRegister);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
-  const [strategicNotes, setStrategicNotes] = useState<string>('');
-  const [tacticalNotes, setTacticalNotes] = useState<string>('');
-  const [operationalNotes, setOperationalNotes] = useState<string>('');
   const [selectedKPIs, setSelectedKPIs] = useState<string[]>([]);
   const [kpiValues, setKpiValues] = useState<KPIValue[]>([]);
   
@@ -414,6 +411,31 @@ export default function FlywheelPage() {
       }
     } catch (error) {
       console.error('Fehler beim Laden der Metriken:', error);
+      console.log('⚠️  Fallback auf Mock-Daten (Supabase nicht verfügbar)');
+      
+      // FALLBACK: Setze Demo-Werte wenn Supabase nicht verfügbar
+      setInstanceMetrics([]);
+      
+      // Demo Completion Werte für die Milestones
+      const demoCompletions: MilestoneCompletion = {
+        '1': 65,
+        '2': 72,
+        '3': 58,
+        '4': 81,
+        '5': 77,
+        '6': 84,
+        '7': 91,
+        '8': 68,
+        '9': 73,
+        '10': 79
+      };
+      setMilestoneCompletions(demoCompletions);
+      
+      // Demo Health Hub Scores (wie in den Mock-Daten)
+      setStrategicScore(52);
+      setTacticalScore(81);
+      setOperationalScore(89);
+      setTotalImpactScore(75);
     } finally {
       setIsLoadingMetrics(false);
     }
@@ -513,10 +535,7 @@ export default function FlywheelPage() {
 
     // TODO: Aktualisiere Health Scores in Echtzeit nach Speichern
     // TODO: Hier später Speichern in Supabase oder localStorage
-    console.log('Notizen gespeichert für Node', selectedNode);
-    console.log('Strategic:', strategicNotes);
-    console.log('Tactical:', tacticalNotes);
-    console.log('Operational:', operationalNotes);
+    console.log('KPI-Werte gespeichert für Prozess', selectedNode);
     console.log('Ausgewählte KPIs:', selectedKPIs);
     console.log('KPI-Werte:', kpiValues);
     console.log('Durchschnittlicher Erreichungsgrad:', Math.round(averageCompletion) + '%');
@@ -789,93 +808,44 @@ export default function FlywheelPage() {
                   </p>
                 </div>
 
-                {/* Strategic Alignment */}
+                {/* Das große Ziel */}
                 <div className="mb-6">
                   <div className="flex items-center gap-2 mb-3">
                     <Target className="w-5 h-5 text-blue-400" />
                     <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wide">
-                      {getLabel('strategic')}
+                      {lang === 'de' ? 'Das große Ziel' : lang === 'en' ? 'The Big Goal' : 'El Gran Objetivo'}
                     </h3>
                   </div>
-                  <textarea
-                    value={strategicNotes}
-                    onChange={(e) => setStrategicNotes(e.target.value)}
-                    placeholder={
-                      mode === 'colloquial' 
-                        ? (lang === 'de' ? 'Wie unterstützt dieser Schritt eure Hauptziele?' 
-                           : lang === 'en' ? 'How does this step support your main goals?' 
-                           : '¿Cómo apoya este paso sus objetivos principales?')
-                        : (lang === 'de' ? 'Strategic Alignment & Portfolio Value Assessment' 
-                           : lang === 'en' ? 'Strategic Alignment & Portfolio Value Assessment' 
-                           : 'Evaluación de Alineación Estratégica y Valor de Cartera')
+                  <p className="text-sm text-slate-400 leading-relaxed bg-slate-900 p-3 rounded-lg border border-slate-600">
+                    {mode === 'colloquial' 
+                      ? (lang === 'de' ? 'Dieser Prozess hilft, das PMO bekannter zu machen und Vertrauen aufzubauen.' 
+                         : lang === 'en' ? 'This process helps make the PMO better known and build trust.' 
+                         : 'Este proceso ayuda a dar a conocer mejor la PMO y generar confianza.')
+                      : (lang === 'de' ? 'Strategische Positionierung und Etablierung der PMO-Wertschöpfung im Unternehmenskontext.' 
+                         : lang === 'en' ? 'Strategic positioning and establishment of PMO value creation in the corporate context.' 
+                         : 'Posicionamiento estratégico y establecimiento de la creación de valor de PMO en el contexto corporativo.')
                     }
-                    className="w-full h-24 p-3 bg-slate-900 border border-slate-600 rounded-lg
-                             text-slate-200 text-sm resize-none
-                             focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                             placeholder-slate-500"
-                  />
+                  </p>
                 </div>
 
-                {/* Tactical Alignment */}
-                <div className="mb-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Layers className="w-5 h-5 text-purple-400" />
-                    <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wide">
-                      {getLabel('tactical')}
-                    </h3>
-                  </div>
-                  <textarea
-                    value={tacticalNotes}
-                    onChange={(e) => setTacticalNotes(e.target.value)}
-                    placeholder={
-                      mode === 'colloquial' 
-                        ? (lang === 'de' ? 'Welche Ressourcen & Fähigkeiten braucht ihr?' 
-                           : lang === 'en' ? 'What resources & skills do you need?' 
-                           : '¿Qué recursos y habilidades necesitan?')
-                        : (lang === 'de' ? 'Resource Allocation & Capability Assessment' 
-                           : lang === 'en' ? 'Resource Allocation & Capability Assessment' 
-                           : 'Asignación de Recursos y Evaluación de Capacidades')
-                    }
-                    className="w-full h-24 p-3 bg-slate-900 border border-slate-600 rounded-lg
-                             text-slate-200 text-sm resize-none
-                             focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent
-                             placeholder-slate-500"
-                  />
-                </div>
-
-                {/* Operational Alignment */}
-                <div className="mb-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Settings className="w-5 h-5 text-green-400" />
-                    <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wide">
-                      {getLabel('operational')}
-                    </h3>
-                  </div>
-                  <textarea
-                    value={operationalNotes}
-                    onChange={(e) => setOperationalNotes(e.target.value)}
-                    placeholder={
-                      mode === 'colloquial' 
-                        ? (lang === 'de' ? 'Wie setzt ihr das konkret um?' 
-                           : lang === 'en' ? 'How will you implement this?' 
-                           : '¿Cómo implementarán esto?')
-                        : (lang === 'de' ? 'Execution Planning & KPI Definition' 
-                           : lang === 'en' ? 'Execution Planning & KPI Definition' 
-                           : 'Planificación de Ejecución y Definición de KPIs')
-                    }
-                    className="w-full h-24 p-3 bg-slate-900 border border-slate-600 rounded-lg
-                             text-slate-200 text-sm resize-none
-                             focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent
-                             placeholder-slate-500"
-                  />
-                </div>
-
-                {/* KPI-Auswahl Sektion */}
+                {/* PMO-IMPACT Sektion */}
                 <div className="mb-6 border-t border-slate-700 pt-6">
-                  <h3 className="text-sm font-semibold text-slate-300 mb-4 uppercase tracking-wide flex items-center gap-2">
-                    <Target className="w-5 h-5 text-emerald-400" />
-                    {lang === 'de' ? 'Empfohlene Kennzahlen' : lang === 'en' ? 'Recommended KPIs' : 'KPIs Recomendados'}
-                  </h3>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wide flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-emerald-400" />
+                      {lang === 'de' ? 'PMO-Impact' : lang === 'en' ? 'PMO Impact' : 'Impacto PMO'}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-400 mb-4 leading-relaxed">
+                    {mode === 'colloquial'
+                      ? (lang === 'de' ? 'Diese Portfolio-KPIs profitieren von diesem Prozess:' 
+                         : lang === 'en' ? 'These portfolio KPIs benefit from this process:' 
+                         : 'Estos KPIs de cartera se benefician de este proceso:')
+                      : (lang === 'de' ? 'Strategische Impact-Metriken auf Portfolio-Ebene:' 
+                         : lang === 'en' ? 'Strategic impact metrics at portfolio level:' 
+                         : 'Métricas de impacto estratégico a nivel de cartera:')
+                    }
+                  </p>
                   
                   {relevantKPIs.length > 0 ? (
                     <div className="space-y-3">
@@ -995,6 +965,45 @@ export default function FlywheelPage() {
                       {lang === 'de' ? 'Keine KPIs verfügbar' : lang === 'en' ? 'No KPIs available' : 'No hay KPIs disponibles'}
                     </p>
                   )}
+                </div>
+
+                {/* Button: Prozess starten & Metriken festlegen */}
+                <div className="mb-4 border-t border-slate-700 pt-6">
+                  <a 
+                    href={`/preview-metrics?process=${selectedNode}`}
+                    className="w-full py-3 px-4 bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 
+                             hover:from-emerald-700 hover:via-green-700 hover:to-emerald-700
+                             text-white font-semibold rounded-lg
+                             transition-all duration-200
+                             flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-500/30"
+                  >
+                    <svg 
+                      className="w-5 h-5" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" 
+                      />
+                    </svg>
+                    {lang === 'de' ? 'Prozess starten & Metriken festlegen' 
+                     : lang === 'en' ? 'Start Process & Define Metrics' 
+                     : 'Iniciar Proceso y Definir Métricas'}
+                  </a>
+                  <p className="text-xs text-slate-500 mt-2 text-center italic">
+                    {mode === 'colloquial'
+                      ? (lang === 'de' ? 'Wähle aus 50 Metriken, die zu deinem PMO passen' 
+                         : lang === 'en' ? 'Choose from 50 metrics that fit your PMO' 
+                         : 'Elige entre 50 métricas que se adapten a tu PMO')
+                      : (lang === 'de' ? 'Law of Requisite Variety: Flexible Metrik-Selektion' 
+                         : lang === 'en' ? 'Law of Requisite Variety: Flexible metric selection' 
+                         : 'Ley de Variedad Requerida: Selección flexible de métricas')
+                    }
+                  </p>
                 </div>
 
                 {/* Speichern-Button mit dynamischem Label */}

@@ -53,6 +53,17 @@ Beispiel-Struktur:
 - Templates liegen in `pmo_templates`, aktive Prozesse in `pmo_instances`.
 - Jeder Prozessschritt muss eine eindeutige `step_number` und einen `internal_code` haben.
 
+## 4.5 Law of Requisite Variety (Ashby's Law)
+**Prinzip:** "Only variety can destroy variety" - Ein System muss mindestens so viel Flexibilität bieten, wie die Vielfalt der Herausforderungen erfordert.
+
+**Anwendung im PMO Value Generator:**
+- **Metric Pools:** Jede Prozesskategorie (Input, Process, Output, Outcome, Feedback) bietet mindestens 5-10 auswählbare Metriken
+- **Process Activities:** Nutzer können aus 5-10 Aktivitäten pro Prozess frei wählen
+- **Skalierbarkeit:** System muss erweiterbar sein (5→10→15 Metriken) ohne Code-Änderungen
+- **Anpassungsfähigkeit:** Jedes PMO ist anders - das Tool passt sich an, nicht umgekehrt
+
+**Ziel:** Maximale Flexibilität bei minimaler Komplexität für den Nutzer.
+
 ## 5. Tech-Stack & Coding Standards
 - Backend: Python 3.10+, Bibliotheken: `supabase`, `python-dotenv`, `pymupdf`.
 - Frontend: Next.js (App Router), Tailwind CSS, React Flow für Diagramme.
