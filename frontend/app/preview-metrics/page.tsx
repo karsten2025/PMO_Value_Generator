@@ -211,6 +211,7 @@ export default function MetricsPreviewPage() {
     }
     return 1; // Default: Prozess 1
   });
+  const [showToast, setShowToast] = useState(false);
 
   // Dynamisch die richtigen Daten für den gewählten Prozess laden
   const metricsData = PROCESS_DATA_MAP[selectedProcess as keyof typeof PROCESS_DATA_MAP];
@@ -270,6 +271,54 @@ export default function MetricsPreviewPage() {
   };
 
   const selectedCount = selectedMetrics.size;
+
+  // Helper: Zählt ausgewählte Metriken pro Kategorie
+  const getCategorySelectionCount = (category: MetricCategory) => {
+    const categoryMetrics = metricsData.metrics[category] as Metric[];
+    let count = 0;
+    categoryMetrics.forEach((_, index) => {
+      const metricKey = `${category}-${index}`;
+      if (selectedMetrics.has(metricKey)) count++;
+    });
+    return count;
+  };
+
+  // Save to LocalStorage
+  const saveSelection = () => {
+    const selectionData = {
+      processId: selectedProcess,
+      metrics: Array.from(selectedMetrics),
+      timestamp: new Date().toISOString()
+    };
+    localStorage.setItem(
+      `metric_selection_p${selectedProcess}`,
+      JSON.stringify(selectionData)
+    );
+    
+    // Show Toast
+    setShowToast(true);
+    
+    // Auto-hide nach 3 Sekunden
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+  };
+
+  // Load from LocalStorage (beim Mount)
+  useEffect(() => {
+    const saved = localStorage.getItem(`metric_selection_p${selectedProcess}`);
+    if (saved) {
+      try {
+        const data = JSON.parse(saved);
+        setSelectedMetrics(new Set(data.metrics));
+      } catch (e) {
+        console.error('Failed to load saved selection:', e);
+      }
+    } else {
+      // Bei Prozess-Wechsel: Reset selection falls keine gespeichert
+      setSelectedMetrics(new Set());
+    }
+  }, [selectedProcess]);
 
   const getProcessTitle = () => {
     const meta = metricsData.meta.process;
@@ -381,7 +430,16 @@ export default function MetricsPreviewPage() {
                 <div className="flex items-center gap-2">
                   <span className="text-lg">{info.icon}</span>
                   <div className="text-left">
-                    <div>{info.title[language]}</div>
+                    <div className="flex items-center gap-2">
+                      <span>{info.title[language]}</span>
+                      <span className={`text-xs font-bold ${
+                        getCategorySelectionCount(key as MetricCategory) > 0 
+                          ? 'text-blue-300' 
+                          : 'text-slate-500'
+                      }`}>
+                        ({getCategorySelectionCount(key as MetricCategory)}/{metricsData.metrics[key as MetricCategory].length})
+                      </span>
+                    </div>
                     <div className="text-xs opacity-75 font-normal">
                       {metricsData.metrics[key as MetricCategory].length} {language === 'de' ? 'Metriken' : language === 'es' ? 'Métricas' : 'Metrics'}
                     </div>
@@ -495,6 +553,93 @@ export default function MetricsPreviewPage() {
           })}
         </div>
       </main>
+
+      {/* Action Bar - Sticky Bottom */}
+      <div className="sticky bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 p-4 shadow-2xl">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Left: Selection Count & Validation */}
+          <div className="flex items-center gap-4">
+            <div className="text-sm">
+              <span className="text-blue-400 font-bold text-lg">
+                {selectedCount} / 15
+              </span>
+              <span className="text-slate-400 ml-2">
+                {language === 'de' ? 'Metriken ausgewählt' : 
+                 language === 'es' ? 'métricas seleccionadas' : 
+                 'metrics selected'}
+              </span>
+            </div>
+            {selectedCount === 0 && (
+              <div className="flex items-center gap-2 text-yellow-400 text-sm">
+                <span>⚠️</span>
+                <span>
+                  {language === 'de' ? 'Mindestens 1 Metrik erforderlich' :
+                   language === 'es' ? 'Se requiere al menos 1 métrica' :
+                   'At least 1 metric required'}
+                </span>
+              </div>
+            )}
+            {selectedCount > 0 && (
+              <div className="flex items-center gap-2 text-green-400 text-sm">
+                <span>✅</span>
+                <span>
+                  {language === 'de' ? 'Bereit zum Speichern' :
+                   language === 'es' ? 'Listo para guardar' :
+                   'Ready to save'}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Right: Action Buttons */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => window.history.back()}
+              className="px-6 py-2 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-white transition font-medium"
+            >
+              🔙 {language === 'de' ? 'Abbrechen' : language === 'es' ? 'Cancelar' : 'Cancel'}
+            </button>
+            <button
+              onClick={saveSelection}
+              disabled={selectedCount === 0}
+              className={`px-6 py-2 rounded-lg font-medium transition ${
+                selectedCount > 0
+                  ? 'bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/30'
+                  : 'bg-slate-700 text-slate-500 cursor-not-allowed'
+              }`}
+            >
+              💾 {language === 'de' ? 'Auswahl speichern' : language === 'es' ? 'Guardar selección' : 'Save Selection'}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Toast Notification */}
+      {showToast && (
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 animate-slideUp">
+          <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 animate-gradient text-white px-6 py-4 rounded-lg shadow-2xl shadow-pink-500/50 flex items-center gap-3 border border-pink-400">
+            <div className="text-2xl">✅</div>
+            <div>
+              <div className="font-bold">
+                {language === 'de' ? 'Erfolgreich gespeichert!' :
+                 language === 'es' ? '¡Guardado exitosamente!' :
+                 'Successfully saved!'}
+              </div>
+              <div className="text-sm text-pink-100">
+                {language === 'de' ? `${selectedCount} Metriken für Prozess ${selectedProcess}` :
+                 language === 'es' ? `${selectedCount} métricas para proceso ${selectedProcess}` :
+                 `${selectedCount} metrics for process ${selectedProcess}`}
+              </div>
+            </div>
+            <button
+              onClick={() => setShowToast(false)}
+              className="ml-4 text-white hover:text-pink-200 transition"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
