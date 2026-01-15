@@ -38,7 +38,10 @@
           }
         },
         "calculation_method": "Sum of hours allocated for stakeholder interviews and requirements workshops.",
-        "recommended_for": ["large_pmo", "transformation_pmo"]
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
       },
       {
         "name_en": "Number of Stakeholders to Interview",
@@ -61,7 +64,10 @@
           }
         },
         "calculation_method": "Count of stakeholders identified for requirements interviews.",
-        "recommended_for": ["large_pmo", "regulated_industry"]
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry"
+        ]
       },
       {
         "name_en": "Assessment Tools Deployed",
@@ -84,7 +90,10 @@
           }
         },
         "calculation_method": "Count of assessment tools (surveys, templates, frameworks) used.",
-        "recommended_for": ["startup_pmo", "agile_org"]
+        "recommended_for": [
+          "startup_pmo",
+          "agile_org"
+        ]
       }
     ],
     "process": [
@@ -109,7 +118,10 @@
           }
         },
         "calculation_method": "Count of completed stakeholder interviews.",
-        "recommended_for": ["large_pmo", "transformation_pmo"]
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
       },
       {
         "name_en": "Requirements Workshops Held",
@@ -132,8 +144,13 @@
           }
         },
         "calculation_method": "Count of requirements workshops conducted.",
-        "recommended_for": ["large_pmo", "agile_org"]
-      },
+        "recommended_for": [
+          "large_pmo",
+          "agile_org"
+        ]
+      }
+    ],
+    "output": [
       {
         "name_en": "Pain Points Documented",
         "name_de": "Dokumentierte Problempunkte",
@@ -155,10 +172,11 @@
           }
         },
         "calculation_method": "Count of pain points identified during discovery process.",
-        "recommended_for": ["transformation_pmo", "startup_pmo"]
-      }
-    ],
-    "output": [
+        "recommended_for": [
+          "transformation_pmo",
+          "startup_pmo"
+        ]
+      },
       {
         "name_en": "Requirements Catalog Created",
         "name_de": "Erstellter Requirements-Katalog",
@@ -180,30 +198,10 @@
           }
         },
         "calculation_method": "Binary (1 if catalog completed, 0 otherwise).",
-        "recommended_for": ["large_pmo", "regulated_industry"]
-      },
-      {
-        "name_en": "Stakeholder Coverage Rate",
-        "name_de": "Stakeholder-Abdeckungsrate",
-        "name_es": "Tasa de Cobertura de Interesados",
-        "unit": "%",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie viele der wichtigen Personen haben wir befragt?",
-            "management": "Prozentsatz der erfassten Stakeholder im Verhältnis zur Zielgruppe."
-          },
-          "en": {
-            "colloquial": "How many of the important people have we interviewed?",
-            "management": "Percentage of stakeholders covered relative to target audience."
-          },
-          "es": {
-            "colloquial": "¿A cuántas de las personas importantes hemos entrevistado?",
-            "management": "Porcentaje de partes interesadas cubiertas en relación con el público objetivo."
-          }
-        },
-        "calculation_method": "Stakeholders interviewed divided by total stakeholders identified, multiplied by 100.",
-        "recommended_for": ["large_pmo", "transformation_pmo"]
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry"
+        ]
       },
       {
         "name_en": "Requirements Documented",
@@ -226,56 +224,13 @@
           }
         },
         "calculation_method": "Count of documented requirements in the catalog.",
-        "recommended_for": ["large_pmo", "agile_org"]
+        "recommended_for": [
+          "large_pmo",
+          "agile_org"
+        ]
       }
     ],
     "outcome": [
-      {
-        "name_en": "Requirements Clarity Score",
-        "name_de": "Requirements-Klarheits-Score",
-        "name_es": "Puntuación de Claridad de Requisitos",
-        "unit": "1-10 scale",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie klar sind die Anforderungen formuliert?",
-            "management": "Bewertung der Präzision und Eindeutigkeit der erhobenen Requirements."
-          },
-          "en": {
-            "colloquial": "How clearly are the requirements formulated?",
-            "management": "Assessment of precision and clarity of gathered requirements."
-          },
-          "es": {
-            "colloquial": "¿Qué tan claramente están formulados los requisitos?",
-            "management": "Evaluación de la precisión y claridad de los requisitos recopilados."
-          }
-        },
-        "calculation_method": "Average score from stakeholder validation of requirements clarity.",
-        "recommended_for": ["large_pmo", "transformation_pmo"]
-      },
-      {
-        "name_en": "Stakeholder Alignment Improvement",
-        "name_de": "Verbesserung der Stakeholder-Ausrichtung",
-        "name_es": "Mejora de la Alineación de Interesados",
-        "unit": "%",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Verstehen sich die Stakeholder jetzt besser?",
-            "management": "Steigerung des gemeinsamen Verständnisses über PMO-Anforderungen zwischen Stakeholdern."
-          },
-          "en": {
-            "colloquial": "Do stakeholders understand each other better now?",
-            "management": "Increase in shared understanding of PMO requirements among stakeholders."
-          },
-          "es": {
-            "colloquial": "¿Los interesados se entienden mejor ahora?",
-            "management": "Aumento en la comprensión compartida de los requisitos de PMO entre las partes interesadas."
-          }
-        },
-        "calculation_method": "Pre and post-assessment of stakeholder alignment scores.",
-        "recommended_for": ["transformation_pmo", "agile_org"]
-      },
       {
         "name_en": "Prioritization Agreement Rate",
         "name_de": "Priorisierungs-Übereinstimmungsrate",
@@ -297,55 +252,10 @@
           }
         },
         "calculation_method": "Percentage of stakeholders agreeing on top 3 priorities.",
-        "recommended_for": ["large_pmo", "startup_pmo"]
-      }
-    ],
-    "feedback": [
-      {
-        "name_en": "Discovery Process Satisfaction",
-        "name_de": "Zufriedenheit mit dem Discovery-Prozess",
-        "name_es": "Satisfacción con el Proceso de Descubrimiento",
-        "unit": "1-10 scale",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie zufrieden sind die Stakeholder mit der Bedarfsermittlung?",
-            "management": "Bewertung der Stakeholder-Zufriedenheit mit dem Requirements-Discovery-Prozess."
-          },
-          "en": {
-            "colloquial": "How satisfied are stakeholders with the discovery process?",
-            "management": "Assessment of stakeholder satisfaction with the requirements discovery process."
-          },
-          "es": {
-            "colloquial": "¿Qué tan satisfechos están los interesados con el proceso de descubrimiento?",
-            "management": "Evaluación de la satisfacción de las partes interesadas con el proceso de descubrimiento de requisitos."
-          }
-        },
-        "calculation_method": "Average satisfaction score from post-discovery stakeholder survey.",
-        "recommended_for": ["large_pmo", "transformation_pmo"]
-      },
-      {
-        "name_en": "Follow-up Questions Received",
-        "name_de": "Erhaltene Nachfragen",
-        "name_es": "Preguntas de Seguimiento Recibidas",
-        "unit": "count",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie viele Nachfragen haben wir nach dem Discovery erhalten?",
-            "management": "Anzahl der Stakeholder-Rückfragen nach Abschluss der Requirements-Erhebung."
-          },
-          "en": {
-            "colloquial": "How many follow-up questions did we receive after discovery?",
-            "management": "Number of stakeholder inquiries following completion of requirements gathering."
-          },
-          "es": {
-            "colloquial": "¿Cuántas preguntas de seguimiento recibimos después del descubrimiento?",
-            "management": "Número de consultas de las partes interesadas después de completar la recopilación de requisitos."
-          }
-        },
-        "calculation_method": "Count of follow-up questions or clarifications requested.",
-        "recommended_for": ["agile_org", "startup_pmo"]
+        "recommended_for": [
+          "large_pmo",
+          "startup_pmo"
+        ]
       },
       {
         "name_en": "Requirements Validation Rate",
@@ -368,10 +278,143 @@
           }
         },
         "calculation_method": "Stakeholders validating requirements divided by total stakeholders, multiplied by 100.",
-        "recommended_for": ["large_pmo", "regulated_industry"]
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry"
+        ]
+      },
+      {
+        "name_en": "Stakeholder Coverage Rate",
+        "name_de": "Stakeholder-Abdeckungsrate",
+        "name_es": "Tasa de Cobertura de Interesados",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele der wichtigen Personen haben wir befragt?",
+            "management": "Prozentsatz der erfassten Stakeholder im Verhältnis zur Zielgruppe."
+          },
+          "en": {
+            "colloquial": "How many of the important people have we interviewed?",
+            "management": "Percentage of stakeholders covered relative to target audience."
+          },
+          "es": {
+            "colloquial": "¿A cuántas de las personas importantes hemos entrevistado?",
+            "management": "Porcentaje de partes interesadas cubiertas en relación con el público objetivo."
+          }
+        },
+        "calculation_method": "Stakeholders interviewed divided by total stakeholders identified, multiplied by 100.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Stakeholder Alignment Improvement",
+        "name_de": "Verbesserung der Stakeholder-Ausrichtung",
+        "name_es": "Mejora de la Alineación de Interesados",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Verstehen sich die Stakeholder jetzt besser?",
+            "management": "Steigerung des gemeinsamen Verständnisses über PMO-Anforderungen zwischen Stakeholdern."
+          },
+          "en": {
+            "colloquial": "Do stakeholders understand each other better now?",
+            "management": "Increase in shared understanding of PMO requirements among stakeholders."
+          },
+          "es": {
+            "colloquial": "¿Los interesados se entienden mejor ahora?",
+            "management": "Aumento en la comprensión compartida de los requisitos de PMO entre las partes interesadas."
+          }
+        },
+        "calculation_method": "Pre and post-assessment of stakeholder alignment scores.",
+        "recommended_for": [
+          "transformation_pmo",
+          "agile_org"
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "name_en": "Follow-up Questions Received",
+        "name_de": "Erhaltene Nachfragen",
+        "name_es": "Preguntas de Seguimiento Recibidas",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Nachfragen haben wir nach dem Discovery erhalten?",
+            "management": "Anzahl der Stakeholder-Rückfragen nach Abschluss der Requirements-Erhebung."
+          },
+          "en": {
+            "colloquial": "How many follow-up questions did we receive after discovery?",
+            "management": "Number of stakeholder inquiries following completion of requirements gathering."
+          },
+          "es": {
+            "colloquial": "¿Cuántas preguntas de seguimiento recibimos después del descubrimiento?",
+            "management": "Número de consultas de las partes interesadas después de completar la recopilación de requisitos."
+          }
+        },
+        "calculation_method": "Count of follow-up questions or clarifications requested.",
+        "recommended_for": [
+          "agile_org",
+          "startup_pmo"
+        ]
+      },
+      {
+        "name_en": "Discovery Process Satisfaction",
+        "name_de": "Zufriedenheit mit dem Discovery-Prozess",
+        "name_es": "Satisfacción con el Proceso de Descubrimiento",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie zufrieden sind die Stakeholder mit der Bedarfsermittlung?",
+            "management": "Bewertung der Stakeholder-Zufriedenheit mit dem Requirements-Discovery-Prozess."
+          },
+          "en": {
+            "colloquial": "How satisfied are stakeholders with the discovery process?",
+            "management": "Assessment of stakeholder satisfaction with the requirements discovery process."
+          },
+          "es": {
+            "colloquial": "¿Qué tan satisfechos están los interesados con el proceso de descubrimiento?",
+            "management": "Evaluación de la satisfacción de las partes interesadas con el proceso de descubrimiento de requisitos."
+          }
+        },
+        "calculation_method": "Average satisfaction score from post-discovery stakeholder survey.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Requirements Clarity Score",
+        "name_de": "Requirements-Klarheits-Score",
+        "name_es": "Puntuación de Claridad de Requisitos",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie klar sind die Anforderungen formuliert?",
+            "management": "Bewertung der Präzision und Eindeutigkeit der erhobenen Requirements."
+          },
+          "en": {
+            "colloquial": "How clearly are the requirements formulated?",
+            "management": "Assessment of precision and clarity of gathered requirements."
+          },
+          "es": {
+            "colloquial": "¿Qué tan claramente están formulados los requisitos?",
+            "management": "Evaluación de la precisión y claridad de los requisitos recopilados."
+          }
+        },
+        "calculation_method": "Average score from stakeholder validation of requirements clarity.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
       }
     ]
   }
 }
-
-

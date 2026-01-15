@@ -1,0 +1,487 @@
+{
+  "corrections": {
+    "process_10": {
+      "Feedback Collection Hours": {
+        "old": "input",
+        "proposed": "feedback",
+        "correct": "input",
+        "reason": "Hours spent collecting = INPUT (Resource allocation), not the feedback itself"
+      },
+      "Validation Surveys Prepared": {
+        "old": "input",
+        "proposed": "outcome",
+        "correct": "input",
+        "reason": "Surveys PREPARED = INPUT (Resource preparation)"
+      },
+      "Testimonial Request Campaigns": {
+        "old": "input",
+        "proposed": "outcome",
+        "correct": "process",
+        "reason": "Campaigns LAUNCHED = PROCESS (Activity)"
+      },
+      "Stakeholder Satisfaction Surveys Conducted": {
+        "old": "process",
+        "proposed": "outcome",
+        "correct": "process",
+        "reason": "Surveys CONDUCTED = PROCESS (Activity), not the outcome"
+      },
+      "Executive Validation Meetings": {
+        "old": "process",
+        "proposed": "outcome",
+        "correct": "outcome",
+        "reason": "Validation = Business Value (Securing executive support)"
+      },
+      "Net Promoter Score (NPS)": {
+        "old": "output",
+        "proposed": "feedback",
+        "correct": "feedback",
+        "reason": "NPS = FEEDBACK (Stakeholder rating)"
+      },
+      "Testimonials Collected": {
+        "old": "output",
+        "proposed": "feedback",
+        "correct": "output",
+        "reason": "Testimonials COLLECTED = OUTPUT (Deliverable count)"
+      },
+      "Executive Sponsorship Confirmations": {
+        "old": "output",
+        "proposed": "outcome",
+        "correct": "outcome",
+        "reason": "Sponsorship = OUTCOME (Business Value, Executive Support)"
+      },
+      "Future Investment Security": {
+        "old": "outcome",
+        "proposed": "input",
+        "correct": "outcome",
+        "reason": "Investment Security = OUTCOME (Business Value, Long-term support)"
+      },
+      "Stakeholder Recommendation Willingness": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Willingness Score = FEEDBACK (Rating)"
+      },
+      "Continuous Improvement Cycle Initiated": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "output",
+        "reason": "Cycle INITIATED = OUTPUT (Binary deliverable: 0/1)"
+      }
+    },
+    "process_1": {
+      "Trainer Hours Invested": {
+        "old": "input",
+        "proposed": "process",
+        "correct": "input",
+        "reason": "Hours INVESTED = INPUT (Resource spent)"
+      },
+      "Stakeholder Engagement Sessions": {
+        "old": "process",
+        "proposed": "outcome",
+        "correct": "outcome",
+        "reason": "Engagement = OUTCOME (Business Value, Stakeholder relationships)"
+      },
+      "E-Learning Module Completions": {
+        "old": "process",
+        "proposed": "outcome",
+        "correct": "output",
+        "reason": "Completions = OUTPUT (Count of completed modules), not business impact"
+      },
+      "Number of Workshops Conducted": {
+        "old": "output",
+        "proposed": "process",
+        "correct": "process",
+        "reason": "Workshops CONDUCTED = PROCESS (Activity)"
+      },
+      "Training Materials Created": {
+        "old": "output",
+        "proposed": "input",
+        "correct": "output",
+        "reason": "Materials CREATED = OUTPUT (Deliverable)"
+      },
+      "Feedback Response Rate": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Response Rate = FEEDBACK (Engagement metric for feedback)"
+      }
+    },
+    "process_2": {
+      "Pain Points Documented": {
+        "old": "process",
+        "proposed": "output",
+        "correct": "output",
+        "reason": "Pain Points DOCUMENTED = OUTPUT (Deliverable)"
+      },
+      "Stakeholder Coverage Rate": {
+        "old": "output",
+        "proposed": "outcome",
+        "correct": "outcome",
+        "reason": "Coverage Rate = OUTCOME (Business Value, how well stakeholders are covered)"
+      },
+      "Requirements Clarity Score": {
+        "old": "outcome",
+        "proposed": "feedback",
+        "correct": "feedback",
+        "reason": "Clarity SCORE = FEEDBACK (Rating)"
+      },
+      "Prioritization Agreement Rate": {
+        "old": "outcome",
+        "proposed": "input",
+        "correct": "outcome",
+        "reason": "Agreement Rate = OUTCOME (Stakeholder alignment)"
+      },
+      "Discovery Process Satisfaction": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Satisfaction = FEEDBACK (Rating)"
+      },
+      "Follow-up Questions Received": {
+        "old": "feedback",
+        "proposed": "input",
+        "correct": "feedback",
+        "reason": "Questions = FEEDBACK (Stakeholder response)"
+      },
+      "Requirements Validation Rate": {
+        "old": "feedback",
+        "proposed": "output",
+        "correct": "outcome",
+        "reason": "Validation Rate = OUTCOME (Quality of requirements)"
+      }
+    },
+    "process_3": {
+      "Business Cases Analyzed": {
+        "old": "input",
+        "proposed": "outcome",
+        "correct": "process",
+        "reason": "Cases ANALYZED = PROCESS (Activity)"
+      },
+      "ROI Calculation Hours": {
+        "old": "input",
+        "proposed": "outcome",
+        "correct": "input",
+        "reason": "Hours = INPUT (Resource spent)"
+      },
+      "ROI Models Created": {
+        "old": "process",
+        "proposed": "output",
+        "correct": "output",
+        "reason": "Models CREATED = OUTPUT (Deliverable)"
+      },
+      "Success Criteria Defined": {
+        "old": "process",
+        "proposed": "outcome",
+        "correct": "output",
+        "reason": "Criteria DEFINED = OUTPUT (Deliverable)"
+      },
+      "Quantified Benefits": {
+        "old": "output",
+        "proposed": "outcome",
+        "correct": "output",
+        "reason": "Benefits QUANTIFIED = OUTPUT (Deliverable count)"
+      },
+      "Expected ROI Percentage": {
+        "old": "output",
+        "proposed": "outcome",
+        "correct": "output",
+        "reason": "Expected ROI = OUTPUT (Calculated deliverable), not realized outcome"
+      },
+      "Follow-up Questions on Benefits": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Questions = FEEDBACK (Stakeholder response)"
+      }
+    },
+    "process_4": {
+      "SLAs Drafted": {
+        "old": "process",
+        "proposed": "output",
+        "correct": "output",
+        "reason": "SLAs DRAFTED = OUTPUT (Deliverable)"
+      },
+      "Prototype Solutions Tested": {
+        "old": "process",
+        "proposed": "input",
+        "correct": "process",
+        "reason": "Prototypes TESTED = PROCESS (Activity)"
+      },
+      "Design-Reality Fit Score": {
+        "old": "outcome",
+        "proposed": "feedback",
+        "correct": "feedback",
+        "reason": "Fit SCORE = FEEDBACK (Assessment rating)"
+      },
+      "Design Iteration Requests": {
+        "old": "feedback",
+        "proposed": "input",
+        "correct": "feedback",
+        "reason": "Requests = FEEDBACK (Stakeholder response)"
+      }
+    },
+    "process_5": {
+      "Communication Campaigns Launched": {
+        "old": "process",
+        "proposed": "input",
+        "correct": "process",
+        "reason": "Campaigns LAUNCHED = PROCESS (Activity)"
+      },
+      "Support Tickets Handled": {
+        "old": "process",
+        "proposed": "outcome",
+        "correct": "process",
+        "reason": "Tickets HANDLED = PROCESS (Activity)"
+      },
+      "Services Activated": {
+        "old": "output",
+        "proposed": "input",
+        "correct": "output",
+        "reason": "Services ACTIVATED = OUTPUT (Deliverable count)"
+      }
+    },
+    "process_6": {
+      "Open Service Requests": {
+        "old": "input",
+        "proposed": "process",
+        "correct": "input",
+        "reason": "Open Requests = INPUT (Workload/Capacity indicator)"
+      },
+      "Service Requests Processed": {
+        "old": "process",
+        "proposed": "output",
+        "correct": "output",
+        "reason": "Requests PROCESSED = OUTPUT (Completed deliverables)"
+      },
+      "Stakeholder Interactions": {
+        "old": "process",
+        "proposed": "input",
+        "correct": "process",
+        "reason": "Interactions = PROCESS (Activity)"
+      },
+      "SLA Compliance Rate": {
+        "old": "output",
+        "proposed": "outcome",
+        "correct": "outcome",
+        "reason": "Compliance Rate = OUTCOME (Service quality)"
+      },
+      "Average Response Time": {
+        "old": "output",
+        "proposed": "input",
+        "correct": "outcome",
+        "reason": "Response Time = OUTCOME (Service quality metric)"
+      },
+      "Service Quality Score": {
+        "old": "output",
+        "proposed": "feedback",
+        "correct": "feedback",
+        "reason": "Quality SCORE = FEEDBACK (Rating)"
+      },
+      "Service Reliability Index": {
+        "old": "outcome",
+        "proposed": "input",
+        "correct": "outcome",
+        "reason": "Reliability = OUTCOME (Service quality)"
+      },
+      "Operational Efficiency Gain": {
+        "old": "outcome",
+        "proposed": "input",
+        "correct": "outcome",
+        "reason": "Efficiency Gain = OUTCOME (Business improvement)"
+      },
+      "Daily Operations Satisfaction": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Satisfaction = FEEDBACK (Rating)"
+      },
+      "Service Improvement Suggestions": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Suggestions = FEEDBACK (Stakeholder input)"
+      }
+    },
+    "process_7": {
+      "KPIs Defined": {
+        "old": "input",
+        "proposed": "output",
+        "correct": "output",
+        "reason": "KPIs DEFINED = OUTPUT (Deliverable)"
+      },
+      "KPI Reports Generated": {
+        "old": "process",
+        "proposed": "output",
+        "correct": "output",
+        "reason": "Reports GENERATED = OUTPUT (Deliverable)"
+      },
+      "Performance Trends Identified": {
+        "old": "output",
+        "proposed": "input",
+        "correct": "output",
+        "reason": "Trends IDENTIFIED = OUTPUT (Analysis result)"
+      },
+      "Alert Triggers Configured": {
+        "old": "output",
+        "proposed": "input",
+        "correct": "output",
+        "reason": "Triggers CONFIGURED = OUTPUT (System setup)"
+      },
+      "Data-driven Decision Rate": {
+        "old": "outcome",
+        "proposed": "input",
+        "correct": "outcome",
+        "reason": "Decision Rate = OUTCOME (Business impact of using data)"
+      },
+      "Performance Transparency Score": {
+        "old": "outcome",
+        "proposed": "feedback",
+        "correct": "feedback",
+        "reason": "Transparency SCORE = FEEDBACK (Rating)"
+      },
+      "Early Warning Success Rate": {
+        "old": "outcome",
+        "proposed": "input",
+        "correct": "outcome",
+        "reason": "Success Rate = OUTCOME (System effectiveness)"
+      },
+      "Monitoring System Improvement Requests": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Requests = FEEDBACK (Stakeholder input)"
+      }
+    },
+    "process_8": {
+      "Improvement Initiatives Identified": {
+        "old": "input",
+        "proposed": "outcome",
+        "correct": "output",
+        "reason": "Initiatives IDENTIFIED = OUTPUT (Analysis result)"
+      },
+      "Process Optimizations Implemented": {
+        "old": "process",
+        "proposed": "outcome",
+        "correct": "output",
+        "reason": "Optimizations IMPLEMENTED = OUTPUT (Completed changes)"
+      },
+      "Lessons Learned Documented": {
+        "old": "process",
+        "proposed": "output",
+        "correct": "output",
+        "reason": "Lessons DOCUMENTED = OUTPUT (Deliverable)"
+      },
+      "Maturity Level Increase": {
+        "old": "output",
+        "proposed": "input",
+        "correct": "outcome",
+        "reason": "Maturity Increase = OUTCOME (Organizational improvement)"
+      },
+      "Efficiency Gains Achieved": {
+        "old": "output",
+        "proposed": "input",
+        "correct": "outcome",
+        "reason": "Gains ACHIEVED = OUTCOME (Business improvement)"
+      },
+      "Service Quality Improvement": {
+        "old": "outcome",
+        "proposed": "feedback",
+        "correct": "outcome",
+        "reason": "Quality Improvement = OUTCOME (Service improvement)"
+      },
+      "Learning Organization Index": {
+        "old": "outcome",
+        "proposed": "input",
+        "correct": "outcome",
+        "reason": "Learning Index = OUTCOME (Organizational capability)"
+      },
+      "Improvement Initiative Satisfaction": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Satisfaction = FEEDBACK (Rating)"
+      },
+      "Improvement Idea Submission Rate": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Submission Rate = FEEDBACK (Engagement metric)"
+      },
+      "Change Fatigue Index": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Fatigue Index = FEEDBACK (Rating)"
+      }
+    },
+    "process_9": {
+      "Value Measurement Hours": {
+        "old": "input",
+        "proposed": "outcome",
+        "correct": "input",
+        "reason": "Hours = INPUT (Resource spent)"
+      },
+      "Outcome Metrics Defined": {
+        "old": "input",
+        "proposed": "outcome",
+        "correct": "output",
+        "reason": "Metrics DEFINED = OUTPUT (Deliverable)"
+      },
+      "Case Studies Planned": {
+        "old": "input",
+        "proposed": "outcome",
+        "correct": "input",
+        "reason": "Studies PLANNED = INPUT (Resource allocation)"
+      },
+      "Benefit Realization Reviews": {
+        "old": "process",
+        "proposed": "outcome",
+        "correct": "process",
+        "reason": "Reviews CONDUCTED = PROCESS (Activity)"
+      },
+      "Success Stories Documented": {
+        "old": "process",
+        "proposed": "outcome",
+        "correct": "output",
+        "reason": "Stories DOCUMENTED = OUTPUT (Deliverable)"
+      },
+      "Realized ROI Percentage": {
+        "old": "output",
+        "proposed": "outcome",
+        "correct": "outcome",
+        "reason": "REALIZED ROI = OUTCOME (Business value achieved!)"
+      },
+      "Quantified Business Benefits": {
+        "old": "output",
+        "proposed": "outcome",
+        "correct": "outcome",
+        "reason": "Quantified Benefits = OUTCOME (Business value achieved)"
+      },
+      "Strategic Goals Achieved": {
+        "old": "output",
+        "proposed": "outcome",
+        "correct": "outcome",
+        "reason": "Goals ACHIEVED = OUTCOME (Business success)"
+      },
+      "Value Communication Clarity": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Clarity SCORE = FEEDBACK (Rating)"
+      },
+      "Value Evidence Requests": {
+        "old": "feedback",
+        "proposed": "outcome",
+        "correct": "feedback",
+        "reason": "Requests = FEEDBACK (Stakeholder response)"
+      }
+    }
+  },
+  "summary": {
+    "total_changes_proposed": 76,
+    "script_correct": 32,
+    "script_incorrect": 44,
+    "accuracy": "42%"
+  }
+}
+

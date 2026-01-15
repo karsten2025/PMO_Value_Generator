@@ -18,29 +18,6 @@
   "metrics": {
     "input": [
       {
-        "name_en": "KPIs Defined",
-        "name_de": "Definierte KPIs",
-        "name_es": "KPIs Definidos",
-        "unit": "count",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie viele KPIs tracken wir?",
-            "management": "Anzahl der definierten und aktiv gemessenen Performance-Indikatoren."
-          },
-          "en": {
-            "colloquial": "How many KPIs are we tracking?",
-            "management": "Number of defined and actively measured performance indicators."
-          },
-          "es": {
-            "colloquial": "¿Cuántos KPIs estamos rastreando?",
-            "management": "Número de indicadores de rendimiento definidos y activamente medidos."
-          }
-        },
-        "calculation_method": "Count of active KPIs in monitoring system.",
-        "recommended_for": ["large_pmo", "regulated_industry"]
-      },
-      {
         "name_en": "Data Sources Connected",
         "name_de": "Angebundene Datenquellen",
         "name_es": "Fuentes de Datos Conectadas",
@@ -61,7 +38,10 @@
           }
         },
         "calculation_method": "Count of connected data sources.",
-        "recommended_for": ["large_pmo", "transformation_pmo"]
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
       },
       {
         "name_en": "Monitoring Tools Used",
@@ -84,7 +64,10 @@
           }
         },
         "calculation_method": "Count of monitoring tools in use.",
-        "recommended_for": ["startup_pmo", "agile_org"]
+        "recommended_for": [
+          "startup_pmo",
+          "agile_org"
+        ]
       }
     ],
     "process": [
@@ -109,30 +92,10 @@
           }
         },
         "calculation_method": "Count of performance review sessions held.",
-        "recommended_for": ["large_pmo", "regulated_industry"]
-      },
-      {
-        "name_en": "KPI Reports Generated",
-        "name_de": "Generierte KPI-Reports",
-        "name_es": "Informes de KPI Generados",
-        "unit": "count",
-        "metric_type": "activity",
-        "description": {
-          "de": {
-            "colloquial": "Wie viele Reports haben wir erstellt?",
-            "management": "Anzahl der generierten Performance-Dashboards und KPI-Reports."
-          },
-          "en": {
-            "colloquial": "How many reports have we created?",
-            "management": "Number of generated performance dashboards and KPI reports."
-          },
-          "es": {
-            "colloquial": "¿Cuántos informes hemos creado?",
-            "management": "Número de paneles de rendimiento e informes de KPI generados."
-          }
-        },
-        "calculation_method": "Count of reports generated.",
-        "recommended_for": ["large_pmo", "transformation_pmo"]
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry"
+        ]
       },
       {
         "name_en": "Data Quality Checks Performed",
@@ -155,33 +118,13 @@
           }
         },
         "calculation_method": "Count of data quality checks performed.",
-        "recommended_for": ["regulated_industry", "agile_org"]
+        "recommended_for": [
+          "regulated_industry",
+          "agile_org"
+        ]
       }
     ],
     "output": [
-      {
-        "name_en": "Real-time Dashboards Active",
-        "name_de": "Aktive Echtzeit-Dashboards",
-        "name_es": "Paneles en Tiempo Real Activos",
-        "unit": "count",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie viele Live-Dashboards haben wir?",
-            "management": "Anzahl der aktiven Echtzeit-Performance-Dashboards."
-          },
-          "en": {
-            "colloquial": "How many live dashboards do we have?",
-            "management": "Number of active real-time performance dashboards."
-          },
-          "es": {
-            "colloquial": "¿Cuántos paneles en vivo tenemos?",
-            "management": "Número de paneles de rendimiento en tiempo real activos."
-          }
-        },
-        "calculation_method": "Count of active dashboards.",
-        "recommended_for": ["large_pmo", "transformation_pmo"]
-      },
       {
         "name_en": "Performance Trends Identified",
         "name_de": "Identifizierte Performance-Trends",
@@ -203,7 +146,10 @@
           }
         },
         "calculation_method": "Count of documented performance trends.",
-        "recommended_for": ["large_pmo", "startup_pmo"]
+        "recommended_for": [
+          "large_pmo",
+          "startup_pmo"
+        ]
       },
       {
         "name_en": "Alert Triggers Configured",
@@ -226,7 +172,88 @@
           }
         },
         "calculation_method": "Count of active alert triggers.",
-        "recommended_for": ["regulated_industry", "agile_org"]
+        "recommended_for": [
+          "regulated_industry",
+          "agile_org"
+        ]
+      },
+      {
+        "name_en": "KPIs Defined",
+        "name_de": "Definierte KPIs",
+        "name_es": "KPIs Definidos",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele KPIs tracken wir?",
+            "management": "Anzahl der definierten und aktiv gemessenen Performance-Indikatoren."
+          },
+          "en": {
+            "colloquial": "How many KPIs are we tracking?",
+            "management": "Number of defined and actively measured performance indicators."
+          },
+          "es": {
+            "colloquial": "¿Cuántos KPIs estamos rastreando?",
+            "management": "Número de indicadores de rendimiento definidos y activamente medidos."
+          }
+        },
+        "calculation_method": "Count of active KPIs in monitoring system.",
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry"
+        ]
+      },
+      {
+        "name_en": "KPI Reports Generated",
+        "name_de": "Generierte KPI-Reports",
+        "name_es": "Informes de KPI Generados",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Reports haben wir erstellt?",
+            "management": "Anzahl der generierten Performance-Dashboards und KPI-Reports."
+          },
+          "en": {
+            "colloquial": "How many reports have we created?",
+            "management": "Number of generated performance dashboards and KPI reports."
+          },
+          "es": {
+            "colloquial": "¿Cuántos informes hemos creado?",
+            "management": "Número de paneles de rendimiento e informes de KPI generados."
+          }
+        },
+        "calculation_method": "Count of reports generated.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Real-time Dashboards Active",
+        "name_de": "Aktive Echtzeit-Dashboards",
+        "name_es": "Paneles en Tiempo Real Activos",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Live-Dashboards haben wir?",
+            "management": "Anzahl der aktiven Echtzeit-Performance-Dashboards."
+          },
+          "en": {
+            "colloquial": "How many live dashboards do we have?",
+            "management": "Number of active real-time performance dashboards."
+          },
+          "es": {
+            "colloquial": "¿Cuántos paneles en vivo tenemos?",
+            "management": "Número de paneles de rendimiento en tiempo real activos."
+          }
+        },
+        "calculation_method": "Count of active dashboards.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
       }
     ],
     "outcome": [
@@ -251,30 +278,10 @@
           }
         },
         "calculation_method": "Data-driven decisions divided by total decisions, multiplied by 100.",
-        "recommended_for": ["large_pmo", "transformation_pmo"]
-      },
-      {
-        "name_en": "Performance Transparency Score",
-        "name_de": "Performance-Transparenz-Score",
-        "name_es": "Puntuación de Transparencia de Rendimiento",
-        "unit": "1-10 scale",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie transparent ist unsere Performance?",
-            "management": "Bewertung der Stakeholder-Wahrnehmung von Performance-Transparenz."
-          },
-          "en": {
-            "colloquial": "How transparent is our performance?",
-            "management": "Assessment of stakeholder perception of performance transparency."
-          },
-          "es": {
-            "colloquial": "¿Qué tan transparente es nuestro rendimiento?",
-            "management": "Evaluación de la percepción de las partes interesadas sobre la transparencia del rendimiento."
-          }
-        },
-        "calculation_method": "Average transparency score from stakeholder survey.",
-        "recommended_for": ["large_pmo", "regulated_industry"]
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
       },
       {
         "name_en": "Early Warning Success Rate",
@@ -297,10 +304,65 @@
           }
         },
         "calculation_method": "Successful early warnings divided by total warnings, multiplied by 100.",
-        "recommended_for": ["transformation_pmo", "startup_pmo"]
+        "recommended_for": [
+          "transformation_pmo",
+          "startup_pmo"
+        ]
       }
     ],
     "feedback": [
+      {
+        "name_en": "Monitoring System Improvement Requests",
+        "name_de": "Verbesserungsanfragen Monitoring-System",
+        "name_es": "Solicitudes de Mejora del Sistema de Monitoreo",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Verbesserungswünsche für unser Monitoring gibt es?",
+            "management": "Anzahl der Stakeholder-Anfragen zur Verbesserung des Monitoring-Systems."
+          },
+          "en": {
+            "colloquial": "How many improvement requests for our monitoring are there?",
+            "management": "Number of stakeholder requests to improve the monitoring system."
+          },
+          "es": {
+            "colloquial": "¿Cuántas solicitudes de mejora para nuestro monitoreo hay?",
+            "management": "Número de solicitudes de las partes interesadas para mejorar el sistema de monitoreo."
+          }
+        },
+        "calculation_method": "Count of improvement requests received.",
+        "recommended_for": [
+          "startup_pmo",
+          "agile_org"
+        ]
+      },
+      {
+        "name_en": "Performance Transparency Score",
+        "name_de": "Performance-Transparenz-Score",
+        "name_es": "Puntuación de Transparencia de Rendimiento",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie transparent ist unsere Performance?",
+            "management": "Bewertung der Stakeholder-Wahrnehmung von Performance-Transparenz."
+          },
+          "en": {
+            "colloquial": "How transparent is our performance?",
+            "management": "Assessment of stakeholder perception of performance transparency."
+          },
+          "es": {
+            "colloquial": "¿Qué tan transparente es nuestro rendimiento?",
+            "management": "Evaluación de la percepción de las partes interesadas sobre la transparencia del rendimiento."
+          }
+        },
+        "calculation_method": "Average transparency score from stakeholder survey.",
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry"
+        ]
+      },
       {
         "name_en": "Dashboard Usability Score",
         "name_de": "Dashboard-Usability-Score",
@@ -322,7 +384,10 @@
           }
         },
         "calculation_method": "Average usability score from user feedback.",
-        "recommended_for": ["large_pmo", "agile_org"]
+        "recommended_for": [
+          "large_pmo",
+          "agile_org"
+        ]
       },
       {
         "name_en": "KPI Relevance Rating",
@@ -345,33 +410,11 @@
           }
         },
         "calculation_method": "Average relevance score from stakeholder survey.",
-        "recommended_for": ["transformation_pmo", "regulated_industry"]
-      },
-      {
-        "name_en": "Monitoring System Improvement Requests",
-        "name_de": "Verbesserungsanfragen Monitoring-System",
-        "name_es": "Solicitudes de Mejora del Sistema de Monitoreo",
-        "unit": "count",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie viele Verbesserungswünsche für unser Monitoring gibt es?",
-            "management": "Anzahl der Stakeholder-Anfragen zur Verbesserung des Monitoring-Systems."
-          },
-          "en": {
-            "colloquial": "How many improvement requests for our monitoring are there?",
-            "management": "Number of stakeholder requests to improve the monitoring system."
-          },
-          "es": {
-            "colloquial": "¿Cuántas solicitudes de mejora para nuestro monitoreo hay?",
-            "management": "Número de solicitudes de las partes interesadas para mejorar el sistema de monitoreo."
-          }
-        },
-        "calculation_method": "Count of improvement requests received.",
-        "recommended_for": ["startup_pmo", "agile_org"]
+        "recommended_for": [
+          "transformation_pmo",
+          "regulated_industry"
+        ]
       }
     ]
   }
 }
-
-

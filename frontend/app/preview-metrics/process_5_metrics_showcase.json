@@ -1,1 +1,402 @@
-{"meta":{"generated_at":"2026-01-13","version":"showcase","process":{"step_id":5,"internal_code":"IMP_ONB","title_en":"Service Launch","title_de":"Service-Einführung","title_es":"Lanzamiento de Servicios"},"total_metrics":15,"metrics_per_category":3},"metrics":{"input":[{"name_en":"Change Management Budget","name_de":"Change-Management-Budget","name_es":"Presupuesto de Gestión del Cambio","unit":"€","metric_type":"metric","description":{"de":{"colloquial":"Wie viel Budget haben wir für die Einführung?","management":"Finanzielle Ressourcen für Change-Management und Service-Rollout."},"en":{"colloquial":"How much budget do we have for the launch?","management":"Financial resources for change management and service rollout."},"es":{"colloquial":"¿Cuánto presupuesto tenemos para el lanzamiento?","management":"Recursos financieros para la gestión del cambio y el lanzamiento de servicios."}},"calculation_method":"Sum of allocated change management budget.","recommended_for":["large_pmo"]},{"name_en":"Training Hours Planned","name_de":"Geplante Schulungsstunden","name_es":"Horas de Capacitación Planificadas","unit":"hours","metric_type":"metric","description":{"de":{"colloquial":"Wie viele Schulungen planen wir?","management":"Zeitaufwand für User-Training und Change-Support."},"en":{"colloquial":"How many training sessions do we plan?","management":"Time investment for user training and change support."},"es":{"colloquial":"¿Cuántas sesiones de capacitación planeamos?","management":"Inversión de tiempo para capacitación de usuarios y soporte de cambio."}},"calculation_method":"Sum of training hours scheduled.","recommended_for":["transformation_pmo"]},{"name_en":"Support Staff Allocated","name_de":"Zugewiesene Support-Mitarbeiter","name_es":"Personal de Soporte Asignado","unit":"count","metric_type":"metric","description":{"de":{"colloquial":"Wie viele Leute unterstützen die Einführung?","management":"Anzahl dedizierter Support-Ressourcen für Service-Launch-Phase."},"en":{"colloquial":"How many people support the launch?","management":"Number of dedicated support resources for service launch phase."},"es":{"colloquial":"¿Cuántas personas apoyan el lanzamiento?","management":"Número de recursos de soporte dedicados para la fase de lanzamiento de servicios."}},"calculation_method":"Count of support staff assigned.","recommended_for":["regulated_industry"]}],"process":[{"name_en":"Training Sessions Delivered","name_de":"Durchgeführte Schulungssitzungen","name_es":"Sesiones de Capacitación Impartidas","unit":"count","metric_type":"activity","description":{"de":{"colloquial":"Wie viele Schulungen haben wir durchgeführt?","management":"Anzahl der User-Trainings zur Enablement-Förderung."},"en":{"colloquial":"How many training sessions have we conducted?","management":"Number of user trainings for enablement promotion."},"es":{"colloquial":"¿Cuántas sesiones de capacitación hemos realizado?","management":"Número de capacitaciones de usuarios para promover la habilitación."}},"calculation_method":"Count of training sessions held.","recommended_for":["large_pmo"]},{"name_en":"Communication Campaigns Launched","name_de":"Gestartete Kommunikationskampagnen","name_es":"Campañas de Comunicación Lanzadas","unit":"count","metric_type":"activity","description":{"de":{"colloquial":"Wie viele Kampagnen zur Service-Einführung haben wir gestartet?","management":"Anzahl der Launch-Kommunikationskampagnen zur Awareness-Steigerung."},"en":{"colloquial":"How many service launch campaigns have we started?","management":"Number of launch communication campaigns to increase awareness."},"es":{"colloquial":"¿Cuántas campañas de lanzamiento de servicios hemos iniciado?","management":"Número de campañas de comunicación de lanzamiento para aumentar la conciencia."}},"calculation_method":"Count of communication campaigns executed.","recommended_for":["transformation_pmo"]},{"name_en":"Support Tickets Handled","name_de":"Bearbeitete Support-Tickets","name_es":"Tickets de Soporte Atendidos","unit":"count","metric_type":"activity","description":{"de":{"colloquial":"Wie viele Support-Anfragen haben wir beantwortet?","management":"Anzahl der bearbeiteten User-Support-Anfragen während Launch-Phase."},"en":{"colloquial":"How many support requests have we answered?","management":"Number of user support requests handled during launch phase."},"es":{"colloquial":"¿Cuántas solicitudes de soporte hemos respondido?","management":"Número de solicitudes de soporte de usuarios atendidas durante la fase de lanzamiento."}},"calculation_method":"Count of support tickets resolved.","recommended_for":["startup_pmo"]}],"output":[{"name_en":"Users Trained","name_de":"Geschulte Nutzer","name_es":"Usuarios Capacitados","unit":"count","metric_type":"metric","description":{"de":{"colloquial":"Wie viele Nutzer haben wir geschult?","management":"Anzahl der trainingsabsolvierenden User für Service-Adoption."},"en":{"colloquial":"How many users have we trained?","management":"Number of users completing training for service adoption."},"es":{"colloquial":"¿Cuántos usuarios hemos capacitado?","management":"Número de usuarios que completan la capacitación para la adopción de servicios."}},"calculation_method":"Count of trained users.","recommended_for":["large_pmo"]},{"name_en":"Services Activated","name_de":"Aktivierte Services","name_es":"Servicios Activados","unit":"count","metric_type":"metric","description":{"de":{"colloquial":"Wie viele Services sind jetzt live?","management":"Anzahl der erfolgreich aktivierten und verfügbaren PMO-Services."},"en":{"colloquial":"How many services are now live?","management":"Number of successfully activated and available PMO services."},"es":{"colloquial":"¿Cuántos servicios están ahora activos?","management":"Número de servicios de PMO activados exitosamente y disponibles."}},"calculation_method":"Count of services launched.","recommended_for":["transformation_pmo"]},{"name_en":"Launch Documentation Created","name_de":"Erstellte Launch-Dokumentation","name_es":"Documentación de Lanzamiento Creada","unit":"count","metric_type":"metric","description":{"de":{"colloquial":"Wie viele Anleitungen haben wir erstellt?","management":"Anzahl der User-Guides und Launch-Materialien."},"en":{"colloquial":"How many guides have we created?","management":"Number of user guides and launch materials."},"es":{"colloquial":"¿Cuántas guías hemos creado?","management":"Número de guías de usuario y materiales de lanzamiento."}},"calculation_method":"Count of documentation pieces created.","recommended_for":["regulated_industry"]}],"outcome":[{"name_en":"Service Adoption Rate","name_de":"Service-Adoptionsrate","name_es":"Tasa de Adopción de Servicios","unit":"%","metric_type":"metric","description":{"de":{"colloquial":"Wie viele nutzen die neuen Services?","management":"Prozentsatz der Zielgruppe, die PMO-Services aktiv nutzt."},"en":{"colloquial":"How many are using the new services?","management":"Percentage of target audience actively using PMO services."},"es":{"colloquial":"¿Cuántos están usando los nuevos servicios?","management":"Porcentaje del público objetivo que utiliza activamente los servicios de PMO."}},"calculation_method":"Active users divided by target users, multiplied by 100.","recommended_for":["large_pmo"]},{"name_en":"User Competence Level","name_de":"Nutzer-Kompetenzlevel","name_es":"Nivel de Competencia del Usuario","unit":"1-10 scale","metric_type":"metric","description":{"de":{"colloquial":"Wie gut können User die Services nutzen?","management":"Bewertung der User-Kompetenzen in der Service-Nutzung."},"en":{"colloquial":"How well can users use the services?","management":"Assessment of user competencies in service usage."},"es":{"colloquial":"¿Qué tan bien pueden los usuarios usar los servicios?","management":"Evaluación de las competencias de los usuarios en el uso de servicios."}},"calculation_method":"Average competence score from user assessments.","recommended_for":["transformation_pmo"]},{"name_en":"Change Resistance Index","name_de":"Change-Resistance-Index","name_es":"Índice de Resistencia al Cambio","unit":"1-10 scale","metric_type":"metric","description":{"de":{"colloquial":"Wie viel Widerstand gibt es gegen die neuen Services?","management":"Messung des Widerstands gegen PMO-Service-Adoption."},"en":{"colloquial":"How much resistance is there to the new services?","management":"Measurement of resistance to PMO service adoption."},"es":{"colloquial":"¿Cuánta resistencia hay a los nuevos servicios?","management":"Medición de la resistencia a la adopción de servicios de PMO."}},"calculation_method":"Survey-based resistance assessment (inverse scale: 10=low resistance).","recommended_for":["agile_org"]}],"feedback":[{"name_en":"Launch Satisfaction Score","name_de":"Launch-Zufriedenheits-Score","name_es":"Puntuación de Satisfacción del Lanzamiento","unit":"1-10 scale","metric_type":"metric","description":{"de":{"colloquial":"Wie zufrieden sind User mit der Einführung?","management":"Bewertung der User-Zufriedenheit mit dem Service-Launch-Prozess."},"en":{"colloquial":"How satisfied are users with the launch?","management":"Assessment of user satisfaction with the service launch process."},"es":{"colloquial":"¿Qué tan satisfechos están los usuarios con el lanzamiento?","management":"Evaluación de la satisfacción de los usuarios con el proceso de lanzamiento de servicios."}},"calculation_method":"Average satisfaction score from user survey.","recommended_for":["large_pmo"]},{"name_en":"Support Quality Rating","name_de":"Support-Qualitäts-Rating","name_es":"Calificación de Calidad de Soporte","unit":"1-10 scale","metric_type":"metric","description":{"de":{"colloquial":"Wie gut ist unser Launch-Support?","management":"Bewertung der Qualität und Effektivität des Launch-Supports."},"en":{"colloquial":"How good is our launch support?","management":"Assessment of quality and effectiveness of launch support."},"es":{"colloquial":"¿Qué tan bueno es nuestro soporte de lanzamiento?","management":"Evaluación de la calidad y efectividad del soporte de lanzamiento."}},"calculation_method":"Average support rating from user feedback.","recommended_for":["transformation_pmo"]},{"name_en":"Training Effectiveness Score","name_de":"Schulungs-Effektivitäts-Score","name_es":"Puntuación de Efectividad de Capacitación","unit":"1-10 scale","metric_type":"metric","description":{"de":{"colloquial":"Wie effektiv waren unsere Schulungen?","management":"Bewertung der Effektivität der Launch-Trainings."},"en":{"colloquial":"How effective were our trainings?","management":"Assessment of effectiveness of launch trainings."},"es":{"colloquial":"¿Qué tan efectivas fueron nuestras capacitaciones?","management":"Evaluación de la efectividad de las capacitaciones de lanzamiento."}},"calculation_method":"Average effectiveness score from post-training survey.","recommended_for":["startup_pmo"]}]}}
+{
+  "meta": {
+    "generated_at": "2026-01-13",
+    "version": "showcase",
+    "process": {
+      "step_id": 5,
+      "internal_code": "IMP_ONB",
+      "title_en": "Service Launch",
+      "title_de": "Service-Einführung",
+      "title_es": "Lanzamiento de Servicios"
+    },
+    "total_metrics": 15,
+    "metrics_per_category": 3
+  },
+  "metrics": {
+    "input": [
+      {
+        "name_en": "Change Management Budget",
+        "name_de": "Change-Management-Budget",
+        "name_es": "Presupuesto de Gestión del Cambio",
+        "unit": "€",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viel Budget haben wir für die Einführung?",
+            "management": "Finanzielle Ressourcen für Change-Management und Service-Rollout."
+          },
+          "en": {
+            "colloquial": "How much budget do we have for the launch?",
+            "management": "Financial resources for change management and service rollout."
+          },
+          "es": {
+            "colloquial": "¿Cuánto presupuesto tenemos para el lanzamiento?",
+            "management": "Recursos financieros para la gestión del cambio y el lanzamiento de servicios."
+          }
+        },
+        "calculation_method": "Sum of allocated change management budget.",
+        "recommended_for": [
+          "large_pmo"
+        ]
+      },
+      {
+        "name_en": "Training Hours Planned",
+        "name_de": "Geplante Schulungsstunden",
+        "name_es": "Horas de Capacitación Planificadas",
+        "unit": "hours",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Schulungen planen wir?",
+            "management": "Zeitaufwand für User-Training und Change-Support."
+          },
+          "en": {
+            "colloquial": "How many training sessions do we plan?",
+            "management": "Time investment for user training and change support."
+          },
+          "es": {
+            "colloquial": "¿Cuántas sesiones de capacitación planeamos?",
+            "management": "Inversión de tiempo para capacitación de usuarios y soporte de cambio."
+          }
+        },
+        "calculation_method": "Sum of training hours scheduled.",
+        "recommended_for": [
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Support Staff Allocated",
+        "name_de": "Zugewiesene Support-Mitarbeiter",
+        "name_es": "Personal de Soporte Asignado",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Leute unterstützen die Einführung?",
+            "management": "Anzahl dedizierter Support-Ressourcen für Service-Launch-Phase."
+          },
+          "en": {
+            "colloquial": "How many people support the launch?",
+            "management": "Number of dedicated support resources for service launch phase."
+          },
+          "es": {
+            "colloquial": "¿Cuántas personas apoyan el lanzamiento?",
+            "management": "Número de recursos de soporte dedicados para la fase de lanzamiento de servicios."
+          }
+        },
+        "calculation_method": "Count of support staff assigned.",
+        "recommended_for": [
+          "regulated_industry"
+        ]
+      }
+    ],
+    "process": [
+      {
+        "name_en": "Communication Campaigns Launched",
+        "name_de": "Gestartete Kommunikationskampagnen",
+        "name_es": "Campañas de Comunicación Lanzadas",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Kampagnen zur Service-Einführung haben wir gestartet?",
+            "management": "Anzahl der Launch-Kommunikationskampagnen zur Awareness-Steigerung."
+          },
+          "en": {
+            "colloquial": "How many service launch campaigns have we started?",
+            "management": "Number of launch communication campaigns to increase awareness."
+          },
+          "es": {
+            "colloquial": "¿Cuántas campañas de lanzamiento de servicios hemos iniciado?",
+            "management": "Número de campañas de comunicación de lanzamiento para aumentar la conciencia."
+          }
+        },
+        "calculation_method": "Count of communication campaigns executed.",
+        "recommended_for": [
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Training Sessions Delivered",
+        "name_de": "Durchgeführte Schulungssitzungen",
+        "name_es": "Sesiones de Capacitación Impartidas",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Schulungen haben wir durchgeführt?",
+            "management": "Anzahl der User-Trainings zur Enablement-Förderung."
+          },
+          "en": {
+            "colloquial": "How many training sessions have we conducted?",
+            "management": "Number of user trainings for enablement promotion."
+          },
+          "es": {
+            "colloquial": "¿Cuántas sesiones de capacitación hemos realizado?",
+            "management": "Número de capacitaciones de usuarios para promover la habilitación."
+          }
+        },
+        "calculation_method": "Count of training sessions held.",
+        "recommended_for": [
+          "large_pmo"
+        ]
+      },
+      {
+        "name_en": "Support Tickets Handled",
+        "name_de": "Bearbeitete Support-Tickets",
+        "name_es": "Tickets de Soporte Atendidos",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Support-Anfragen haben wir beantwortet?",
+            "management": "Anzahl der bearbeiteten User-Support-Anfragen während Launch-Phase."
+          },
+          "en": {
+            "colloquial": "How many support requests have we answered?",
+            "management": "Number of user support requests handled during launch phase."
+          },
+          "es": {
+            "colloquial": "¿Cuántas solicitudes de soporte hemos respondido?",
+            "management": "Número de solicitudes de soporte de usuarios atendidas durante la fase de lanzamiento."
+          }
+        },
+        "calculation_method": "Count of support tickets resolved.",
+        "recommended_for": [
+          "startup_pmo"
+        ]
+      }
+    ],
+    "output": [
+      {
+        "name_en": "Services Activated",
+        "name_de": "Aktivierte Services",
+        "name_es": "Servicios Activados",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Services sind jetzt live?",
+            "management": "Anzahl der erfolgreich aktivierten und verfügbaren PMO-Services."
+          },
+          "en": {
+            "colloquial": "How many services are now live?",
+            "management": "Number of successfully activated and available PMO services."
+          },
+          "es": {
+            "colloquial": "¿Cuántos servicios están ahora activos?",
+            "management": "Número de servicios de PMO activados exitosamente y disponibles."
+          }
+        },
+        "calculation_method": "Count of services launched.",
+        "recommended_for": [
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Users Trained",
+        "name_de": "Geschulte Nutzer",
+        "name_es": "Usuarios Capacitados",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Nutzer haben wir geschult?",
+            "management": "Anzahl der trainingsabsolvierenden User für Service-Adoption."
+          },
+          "en": {
+            "colloquial": "How many users have we trained?",
+            "management": "Number of users completing training for service adoption."
+          },
+          "es": {
+            "colloquial": "¿Cuántos usuarios hemos capacitado?",
+            "management": "Número de usuarios que completan la capacitación para la adopción de servicios."
+          }
+        },
+        "calculation_method": "Count of trained users.",
+        "recommended_for": [
+          "large_pmo"
+        ]
+      },
+      {
+        "name_en": "Launch Documentation Created",
+        "name_de": "Erstellte Launch-Dokumentation",
+        "name_es": "Documentación de Lanzamiento Creada",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Anleitungen haben wir erstellt?",
+            "management": "Anzahl der User-Guides und Launch-Materialien."
+          },
+          "en": {
+            "colloquial": "How many guides have we created?",
+            "management": "Number of user guides and launch materials."
+          },
+          "es": {
+            "colloquial": "¿Cuántas guías hemos creado?",
+            "management": "Número de guías de usuario y materiales de lanzamiento."
+          }
+        },
+        "calculation_method": "Count of documentation pieces created.",
+        "recommended_for": [
+          "regulated_industry"
+        ]
+      }
+    ],
+    "outcome": [
+      {
+        "name_en": "Service Adoption Rate",
+        "name_de": "Service-Adoptionsrate",
+        "name_es": "Tasa de Adopción de Servicios",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele nutzen die neuen Services?",
+            "management": "Prozentsatz der Zielgruppe, die PMO-Services aktiv nutzt."
+          },
+          "en": {
+            "colloquial": "How many are using the new services?",
+            "management": "Percentage of target audience actively using PMO services."
+          },
+          "es": {
+            "colloquial": "¿Cuántos están usando los nuevos servicios?",
+            "management": "Porcentaje del público objetivo que utiliza activamente los servicios de PMO."
+          }
+        },
+        "calculation_method": "Active users divided by target users, multiplied by 100.",
+        "recommended_for": [
+          "large_pmo"
+        ]
+      },
+      {
+        "name_en": "User Competence Level",
+        "name_de": "Nutzer-Kompetenzlevel",
+        "name_es": "Nivel de Competencia del Usuario",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie gut können User die Services nutzen?",
+            "management": "Bewertung der User-Kompetenzen in der Service-Nutzung."
+          },
+          "en": {
+            "colloquial": "How well can users use the services?",
+            "management": "Assessment of user competencies in service usage."
+          },
+          "es": {
+            "colloquial": "¿Qué tan bien pueden los usuarios usar los servicios?",
+            "management": "Evaluación de las competencias de los usuarios en el uso de servicios."
+          }
+        },
+        "calculation_method": "Average competence score from user assessments.",
+        "recommended_for": [
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Change Resistance Index",
+        "name_de": "Change-Resistance-Index",
+        "name_es": "Índice de Resistencia al Cambio",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viel Widerstand gibt es gegen die neuen Services?",
+            "management": "Messung des Widerstands gegen PMO-Service-Adoption."
+          },
+          "en": {
+            "colloquial": "How much resistance is there to the new services?",
+            "management": "Measurement of resistance to PMO service adoption."
+          },
+          "es": {
+            "colloquial": "¿Cuánta resistencia hay a los nuevos servicios?",
+            "management": "Medición de la resistencia a la adopción de servicios de PMO."
+          }
+        },
+        "calculation_method": "Survey-based resistance assessment (inverse scale: 10=low resistance).",
+        "recommended_for": [
+          "agile_org"
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "name_en": "Launch Satisfaction Score",
+        "name_de": "Launch-Zufriedenheits-Score",
+        "name_es": "Puntuación de Satisfacción del Lanzamiento",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie zufrieden sind User mit der Einführung?",
+            "management": "Bewertung der User-Zufriedenheit mit dem Service-Launch-Prozess."
+          },
+          "en": {
+            "colloquial": "How satisfied are users with the launch?",
+            "management": "Assessment of user satisfaction with the service launch process."
+          },
+          "es": {
+            "colloquial": "¿Qué tan satisfechos están los usuarios con el lanzamiento?",
+            "management": "Evaluación de la satisfacción de los usuarios con el proceso de lanzamiento de servicios."
+          }
+        },
+        "calculation_method": "Average satisfaction score from user survey.",
+        "recommended_for": [
+          "large_pmo"
+        ]
+      },
+      {
+        "name_en": "Support Quality Rating",
+        "name_de": "Support-Qualitäts-Rating",
+        "name_es": "Calificación de Calidad de Soporte",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie gut ist unser Launch-Support?",
+            "management": "Bewertung der Qualität und Effektivität des Launch-Supports."
+          },
+          "en": {
+            "colloquial": "How good is our launch support?",
+            "management": "Assessment of quality and effectiveness of launch support."
+          },
+          "es": {
+            "colloquial": "¿Qué tan bueno es nuestro soporte de lanzamiento?",
+            "management": "Evaluación de la calidad y efectividad del soporte de lanzamiento."
+          }
+        },
+        "calculation_method": "Average support rating from user feedback.",
+        "recommended_for": [
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Training Effectiveness Score",
+        "name_de": "Schulungs-Effektivitäts-Score",
+        "name_es": "Puntuación de Efectividad de Capacitación",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie effektiv waren unsere Schulungen?",
+            "management": "Bewertung der Effektivität der Launch-Trainings."
+          },
+          "en": {
+            "colloquial": "How effective were our trainings?",
+            "management": "Assessment of effectiveness of launch trainings."
+          },
+          "es": {
+            "colloquial": "¿Qué tan efectivas fueron nuestras capacitaciones?",
+            "management": "Evaluación de la efectividad de las capacitaciones de lanzamiento."
+          }
+        },
+        "calculation_method": "Average effectiveness score from post-training survey.",
+        "recommended_for": [
+          "startup_pmo"
+        ]
+      }
+    ]
+  }
+}
