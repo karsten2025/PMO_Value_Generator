@@ -269,7 +269,7 @@ function ProcessInstanceContent() {
       const scoreRange = categoryScoreRanges[category];
       
       // Get metric details to check for special cases
-      const metric = getMetricByKey(metricKey);
+      const metric = getMetricDetails(metricKey);
       const isNPS = metric?.name_en.includes('Net Promoter Score') || false;
       
       let targetValue: number;
