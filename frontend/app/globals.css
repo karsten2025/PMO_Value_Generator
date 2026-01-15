@@ -19,10 +19,24 @@
   }
 }
 
-body {
+html, body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  /* PREVENT HORIZONTAL SCROLL & WHITE BARS */
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure no white background bleeds through */
+#__next {
+  width: 100%;
+  height: 100%;
 }
 
 /* Portfolio Health Hub Animations */
@@ -72,5 +86,53 @@ body {
 
 .animate-slideUp {
   animation: slideUp 0.4s ease-out;
+}
+
+/* React Flow Controls - DARK MODE STYLING */
+.react-flow__controls {
+  background: rgba(30, 41, 59, 0.95) !important; /* slate-800 with transparency */
+  border: 1px solid rgb(51, 65, 85) !important; /* slate-700 */
+  border-radius: 8px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 
+              0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.react-flow__controls-button {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgb(51, 65, 85) !important; /* slate-700 */
+  color: rgb(148, 163, 184) !important; /* slate-400 */
+  transition: all 0.2s ease !important;
+}
+
+.react-flow__controls-button:hover {
+  background: rgb(51, 65, 85) !important; /* slate-700 */
+  color: rgb(96, 165, 250) !important; /* blue-400 */
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
+}
+
+.react-flow__controls-button svg {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important; /* Mehr Kontrast! */
+}
+
+/* React Flow Minimap - DARK MODE (falls verwendet) */
+.react-flow__minimap {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgb(51, 65, 85) !important;
+  border-radius: 8px !important;
+}
+
+/* React Flow Background - Dunkler Grid */
+.react-flow__background {
+  background-color: rgb(15, 23, 42) !important; /* slate-900 */
+}
+
+.react-flow__background circle {
+  fill: rgb(51, 65, 85) !important; /* slate-700 */
 }
 

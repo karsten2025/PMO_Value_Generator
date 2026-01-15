@@ -34,3 +34,4 @@ openai>=1.10.0
 # === EXISTING: Supabase ===
 supabase>=2.0.0
 
+

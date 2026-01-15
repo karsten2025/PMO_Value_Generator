@@ -236,3 +236,4 @@ Jetzt kann der Bot:
 3. Business Case & Use Cases präsentieren
 4. Alles in DE/EN/ES + 2 Registern
 
+

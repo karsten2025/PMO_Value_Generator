@@ -37,7 +37,7 @@ export default function PortfolioSelector() {
   // Verhindere Hydration-Fehler
   if (!isMounted) {
     return (
-      <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg min-w-[280px]">
+      <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg min-w-0 sm:min-w-[280px]">
         <div className="w-5 h-5 bg-slate-700 rounded animate-pulse" />
         <div className="flex-1">
           <div className="h-3 w-16 bg-slate-700 rounded mb-1" />
@@ -75,29 +75,29 @@ export default function PortfolioSelector() {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Selector Button */}
+      {/* Selector Button - RESPONSIVE WIDTH */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-3 px-4 py-2.5 bg-slate-800 hover:bg-slate-700 
+        className="flex items-center gap-2 sm:gap-3 px-2 sm:px-4 py-2 sm:py-2.5 bg-slate-800 hover:bg-slate-700 
                    border border-slate-700 rounded-lg transition-all duration-200
-                   min-w-[280px] group"
+                   min-w-0 sm:min-w-[280px] group w-full sm:w-auto"
       >
-        <Briefcase className="w-5 h-5 text-blue-400" />
-        <div className="flex-1 text-left">
-          <div className="text-xs text-slate-400 uppercase tracking-wider">Portfolio</div>
-          <div className="text-sm font-semibold text-white truncate">
+        <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 flex-shrink-0" />
+        <div className="flex-1 text-left min-w-0">
+          <div className="text-xs text-slate-400 uppercase tracking-wider hidden sm:block">Portfolio</div>
+          <div className="text-xs sm:text-sm font-semibold text-white truncate">
             {selectedPortfolio?.name || 'Kein Portfolio gewählt'}
           </div>
         </div>
         <ChevronDown
-          className={`w-4 h-4 text-slate-400 transition-transform duration-200 
+          className={`w-3 h-3 sm:w-4 sm:h-4 text-slate-400 transition-transform duration-200 flex-shrink-0
                       ${isOpen ? 'rotate-180' : ''}`}
         />
       </button>
 
-      {/* Dropdown Menu */}
+      {/* Dropdown Menu - RESPONSIVE */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-full bg-slate-800 border border-slate-700 
+        <div className="absolute top-full left-0 right-0 sm:right-auto mt-2 w-full sm:min-w-[280px] bg-slate-800 border border-slate-700 
                         rounded-lg shadow-2xl z-50 overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-2 bg-slate-900/50 border-b border-slate-700">

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import MobileMenu from '../components/MobileMenu';
 
 // Import aller 10 Prozess-Metriken (SHOWCASE VERSION: 15 Metriken pro Prozess)
 import process1Data from './process_1_metrics_showcase.json';
@@ -332,23 +333,105 @@ function MetricsPreviewContent() {
 
   return (
     <div className="w-full h-screen bg-slate-900 text-white flex flex-col">
-      {/* Header - MOBILE OPTIMIZED */}
-      <header className="p-3 sm:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 bg-slate-800 border-b border-slate-700">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
-          <h1 className="text-lg sm:text-xl font-bold text-blue-400">
-            <span className="sm:hidden">🔍 Metric Pool</span>
-            <span className="hidden sm:inline">🔍 Metric Pool Preview</span>
-          </h1>
+      {/* HEADER - MOBILE MINIMIZED */}
+      <header className="bg-slate-800 border-b border-slate-700">
+        {/* Mobile Header - Ultra Compact */}
+        <div className="sm:hidden p-2 flex items-center justify-between">
+          <h1 className="text-base font-bold text-blue-400">🔍 Metrics</h1>
+          <MobileMenu 
+            mode={mode} 
+            onModeChange={setMode}
+            language={language.toUpperCase() as 'DE' | 'EN' | 'ES'}
+            onLanguageChange={(lang) => setLanguage(lang.toLowerCase() as Language)}
+          />
+        </div>
+
+        {/* Desktop Header - Full Controls */}
+        <div className="hidden sm:flex p-4 justify-between items-center gap-4">
+          <div className="flex items-center gap-4">
+            <h1 className="text-xl font-bold text-blue-400">🔍 Metric Pool Preview</h1>
+            <div className="text-xs text-slate-400">
+              <span className="text-blue-400">
+                {selectedCount} / 15 {language === 'de' ? 'ausgewählt' : language === 'es' ? 'seleccionado' : 'selected'}
+              </span>
+            </div>
+          </div>
           
-          {/* Process Selector - MOBILE COMPACT */}
-          <div className="relative w-full sm:w-auto">
+          <div className="flex gap-4 items-center">
+            {/* Language */}
+            <div className="flex bg-slate-700 rounded-lg p-1">
+              {(['de', 'en', 'es'] as Language[]).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => {
+                    console.log('✅ Sprache wechseln zu:', l, 'Aktuell:', language);
+                    setLanguage(l);
+                  }}
+                  className={`px-3 py-1 rounded-md transition ${language === l ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
+            {/* Mode */}
+            <div className="flex bg-slate-700 rounded-lg p-1">
+              <button
+                onClick={() => setMode('colloquial')}
+                className={`flex items-center gap-2 px-3 py-1 rounded-md ${mode === 'colloquial' ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
+              >
+                👥 Normal
+              </button>
+              <button
+                onClick={() => setMode('management')}
+                className={`flex items-center gap-2 px-3 py-1 rounded-md ${mode === 'management' ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
+              >
+                💼 Management
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Second Row - Process Selector (KOMPAKT) */}
+        <div className="sm:hidden px-2 pb-2">
+          <div className="relative">
             <select
               value={selectedProcess}
               onChange={(e) => {
                 setSelectedProcess(Number(e.target.value));
-                setSelectedMetrics(new Set()); // Reset selection bei Prozess-Wechsel
+                setSelectedMetrics(new Set());
               }}
-              className="bg-slate-700 text-white px-3 sm:px-4 py-2 rounded-lg border border-slate-600 hover:border-blue-500 transition cursor-pointer appearance-none pr-8 sm:pr-10 font-medium text-sm sm:text-base w-full"
+              className="bg-slate-700 text-white px-2 py-1.5 rounded-lg border border-slate-600 text-xs w-full appearance-none pr-7"
+            >
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
+                const data = PROCESS_DATA_MAP[num as keyof typeof PROCESS_DATA_MAP];
+                const title = language === 'de' ? data.meta.process.title_de :
+                             language === 'es' ? data.meta.process.title_es :
+                             data.meta.process.title_en;
+                const processLabel = language === 'de' ? 'P' : language === 'es' ? 'P' : 'P';
+                return (
+                  <option key={num} value={num}>
+                    {processLabel}{num}: {title}
+                  </option>
+                );
+              })}
+            </select>
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400 text-xs">
+              ▼
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Process Selector */}
+        <div className="hidden sm:block px-4 pb-3">
+          <div className="relative inline-block">
+            <select
+              value={selectedProcess}
+              onChange={(e) => {
+                setSelectedProcess(Number(e.target.value));
+                setSelectedMetrics(new Set());
+              }}
+              className="bg-slate-700 text-white px-4 py-2 rounded-lg border border-slate-600 hover:border-blue-500 transition cursor-pointer appearance-none pr-10 font-medium text-sm"
             >
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
                 const data = PROCESS_DATA_MAP[num as keyof typeof PROCESS_DATA_MAP];
@@ -358,69 +441,46 @@ function MetricsPreviewContent() {
                 const processLabel = language === 'de' ? 'Prozess' : language === 'es' ? 'Proceso' : 'Process';
                 return (
                   <option key={num} value={num}>
-                    {/* Mobile: Nur "Process 1", Desktop: "Process 1: Title" */}
                     {processLabel} {num}: {title}
                   </option>
                 );
               })}
             </select>
-            <div className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
               ▼
             </div>
-          </div>
-
-          <div className="text-xs text-slate-400">
-            <span className="text-blue-400">
-              {selectedCount} / 15 {language === 'de' ? 'ausgewählt' : language === 'es' ? 'seleccionado' : 'selected'}
-            </span>
-            <span className="mx-2">•</span>
-            <span className="text-slate-500">
-              {language === 'de' ? '(5 Kategorien × 3 Metriken)' : 
-               language === 'es' ? '(5 Categorías × 3 Métricas)' :
-               '(5 Categories × 3 Metrics)'}
-            </span>
-          </div>
-        </div>
-
-        {/* Controls - EXAKT wie Hauptseite */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-          {/* Language */}
-          <div className="flex bg-slate-700 rounded-lg p-1">
-            {(['de', 'en', 'es'] as Language[]).map((l) => (
-              <button
-                key={l}
-                onClick={() => {
-                  console.log('✅ Sprache wechseln zu:', l, 'Aktuell:', language);
-                  setLanguage(l);
-                }}
-                className={`px-3 py-1 rounded-md transition ${language === l ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
-          </div>
-
-          {/* Mode */}
-          <div className="flex bg-slate-700 rounded-lg p-1">
-            <button
-              onClick={() => setMode('colloquial')}
-              className={`flex items-center gap-2 px-3 py-1 rounded-md ${mode === 'colloquial' ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-            >
-              👥 Normal
-            </button>
-            <button
-              onClick={() => setMode('management')}
-              className={`flex items-center gap-2 px-3 py-1 rounded-md ${mode === 'management' ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-            >
-              💼 Management
-            </button>
           </div>
         </div>
       </header>
 
-      {/* Category Tabs - MOBILE OPTIMIZED */}
-      <div className="border-b border-slate-700 bg-slate-800 px-2 sm:px-4 py-2 sm:py-3">
-        <div className="flex gap-1 sm:gap-2 overflow-x-auto scrollbar-hide">
+      {/* CATEGORY SELECTOR - DROPDOWN auf Mobile, Tabs auf Desktop */}
+      <div className="border-b border-slate-700 bg-slate-800">
+        {/* Mobile: Dropdown */}
+        <div className="sm:hidden px-2 py-2">
+          <div className="relative">
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value as MetricCategory)}
+              className="bg-slate-700 text-white px-3 py-2 rounded-lg border border-slate-600 text-sm w-full appearance-none pr-10 font-medium"
+            >
+              {Object.entries(CATEGORY_INFO).map(([key, info]) => {
+                const selectionCount = getCategorySelectionCount(key as MetricCategory);
+                const totalCount = metricsData.metrics[key as MetricCategory].length;
+                return (
+                  <option key={key} value={key}>
+                    {info.icon} {info.title[language]} ({selectionCount}/{totalCount})
+                  </option>
+                );
+              })}
+            </select>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+              ▼
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop: Tabs (wie bisher) */}
+        <div className="hidden sm:flex gap-2 px-4 py-3 overflow-x-auto">
           {Object.entries(CATEGORY_INFO).map(([key, info]) => {
             const isActive = selectedCategory === key;
             const selectionCount = getCategorySelectionCount(key as MetricCategory);
@@ -430,26 +490,13 @@ function MetricsPreviewContent() {
               <button
                 key={key}
                 onClick={() => setSelectedCategory(key as MetricCategory)}
-                className={`px-2 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all whitespace-nowrap flex-shrink-0 ${
+                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all whitespace-nowrap flex-shrink-0 ${
                   isActive
                     ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
                     : 'bg-slate-700 text-slate-300 hover:text-white hover:bg-slate-600'
                 }`}
               >
-                {/* Mobile: Nur Icon + Count */}
-                <div className="flex sm:hidden flex-col items-center gap-0.5">
-                  <span className="text-lg">{info.icon}</span>
-                  <span className={`text-xs font-bold ${
-                    selectionCount > 0 
-                      ? 'text-blue-300' 
-                      : 'text-slate-400'
-                  }`}>
-                    {selectionCount}/{totalCount}
-                  </span>
-                </div>
-                
-                {/* Desktop: Voller Text */}
-                <div className="hidden sm:flex items-center gap-2">
+                <div className="flex items-center gap-2">
                   <span className="text-lg">{info.icon}</span>
                   <div className="text-left">
                     <div className="flex items-center gap-2">
@@ -473,14 +520,14 @@ function MetricsPreviewContent() {
         </div>
       </div>
 
-      {/* Category Description - 2x3 Matrix - MOBILE COMPACT */}
-      <div className="bg-slate-800/70 border-b border-slate-700 px-3 sm:px-4 py-2 sm:py-3">
+      {/* Category Description - HIDDEN on Mobile, SHOWN on Desktop */}
+      <div className="hidden sm:block bg-slate-800/70 border-b border-slate-700 px-4 py-3">
         <div className="flex items-center gap-2 mb-1">
           <span className="text-xs font-medium text-blue-400 uppercase">
             {mode === 'colloquial' ? '👥' : '💼'} {(MODE_LABELS[mode] || MODE_LABELS['colloquial'])[language as 'de' | 'en' | 'es']}
           </span>
         </div>
-        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <p className="text-sm text-slate-300 leading-relaxed">
           {getCategoryDescription()}
         </p>
       </div>

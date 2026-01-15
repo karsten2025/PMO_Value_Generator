@@ -283,3 +283,4 @@ Bevor du startest, prüfe:
 **Ready to produce?** 🎬  
 → `cd extraction && python run_full_pipeline.py`
 
+

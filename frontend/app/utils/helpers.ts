@@ -65,3 +65,4 @@ export function getKPITypeLabel(kpiType: string, lang: Language): string {
   return labels[kpiType]?.[lang] || kpiType;
 }
 
+

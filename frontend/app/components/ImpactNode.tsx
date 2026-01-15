@@ -30,6 +30,7 @@ export default function ImpactNode({ data }: ImpactNodeProps) {
           ? `0 0 20px ${progressColor}40, 0 4px 15px rgba(0,0,0,0.3)`
           : '0 4px 15px rgba(0,0,0,0.3)'
       }}
+      suppressHydrationWarning
     >
       {/* Connection Handles */}
       <Handle type="target" position={Position.Top} className="w-2 h-2" />
@@ -44,7 +45,7 @@ export default function ImpactNode({ data }: ImpactNodeProps) {
         </div>
 
         {/* Main Label */}
-        <div className="text-center text-white text-[11px] leading-tight px-2 mt-2">
+        <div className="text-center text-white text-[11px] leading-tight px-2 mt-2" suppressHydrationWarning>
           {label}
         </div>
 

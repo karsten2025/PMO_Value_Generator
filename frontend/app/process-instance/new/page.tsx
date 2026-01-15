@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
+import MobileMenu from '../../components/MobileMenu';
 
 // Import Metric Data
 import process1Data from '../../preview-metrics/process_1_metrics_showcase.json';
@@ -382,58 +383,84 @@ function ProcessInstanceContent() {
   return (
     <div className="w-full min-h-screen bg-slate-900 text-white">
       {/* Header */}
-      <header className="p-3 sm:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 bg-slate-800 border-b border-slate-700">
-        <div className="flex items-center gap-4 w-full sm:w-auto">
+      {/* HEADER - MOBILE MINIMIZED */}
+      <header className="bg-slate-800 border-b border-slate-700">
+        {/* Mobile Header - Ultra Compact */}
+        <div className="sm:hidden p-2 flex items-center justify-between gap-2">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
+            className="p-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
+            aria-label="Back"
           >
             <ArrowLeft size={18} />
-            <span className="text-sm">
-              {language === 'de' ? 'Zurück' : language === 'es' ? 'Volver' : 'Back'}
-            </span>
           </button>
           
-          <h1 className="text-xl font-bold text-blue-400">
-            📊 {getPageTitle()}
+          <h1 className="text-base font-bold text-blue-400 flex-1 truncate">
+            📊 Value Capture
           </h1>
+
+          <MobileMenu 
+            mode={mode} 
+            onModeChange={setMode}
+            language={language.toUpperCase() as 'DE' | 'EN' | 'ES'}
+            onLanguageChange={(lang) => setLanguage(lang.toLowerCase() as Language)}
+          />
         </div>
 
-        {/* Controls: Language + Mode */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-          {/* Language Switcher */}
-          <div className="flex bg-slate-700 rounded-lg p-1">
-            {(['de', 'en', 'es'] as Language[]).map((l) => (
-              <button
-                key={l}
-                onClick={() => setLanguage(l)}
-                className={`px-3 py-1 rounded-md transition ${
-                  language === l ? 'bg-blue-600' : 'hover:bg-slate-600'
-                }`}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
+        {/* Desktop Header - Full Controls */}
+        <div className="hidden sm:flex p-4 justify-between items-center gap-4">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => router.back()}
+              className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
+            >
+              <ArrowLeft size={18} />
+              <span className="text-sm">
+                {language === 'de' ? 'Zurück' : language === 'es' ? 'Volver' : 'Back'}
+              </span>
+            </button>
+            
+            <h1 className="text-xl font-bold text-blue-400">
+              📊 {getPageTitle()}
+            </h1>
           </div>
 
-          {/* Mode Switcher (2x3 Matrix) */}
-          <div className="flex bg-slate-700 rounded-lg p-1">
-            <button
-              onClick={() => setMode('colloquial')}
-              className={`px-3 py-1 rounded-md transition text-sm ${
-                mode === 'colloquial' ? 'bg-blue-600' : 'hover:bg-slate-600'
-              }`}
-            >
-              {mode === 'colloquial' ? '👥' : ''} {language === 'de' ? 'Normal' : language === 'es' ? 'Normal' : 'Normal'}
-            </button>
-            <button
-              onClick={() => setMode('management')}
-              className={`px-3 py-1 rounded-md transition text-sm ${
-                mode === 'management' ? 'bg-blue-600' : 'hover:bg-slate-600'
-              }`}
-            >
-              {mode === 'management' ? '💼' : ''} {language === 'de' ? 'Management' : language === 'es' ? 'Gerencia' : 'Management'}
-            </button>
+          {/* Controls: Language + Mode */}
+          <div className="flex gap-4 items-center">
+            {/* Language Switcher */}
+            <div className="flex bg-slate-700 rounded-lg p-1">
+              {(['de', 'en', 'es'] as Language[]).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLanguage(l)}
+                  className={`px-3 py-1 rounded-md transition ${
+                    language === l ? 'bg-blue-600' : 'hover:bg-slate-600'
+                  }`}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
+            {/* Mode Switcher (2x3 Matrix) */}
+            <div className="flex bg-slate-700 rounded-lg p-1">
+              <button
+                onClick={() => setMode('colloquial')}
+                className={`px-3 py-1 rounded-md transition text-sm ${
+                  mode === 'colloquial' ? 'bg-blue-600' : 'hover:bg-slate-600'
+                }`}
+              >
+                {mode === 'colloquial' ? '👥' : ''} {language === 'de' ? 'Normal' : language === 'es' ? 'Normal' : 'Normal'}
+              </button>
+              <button
+                onClick={() => setMode('management')}
+                className={`px-3 py-1 rounded-md transition text-sm ${
+                  mode === 'management' ? 'bg-blue-600' : 'hover:bg-slate-600'
+                }`}
+              >
+                {mode === 'management' ? '💼' : ''} {language === 'de' ? 'Management' : language === 'es' ? 'Gerencia' : 'Management'}
+              </button>
+            </div>
           </div>
         </div>
       </header>

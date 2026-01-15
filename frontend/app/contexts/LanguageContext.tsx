@@ -34,37 +34,40 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 // Provider
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Load from localStorage (persistent)
-  const [language, setLanguageState] = useState<Language>(() => {
+  // FIX HYDRATION: Immer mit Default starten, dann Client-State laden
+  const [mounted, setMounted] = useState(false);
+  const [language, setLanguageState] = useState<Language>('EN');
+  const [register, setRegisterState] = useState<Register>('colloquial');
+  
+  // Load from localStorage NACH dem ersten Render (verhindert Hydration Mismatch)
+  useEffect(() => {
+    setMounted(true);
+    
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('user_language');
-      // If saved value exists and is valid, use it. Otherwise default to EN.
-      if (saved && ['DE', 'EN', 'ES'].includes(saved)) {
-        return saved as Language;
+      const savedLang = localStorage.getItem('user_language');
+      if (savedLang && ['DE', 'EN', 'ES'].includes(savedLang)) {
+        setLanguageState(savedLang as Language);
       }
-      // First visit: Set default to EN and save it
-      localStorage.setItem('user_language', 'EN');
-      return 'EN';
+      
+      const savedReg = localStorage.getItem('user_register');
+      if (savedReg && ['colloquial', 'management'].includes(savedReg)) {
+        setRegisterState(savedReg as Register);
+      }
     }
-    return 'EN';
-  });
+  }, []);
   
-  const [register, setRegisterState] = useState<Register>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('user_register');
-      return (saved as Register) || 'colloquial';  // Default: Normalsprache
-    }
-    return 'colloquial';
-  });
-  
-  // Save to localStorage when changed
+  // Save to localStorage when changed (nur wenn mounted)
   useEffect(() => {
-    localStorage.setItem('user_language', language);
-  }, [language]);
+    if (mounted && typeof window !== 'undefined') {
+      localStorage.setItem('user_language', language);
+    }
+  }, [language, mounted]);
   
   useEffect(() => {
-    localStorage.setItem('user_register', register);
-  }, [register]);
+    if (mounted && typeof window !== 'undefined') {
+      localStorage.setItem('user_register', register);
+    }
+  }, [register, mounted]);
   
   // Setter mit Validation
   const setLanguage = (lang: Language) => {
