@@ -553,10 +553,10 @@ function DashboardContent() {
                                             {getCategoryName(metric.category, language)}
                                           </span>
                                           {metric.scoring_direction === 'lower_is_better' && (
-                                            <TrendingDown size={12} className="text-orange-400" title="Lower is better" />
+                                            <TrendingDown size={12} className="text-orange-400" aria-label="Lower is better" />
                                           )}
                                           {metric.scoring_direction === 'higher_is_better' && (
-                                            <TrendingUp size={12} className="text-green-400" title="Higher is better" />
+                                            <TrendingUp size={12} className="text-green-400" aria-label="Higher is better" />
                                           )}
                                         </div>
                                         <div className="text-sm font-medium text-white">
