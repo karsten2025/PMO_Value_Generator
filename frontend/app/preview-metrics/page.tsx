@@ -332,34 +332,39 @@ function MetricsPreviewContent() {
 
   return (
     <div className="w-full h-screen bg-slate-900 text-white flex flex-col">
-      {/* Header - EXAKT wie Hauptseite */}
+      {/* Header - MOBILE OPTIMIZED */}
       <header className="p-3 sm:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 bg-slate-800 border-b border-slate-700">
-        <div className="flex items-center gap-4 w-full sm:w-auto">
-          <h1 className="text-xl font-bold text-blue-400">🔍 Metric Pool Preview</h1>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
+          <h1 className="text-lg sm:text-xl font-bold text-blue-400">
+            <span className="sm:hidden">🔍 Metric Pool</span>
+            <span className="hidden sm:inline">🔍 Metric Pool Preview</span>
+          </h1>
           
-          {/* Process Selector - NEU */}
-          <div className="relative">
+          {/* Process Selector - MOBILE COMPACT */}
+          <div className="relative w-full sm:w-auto">
             <select
               value={selectedProcess}
               onChange={(e) => {
                 setSelectedProcess(Number(e.target.value));
                 setSelectedMetrics(new Set()); // Reset selection bei Prozess-Wechsel
               }}
-              className="bg-slate-700 text-white px-4 py-2 rounded-lg border border-slate-600 hover:border-blue-500 transition cursor-pointer appearance-none pr-10 font-medium"
+              className="bg-slate-700 text-white px-3 sm:px-4 py-2 rounded-lg border border-slate-600 hover:border-blue-500 transition cursor-pointer appearance-none pr-8 sm:pr-10 font-medium text-sm sm:text-base w-full"
             >
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
                 const data = PROCESS_DATA_MAP[num as keyof typeof PROCESS_DATA_MAP];
                 const title = language === 'de' ? data.meta.process.title_de :
                              language === 'es' ? data.meta.process.title_es :
                              data.meta.process.title_en;
+                const processLabel = language === 'de' ? 'Prozess' : language === 'es' ? 'Proceso' : 'Process';
                 return (
                   <option key={num} value={num}>
-                    {language === 'de' ? 'Prozess' : language === 'es' ? 'Proceso' : 'Process'} {num}: {title}
+                    {/* Mobile: Nur "Process 1", Desktop: "Process 1: Title" */}
+                    {processLabel} {num}: {title}
                   </option>
                 );
               })}
             </select>
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+            <div className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
               ▼
             </div>
           </div>
@@ -413,36 +418,52 @@ function MetricsPreviewContent() {
         </div>
       </header>
 
-      {/* Category Tabs */}
-      <div className="border-b border-slate-700 bg-slate-800 px-4 py-3">
-        <div className="flex gap-2 overflow-x-auto">
+      {/* Category Tabs - MOBILE OPTIMIZED */}
+      <div className="border-b border-slate-700 bg-slate-800 px-2 sm:px-4 py-2 sm:py-3">
+        <div className="flex gap-1 sm:gap-2 overflow-x-auto scrollbar-hide">
           {Object.entries(CATEGORY_INFO).map(([key, info]) => {
             const isActive = selectedCategory === key;
+            const selectionCount = getCategorySelectionCount(key as MetricCategory);
+            const totalCount = metricsData.metrics[key as MetricCategory].length;
+            
             return (
               <button
                 key={key}
                 onClick={() => setSelectedCategory(key as MetricCategory)}
-                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all whitespace-nowrap flex-shrink-0 ${
+                className={`px-2 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm transition-all whitespace-nowrap flex-shrink-0 ${
                   isActive
                     ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
                     : 'bg-slate-700 text-slate-300 hover:text-white hover:bg-slate-600'
                 }`}
               >
-                <div className="flex items-center gap-2">
+                {/* Mobile: Nur Icon + Count */}
+                <div className="flex sm:hidden flex-col items-center gap-0.5">
+                  <span className="text-lg">{info.icon}</span>
+                  <span className={`text-xs font-bold ${
+                    selectionCount > 0 
+                      ? 'text-blue-300' 
+                      : 'text-slate-400'
+                  }`}>
+                    {selectionCount}/{totalCount}
+                  </span>
+                </div>
+                
+                {/* Desktop: Voller Text */}
+                <div className="hidden sm:flex items-center gap-2">
                   <span className="text-lg">{info.icon}</span>
                   <div className="text-left">
                     <div className="flex items-center gap-2">
                       <span>{info.title[language]}</span>
                       <span className={`text-xs font-bold ${
-                        getCategorySelectionCount(key as MetricCategory) > 0 
+                        selectionCount > 0 
                           ? 'text-blue-300' 
                           : 'text-slate-500'
                       }`}>
-                        ({getCategorySelectionCount(key as MetricCategory)}/{metricsData.metrics[key as MetricCategory].length})
+                        ({selectionCount}/{totalCount})
                       </span>
                     </div>
                     <div className="text-xs opacity-75 font-normal">
-                      {metricsData.metrics[key as MetricCategory].length} {language === 'de' ? 'Metriken' : language === 'es' ? 'Métricas' : 'Metrics'}
+                      {totalCount} {language === 'de' ? 'Metriken' : language === 'es' ? 'Métricas' : 'Metrics'}
                     </div>
                   </div>
                 </div>
@@ -452,14 +473,14 @@ function MetricsPreviewContent() {
         </div>
       </div>
 
-      {/* Category Description - 2x3 Matrix */}
-      <div className="bg-slate-800/70 border-b border-slate-700 px-4 py-3">
+      {/* Category Description - 2x3 Matrix - MOBILE COMPACT */}
+      <div className="bg-slate-800/70 border-b border-slate-700 px-3 sm:px-4 py-2 sm:py-3">
         <div className="flex items-center gap-2 mb-1">
           <span className="text-xs font-medium text-blue-400 uppercase">
             {mode === 'colloquial' ? '👥' : '💼'} {(MODE_LABELS[mode] || MODE_LABELS['colloquial'])[language as 'de' | 'en' | 'es']}
           </span>
         </div>
-        <p className="text-sm text-slate-300">
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
           {getCategoryDescription()}
         </p>
       </div>
@@ -555,55 +576,68 @@ function MetricsPreviewContent() {
         </div>
       </main>
 
-      {/* Action Bar - Sticky Bottom */}
-      <div className="sticky bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 p-3 sm:p-4 shadow-2xl">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
-          {/* Left: Selection Count & Validation */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
-            <div className="text-sm">
-              <span className="text-blue-400 font-bold text-lg">
-                {selectedCount} / 15
-              </span>
-              <span className="text-slate-400 ml-2">
-                {language === 'de' ? 'Metriken ausgewählt' : 
-                 language === 'es' ? 'métricas seleccionadas' : 
-                 'metrics selected'}
-              </span>
+      {/* Action Bar - Sticky Bottom - MOBILE OPTIMIZED */}
+      <div className="sticky bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 shadow-2xl">
+        <div className="max-w-7xl mx-auto">
+          {/* Selection Info Bar - Kompakter auf Mobile */}
+          <div className="px-3 py-2 border-b border-slate-700 bg-slate-800/50">
+            <div className="flex items-center justify-between gap-2">
+              <div className="text-xs sm:text-sm">
+                <span className="text-blue-400 font-bold text-base sm:text-lg">
+                  {selectedCount} / 15
+                </span>
+                <span className="text-slate-400 ml-1 sm:ml-2 hidden sm:inline">
+                  {language === 'de' ? 'Metriken ausgewählt' : 
+                   language === 'es' ? 'métricas seleccionadas' : 
+                   'metrics selected'}
+                </span>
+              </div>
+              {selectedCount === 0 && (
+                <div className="flex items-center gap-1 sm:gap-2 text-yellow-400 text-xs sm:text-sm">
+                  <span>⚠️</span>
+                  <span className="hidden sm:inline">
+                    {language === 'de' ? 'Mindestens 1 Metrik erforderlich' :
+                     language === 'es' ? 'Se requiere al menos 1 métrica' :
+                     'At least 1 metric required'}
+                  </span>
+                  <span className="sm:hidden">
+                    {language === 'de' ? 'Min. 1 Metrik' :
+                     language === 'es' ? 'Mín. 1 métrica' :
+                     'Min. 1 metric'}
+                  </span>
+                </div>
+              )}
+              {selectedCount > 0 && (
+                <div className="flex items-center gap-1 sm:gap-2 text-green-400 text-xs sm:text-sm">
+                  <span>✅</span>
+                  <span className="hidden sm:inline">
+                    {language === 'de' ? 'Bereit zum Speichern' :
+                     language === 'es' ? 'Listo para guardar' :
+                     'Ready to save'}
+                  </span>
+                  <span className="sm:hidden">
+                    {language === 'de' ? 'Bereit' :
+                     language === 'es' ? 'Listo' :
+                     'Ready'}
+                  </span>
+                </div>
+              )}
             </div>
-            {selectedCount === 0 && (
-              <div className="flex items-center gap-2 text-yellow-400 text-sm">
-                <span>⚠️</span>
-                <span>
-                  {language === 'de' ? 'Mindestens 1 Metrik erforderlich' :
-                   language === 'es' ? 'Se requiere al menos 1 métrica' :
-                   'At least 1 metric required'}
-                </span>
-              </div>
-            )}
-            {selectedCount > 0 && (
-              <div className="flex items-center gap-2 text-green-400 text-sm">
-                <span>✅</span>
-                <span>
-                  {language === 'de' ? 'Bereit zum Speichern' :
-                   language === 'es' ? 'Listo para guardar' :
-                   'Ready to save'}
-                </span>
-              </div>
-            )}
           </div>
 
-          {/* Right: Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+          {/* Action Buttons - GROSSE Touch-Targets auf Mobile */}
+          <div className="p-2 sm:p-3 flex flex-col sm:flex-row gap-2 sm:gap-3">
             <button
               onClick={() => window.history.back()}
-              className="px-4 sm:px-6 py-2 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-white transition font-medium text-sm sm:text-base"
+              className="px-4 py-3 sm:py-2 rounded-lg bg-slate-700 text-white hover:bg-slate-600 transition font-medium text-base sm:text-sm min-h-[48px] sm:min-h-0"
             >
-              🔙 {language === 'de' ? 'Abbrechen' : language === 'es' ? 'Cancelar' : 'Cancel'}
+              <span className="sm:hidden">🔙 {language === 'de' ? 'Zurück' : language === 'es' ? 'Volver' : 'Back'}</span>
+              <span className="hidden sm:inline">🔙 {language === 'de' ? 'Abbrechen' : language === 'es' ? 'Cancelar' : 'Cancel'}</span>
             </button>
             <button
               onClick={saveSelection}
               disabled={selectedCount === 0}
-              className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition text-sm sm:text-base ${
+              className={`px-4 py-3 sm:py-2 rounded-lg font-medium transition text-base sm:text-sm min-h-[48px] sm:min-h-0 flex-1 sm:flex-none ${
                 selectedCount > 0
                   ? 'bg-green-600 text-white hover:bg-green-500 shadow-lg shadow-green-600/30'
                   : 'bg-slate-700 text-slate-500 cursor-not-allowed'
@@ -619,13 +653,14 @@ function MetricsPreviewContent() {
                 }, 500);
               }}
               disabled={selectedCount === 0}
-              className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition text-sm sm:text-base ${
+              className={`px-4 py-3 sm:py-2 rounded-lg font-medium transition text-base sm:text-sm min-h-[48px] sm:min-h-0 flex-1 sm:flex-none ${
                 selectedCount > 0
                   ? 'bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/30'
                   : 'bg-slate-700 text-slate-500 cursor-not-allowed'
               }`}
             >
-              ▶️ {language === 'de' ? 'Weiter zu Werte-Erfassung' : language === 'es' ? 'Continuar a captura' : 'Continue to Value Capture'}
+              <span className="sm:hidden">▶️ {language === 'de' ? 'Weiter' : language === 'es' ? 'Continuar' : 'Continue'}</span>
+              <span className="hidden sm:inline">▶️ {language === 'de' ? 'Weiter zu Werte-Erfassung' : language === 'es' ? 'Continuar a captura' : 'Continue to Value Capture'}</span>
             </button>
           </div>
         </div>

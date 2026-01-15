@@ -862,29 +862,33 @@ function ProcessInstanceContent() {
       </main>
 
       {/* Action Bar - Bottom */}
-      <div className="sticky bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 p-3 sm:p-4 shadow-2xl">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
-          {/* Left: Info */}
-          <div className="text-sm text-slate-400">
-            {language === 'de' ? 
-              'Erfasse die Werte für deine ausgewählten Metriken' :
-             language === 'es' ?
-              'Captura los valores de tus métricas seleccionadas' :
-              'Capture values for your selected metrics'}
+      {/* Action Bar - MOBILE OPTIMIZED */}
+      <div className="sticky bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 shadow-2xl">
+        <div className="max-w-4xl mx-auto">
+          {/* Info Bar - Nur auf Desktop */}
+          <div className="hidden sm:block px-4 py-2 border-b border-slate-700 bg-slate-800/50">
+            <div className="text-sm text-slate-400">
+              {language === 'de' ? 
+                'Erfasse die Werte für deine ausgewählten Metriken' :
+               language === 'es' ?
+                'Captura los valores de tus métricas seleccionadas' :
+                'Capture values for your selected metrics'}
+            </div>
           </div>
 
-          {/* Right: Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+          {/* Action Buttons - GROSSE Touch-Targets auf Mobile */}
+          <div className="p-2 sm:p-3 flex flex-col sm:flex-row gap-2 sm:gap-3">
             <button
               onClick={() => router.push(`/preview-metrics?process=${selectedProcess}`)}
-              className="px-4 sm:px-6 py-2 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-white transition font-medium text-sm sm:text-base"
+              className="px-4 py-3 sm:py-2 rounded-lg bg-slate-700 text-white hover:bg-slate-600 transition font-medium text-base sm:text-sm min-h-[48px] sm:min-h-0"
             >
-              🔙 {language === 'de' ? 'Zurück zur Auswahl' : language === 'es' ? 'Volver a selección' : 'Back to Selection'}
+              <span className="sm:hidden">🔙 {language === 'de' ? 'Zurück' : language === 'es' ? 'Volver' : 'Back'}</span>
+              <span className="hidden sm:inline">🔙 {language === 'de' ? 'Zurück zur Auswahl' : language === 'es' ? 'Volver a selección' : 'Back to Selection'}</span>
             </button>
             <button
               onClick={saveMetricValues}
               disabled={!canSave}
-              className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition text-sm sm:text-base ${
+              className={`px-4 py-3 sm:py-2 rounded-lg font-medium transition text-base sm:text-sm min-h-[48px] sm:min-h-0 flex-1 sm:flex-none ${
                 canSave
                   ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white hover:from-purple-700 hover:via-pink-700 hover:to-purple-700 shadow-lg shadow-pink-500/50 animate-gradient'
                   : 'bg-slate-700 text-slate-500 cursor-not-allowed'
@@ -900,7 +904,7 @@ function ProcessInstanceContent() {
                       'Dashboard/Visualization coming in Phase 2! 📊');
               }}
               disabled={savedEntries.filter(e => !e.deleted_at).length === 0}
-              className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition text-sm sm:text-base ${
+              className={`px-4 py-3 sm:py-2 rounded-lg font-medium transition text-base sm:text-sm min-h-[48px] sm:min-h-0 flex-1 sm:flex-none ${
                 savedEntries.filter(e => !e.deleted_at).length > 0
                   ? 'bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/30'
                   : 'bg-slate-700 text-slate-500 cursor-not-allowed'
@@ -909,7 +913,8 @@ function ProcessInstanceContent() {
                 ? (language === 'de' ? 'Erst Werte speichern!' : language === 'es' ? '¡Primero guardar valores!' : 'Save values first!')
                 : undefined}
             >
-              ▶️ {language === 'de' ? 'Weiter zum Dashboard' : language === 'es' ? 'Continuar al panel' : 'Continue to Dashboard'}
+              <span className="sm:hidden">▶️ {language === 'de' ? 'Dashboard' : language === 'es' ? 'Panel' : 'Dashboard'}</span>
+              <span className="hidden sm:inline">▶️ {language === 'de' ? 'Weiter zum Dashboard' : language === 'es' ? 'Continuar al panel' : 'Continue to Dashboard'}</span>
             </button>
           </div>
         </div>
