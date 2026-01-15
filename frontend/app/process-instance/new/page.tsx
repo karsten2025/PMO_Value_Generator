@@ -294,7 +294,6 @@ function ProcessInstanceContent() {
       
       demoData[metricKey] = {
         metricKey,
-        metric_name: metricKey,
         targetValue: targetValue.toString(),
         currentValue: currentValue.toString(),
       };
