@@ -90,7 +90,7 @@ export function getCategoryWeights(): Record<MetricCategory, number> {
   try {
     const saved = localStorage.getItem('category_weights');
     if (saved) {
-      const parsed = JSON.parse(saved);
+      const parsed = JSON.parse(saved) as CategoryWeights;
       // Validate: Summe muss ~100% sein
       const total = Object.values(parsed).reduce((sum: number, w: number) => sum + w, 0);
       if (Math.abs(total - 1.0) < 0.01) {
