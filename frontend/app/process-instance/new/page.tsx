@@ -382,8 +382,8 @@ function ProcessInstanceContent() {
   return (
     <div className="w-full min-h-screen bg-slate-900 text-white">
       {/* Header */}
-      <header className="p-4 flex justify-between items-center bg-slate-800 border-b border-slate-700">
-        <div className="flex items-center gap-4">
+      <header className="p-3 sm:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 bg-slate-800 border-b border-slate-700">
+        <div className="flex items-center gap-4 w-full sm:w-auto">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
@@ -400,7 +400,7 @@ function ProcessInstanceContent() {
         </div>
 
         {/* Controls: Language + Mode */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
           {/* Language Switcher */}
           <div className="flex bg-slate-700 rounded-lg p-1">
             {(['de', 'en', 'es'] as Language[]).map((l) => (
@@ -439,7 +439,7 @@ function ProcessInstanceContent() {
       </header>
 
       {/* Main Content */}
-      <main className="p-6 max-w-4xl mx-auto">
+      <main className="p-3 sm:p-6 max-w-4xl mx-auto">
         {/* Info Card */}
         <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 mb-6">
           <div className="flex items-center gap-2 mb-2">
@@ -473,7 +473,7 @@ function ProcessInstanceContent() {
           )}
 
           {selectedMetrics.length > 0 && (
-            <div className="grid grid-cols-2 gap-2 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
               <div className="bg-slate-700 rounded p-2">
                 <div className="text-slate-400">
                   {language === 'de' ? 'Ausgewählte Metriken' :
@@ -862,8 +862,8 @@ function ProcessInstanceContent() {
       </main>
 
       {/* Action Bar - Bottom */}
-      <div className="sticky bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 p-4 shadow-2xl">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
+      <div className="sticky bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 p-3 sm:p-4 shadow-2xl">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
           {/* Left: Info */}
           <div className="text-sm text-slate-400">
             {language === 'de' ? 
@@ -874,17 +874,17 @@ function ProcessInstanceContent() {
           </div>
 
           {/* Right: Action Buttons */}
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
             <button
               onClick={() => router.push(`/preview-metrics?process=${selectedProcess}`)}
-              className="px-6 py-2 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-white transition font-medium"
+              className="px-4 sm:px-6 py-2 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-white transition font-medium text-sm sm:text-base"
             >
               🔙 {language === 'de' ? 'Zurück zur Auswahl' : language === 'es' ? 'Volver a selección' : 'Back to Selection'}
             </button>
             <button
               onClick={saveMetricValues}
               disabled={!canSave}
-              className={`px-6 py-2 rounded-lg font-medium transition ${
+              className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition text-sm sm:text-base ${
                 canSave
                   ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white hover:from-purple-700 hover:via-pink-700 hover:to-purple-700 shadow-lg shadow-pink-500/50 animate-gradient'
                   : 'bg-slate-700 text-slate-500 cursor-not-allowed'
@@ -900,7 +900,7 @@ function ProcessInstanceContent() {
                       'Dashboard/Visualization coming in Phase 2! 📊');
               }}
               disabled={savedEntries.filter(e => !e.deleted_at).length === 0}
-              className={`px-6 py-2 rounded-lg font-medium transition ${
+              className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition text-sm sm:text-base ${
                 savedEntries.filter(e => !e.deleted_at).length > 0
                   ? 'bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/30'
                   : 'bg-slate-700 text-slate-500 cursor-not-allowed'

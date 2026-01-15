@@ -73,3 +73,26 @@ Beispiel-Struktur:
 ## 6. Frontend Visualisierung (BPMN-Style)
 - Prozesse werden als Knoten-Kanten-Modelle in React Flow dargestellt.
 - Der Wechsel von Sprache oder Register muss eine sofortige (Re-)Auszählung der Label im Frontend bewirken, ohne die Seite neu zu laden.
+
+## 6.5 Responsive Design
+**ALLE neuen Frontend-Komponenten MÜSSEN responsive sein.**
+
+**Tailwind CSS Breakpoints:**
+- Mobile-First: Basis-Styles für Mobile (< 640px)
+- `sm:` = ≥640px (Small Devices, Tablets)
+- `md:` = ≥768px (Medium Devices)
+- `lg:` = ≥1024px (Large Devices, Desktop)
+
+**Pflicht-Patterns:**
+- **Layout**: `flex-col sm:flex-row` für horizontale Layouts, die auf Mobile stacken
+- **Spacing**: `p-3 sm:p-6` für adaptive Abstände
+- **Text**: `text-sm sm:text-base` für lesbare Schriftgrößen
+- **Grid**: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3` für adaptive Spalten
+- **Buttons**: `w-full sm:w-auto` für volle Breite auf Mobile
+
+**Testing:**
+- IMMER mit Browser DevTools verschiedene Bildschirmgrößen testen (375px, 768px, 1024px+)
+- Header, Navigation und Action Bars müssen auf allen Geräten funktionieren
+- Keine horizontalen Scrollbars auf Mobile
+
+**Ziel:** Optimale User Experience auf allen Geräten, vom Smartphone bis zum Desktop.

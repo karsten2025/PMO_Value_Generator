@@ -399,8 +399,8 @@ export default function FlywheelPage() {
   return (
     <div className="w-full h-screen bg-slate-900 text-white flex flex-col">
       {/* Header mit Steuerung */}
-      <header className="p-4 flex justify-between items-center bg-slate-800 border-b border-slate-700">
-        <div className="flex items-center gap-4">
+      <header className="p-3 sm:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 bg-slate-800 border-b border-slate-700">
+        <div className="flex items-center gap-4 w-full sm:w-auto">
         <h1 className="text-xl font-bold text-blue-400">PMO Impact Cycle</h1>
           {isLoadingMetrics && (
             <span className="text-xs text-slate-400 animate-pulse">
@@ -409,7 +409,7 @@ export default function FlywheelPage() {
           )}
         </div>
         
-        <div className="flex gap-4 items-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center w-full sm:w-auto">
           {/* Portfolio Selector */}
           <PortfolioSelector />
 
@@ -507,19 +507,22 @@ export default function FlywheelPage() {
         {/* Sidebar - Slide-In von rechts */}
         <aside 
           className={`
-            fixed right-0 top-0 h-full w-1/4 min-w-[320px]
+            fixed right-0 top-0 h-full 
+            w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4 
+            sm:min-w-[320px] max-w-full sm:max-w-[90vw]
             bg-slate-800 border-l border-slate-700
             shadow-2xl
             transition-transform duration-300 ease-in-out
             ${selectedNode ? 'translate-x-0' : 'translate-x-full'}
             z-50
             flex flex-col
+            overflow-hidden
           `}
         >
           {selectedMilestone && (
             <>
               {/* Sidebar Header */}
-              <div className="p-6 border-b border-slate-700">
+              <div className="p-4 sm:p-6 border-b border-slate-700">
                 <div className="flex justify-between items-start mb-2">
                   <h2 className="text-xl font-bold text-blue-400">
                     {helpers.getMilestoneTitle(selectedMilestone.id, lang)}
@@ -537,7 +540,7 @@ export default function FlywheelPage() {
               </div>
 
               {/* Sidebar Content */}
-              <div className="flex-1 overflow-y-auto p-6">
+              <div className="flex-1 overflow-y-auto p-4 sm:p-6">
                 {/* Aktuelle Beschreibung */}
                 <div className="mb-6">
                   <h3 className="text-sm font-semibold text-slate-300 mb-2 uppercase tracking-wide">
@@ -638,7 +641,7 @@ export default function FlywheelPage() {
                                 {/* Eingabefelder für ausgewählte KPIs */}
                                 {isSelected && kpiValue && (
                                   <div className="mt-3 space-y-2 border-t border-slate-600 pt-3">
-                                    <div className="grid grid-cols-2 gap-2">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                       <div>
                                         <label className="text-xs text-slate-400 block mb-1">
                                           {lang === 'de' ? 'Zielwert' : lang === 'en' ? 'Target' : 'Objetivo'}

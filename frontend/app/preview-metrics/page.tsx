@@ -333,8 +333,8 @@ function MetricsPreviewContent() {
   return (
     <div className="w-full h-screen bg-slate-900 text-white flex flex-col">
       {/* Header - EXAKT wie Hauptseite */}
-      <header className="p-4 flex justify-between items-center bg-slate-800 border-b border-slate-700">
-        <div className="flex items-center gap-4">
+      <header className="p-3 sm:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 bg-slate-800 border-b border-slate-700">
+        <div className="flex items-center gap-4 w-full sm:w-auto">
           <h1 className="text-xl font-bold text-blue-400">🔍 Metric Pool Preview</h1>
           
           {/* Process Selector - NEU */}
@@ -378,7 +378,7 @@ function MetricsPreviewContent() {
         </div>
 
         {/* Controls - EXAKT wie Hauptseite */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
           {/* Language */}
           <div className="flex bg-slate-700 rounded-lg p-1">
             {(['de', 'en', 'es'] as Language[]).map((l) => (
@@ -465,7 +465,7 @@ function MetricsPreviewContent() {
       </div>
 
       {/* Metrics Grid */}
-      <main className="flex-1 overflow-y-auto p-6 bg-slate-900">
+      <main className="flex-1 overflow-y-auto p-3 sm:p-6 bg-slate-900">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-7xl mx-auto">
           {metrics.map((metric, index) => {
             const metricKey = `${selectedCategory}-${index}`;
@@ -556,10 +556,10 @@ function MetricsPreviewContent() {
       </main>
 
       {/* Action Bar - Sticky Bottom */}
-      <div className="sticky bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 p-4 shadow-2xl">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="sticky bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 p-3 sm:p-4 shadow-2xl">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
           {/* Left: Selection Count & Validation */}
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
             <div className="text-sm">
               <span className="text-blue-400 font-bold text-lg">
                 {selectedCount} / 15
@@ -593,17 +593,17 @@ function MetricsPreviewContent() {
           </div>
 
           {/* Right: Action Buttons */}
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
             <button
               onClick={() => window.history.back()}
-              className="px-6 py-2 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-white transition font-medium"
+              className="px-4 sm:px-6 py-2 rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-white transition font-medium text-sm sm:text-base"
             >
               🔙 {language === 'de' ? 'Abbrechen' : language === 'es' ? 'Cancelar' : 'Cancel'}
             </button>
             <button
               onClick={saveSelection}
               disabled={selectedCount === 0}
-              className={`px-6 py-2 rounded-lg font-medium transition ${
+              className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition text-sm sm:text-base ${
                 selectedCount > 0
                   ? 'bg-green-600 text-white hover:bg-green-500 shadow-lg shadow-green-600/30'
                   : 'bg-slate-700 text-slate-500 cursor-not-allowed'
@@ -619,7 +619,7 @@ function MetricsPreviewContent() {
                 }, 500);
               }}
               disabled={selectedCount === 0}
-              className={`px-6 py-2 rounded-lg font-medium transition ${
+              className={`px-4 sm:px-6 py-2 rounded-lg font-medium transition text-sm sm:text-base ${
                 selectedCount > 0
                   ? 'bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/30'
                   : 'bg-slate-700 text-slate-500 cursor-not-allowed'
