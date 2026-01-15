@@ -24,6 +24,7 @@
 
 export type MetricCategory = 'input' | 'process' | 'output' | 'outcome' | 'feedback';
 export type ScoringDirection = 'higher_is_better' | 'lower_is_better';
+export type CategoryWeights = Record<MetricCategory, number>;
 
 export interface MetricValue {
   metric_id: string;
