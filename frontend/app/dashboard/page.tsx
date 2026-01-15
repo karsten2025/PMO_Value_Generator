@@ -2,16 +2,18 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ArrowLeft, TrendingUp, TrendingDown, Minus, Activity, ChevronDown, ChevronUp, Target, Zap, Package, Award, MessageSquare } from 'lucide-react';
+import { ArrowLeft, TrendingUp, TrendingDown, Minus, Activity, ChevronDown, ChevronUp, Target, Zap, Package, Award, MessageSquare, Info } from 'lucide-react';
 import MobileMenu from '../components/MobileMenu';
 import TrendChart from '../components/TrendChart';
 import CategoryWeightsSettings from '../components/CategoryWeightsSettings';
+import ScoreBreakdown from '../components/ScoreBreakdown';
 import {
   calculateMetricScore,
   calculateProcessScore,
   calculatePortfolioScore,
   getPerformanceColor,
   getPerformanceIcon,
+  getCategoryWeights,
   MetricValue,
   MetricScore,
   ProcessScore,
@@ -467,6 +469,14 @@ function DashboardContent() {
                 </div>
               </div>
 
+              {/* SCORE BREAKDOWN */}
+              <ScoreBreakdown
+                categoryScores={portfolioScore.category_scores}
+                overallScore={portfolioScore.overall_score}
+                language={language}
+                onAdjustWeights={() => setShowWeightsSettings(true)}
+              />
+
               {/* PROCESS SCORES GRID */}
               <div>
                 <h3 className="text-xl font-bold text-white mb-4">
@@ -552,6 +562,24 @@ function DashboardContent() {
                                           <span className="text-xs font-medium text-slate-300">
                                             {getCategoryName(metric.category, language)}
                                           </span>
+                                          <div className="relative group">
+                                            <Info size={12} className="text-slate-500 hover:text-blue-400 cursor-help transition" />
+                                            <div className="absolute left-0 top-6 hidden group-hover:block z-50 w-48 bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-300 shadow-xl">
+                                              <div className="font-semibold text-blue-400 mb-1">
+                                                {language === 'de' ? 'Gewichtung:' :
+                                                 language === 'es' ? 'Peso:' :
+                                                 'Weight:'}
+                                              </div>
+                                              <div>
+                                                {getCategoryName(metric.category, language)}: {Math.round(getCategoryWeights()[metric.category] * 100)}%
+                                              </div>
+                                              <div className="text-slate-500 mt-1">
+                                                {language === 'de' ? 'Beiträgt zum Gesamtscore' :
+                                                 language === 'es' ? 'Contribuye a la puntuación total' :
+                                                 'Contributes to overall score'}
+                                              </div>
+                                            </div>
+                                          </div>
                                           {metric.scoring_direction === 'lower_is_better' && (
                                             <TrendingDown size={12} className="text-orange-400" aria-label="Lower is better" />
                                           )}
