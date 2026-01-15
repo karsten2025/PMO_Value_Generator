@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 
@@ -54,7 +54,8 @@ interface MetricValue {
   currentValue: string;
 }
 
-export default function ProcessInstancePage() {
+// Inner component that uses useSearchParams
+function ProcessInstanceContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
@@ -940,3 +941,15 @@ export default function ProcessInstancePage() {
   );
 }
 
+// Main component with Suspense boundary
+export default function ProcessInstancePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <div className="text-white text-xl">Loading process data...</div>
+      </div>
+    }>
+      <ProcessInstanceContent />
+    </Suspense>
+  );
+}

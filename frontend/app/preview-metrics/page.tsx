@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 // Import aller 10 Prozess-Metriken (SHOWCASE VERSION: 15 Metriken pro Prozess)
@@ -193,7 +193,8 @@ const TAG_TRANSLATIONS = {
   }
 };
 
-export default function MetricsPreviewPage() {
+// Inner component that uses useSearchParams
+function MetricsPreviewContent() {
   // URL-Parameter auslesen
   const searchParams = useSearchParams();
   const processParam = searchParams.get('process');
@@ -657,5 +658,18 @@ export default function MetricsPreviewPage() {
         </div>
       )}
     </div>
+  );
+}
+
+// Main component with Suspense boundary
+export default function MetricsPreviewPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <div className="text-white text-xl">Loading metrics...</div>
+      </div>
+    }>
+      <MetricsPreviewContent />
+    </Suspense>
   );
 }
