@@ -18,55 +18,29 @@
   "metrics": {
     "input": [
       {
-        "name_en": "Validation Surveys Prepared",
-        "name_de": "Vorbereitete Validierungs-Umfragen",
-        "name_es": "Encuestas de Validación Preparadas",
-        "unit": "count",
+        "name_en": "Future Investment Security",
+        "name_de": "Zukünftige Investitions-Sicherheit",
+        "name_es": "Seguridad de Inversión Futura",
+        "unit": "1-10 scale",
         "metric_type": "metric",
         "description": {
           "de": {
-            "colloquial": "Wie viele Umfragen haben wir vorbereitet?",
-            "management": "Anzahl der konzipierten Stakeholder-Satisfaction-Surveys."
+            "colloquial": "Wie sicher sind zukünftige PMO-Investitionen?",
+            "management": "Bewertung der Wahrscheinlichkeit fortgesetzter PMO-Budgets."
           },
           "en": {
-            "colloquial": "How many surveys have we prepared?",
-            "management": "Number of designed stakeholder satisfaction surveys."
+            "colloquial": "How secure are future PMO investments?",
+            "management": "Assessment of likelihood of continued PMO budgets."
           },
           "es": {
-            "colloquial": "¿Cuántas encuestas hemos preparado?",
-            "management": "Número de encuestas de satisfacción de partes interesadas diseñadas."
+            "colloquial": "¿Qué tan seguras son las inversiones futuras en PMO?",
+            "management": "Evaluación de la probabilidad de presupuestos continuos de PMO."
           }
         },
-        "calculation_method": "Count of surveys designed.",
-        "recommended_for": [
-          "regulated_industry",
-          "large_pmo"
-        ]
-      },
-      {
-        "name_en": "Feedback Collection Hours",
-        "name_de": "Feedback-Sammel-Stunden",
-        "name_es": "Horas de Recopilación de Comentarios",
-        "unit": "hours",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie viel Zeit investieren wir ins Feedback sammeln?",
-            "management": "Zeitaufwand für systematische Stakeholder-Feedback-Erfassung."
-          },
-          "en": {
-            "colloquial": "How much time do we invest in collecting feedback?",
-            "management": "Time invested in systematic stakeholder feedback collection."
-          },
-          "es": {
-            "colloquial": "¿Cuánto tiempo invertimos en recopilar comentarios?",
-            "management": "Tiempo invertido en la recopilación sistemática de comentarios de las partes interesadas."
-          }
-        },
-        "calculation_method": "Sum of hours spent on feedback activities.",
+        "calculation_method": "Average investment security score from executive survey.",
         "recommended_for": [
           "large_pmo",
-          "transformation_pmo"
+          "regulated_industry"
         ]
       }
     ],
@@ -95,6 +69,35 @@
         "recommended_for": [
           "transformation_pmo",
           "startup_pmo"
+        ]
+      }
+    ],
+    "output": [],
+    "outcome": [
+      {
+        "name_en": "Validation Surveys Prepared",
+        "name_de": "Vorbereitete Validierungs-Umfragen",
+        "name_es": "Encuestas de Validación Preparadas",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Umfragen haben wir vorbereitet?",
+            "management": "Anzahl der konzipierten Stakeholder-Satisfaction-Surveys."
+          },
+          "en": {
+            "colloquial": "How many surveys have we prepared?",
+            "management": "Number of designed stakeholder satisfaction surveys."
+          },
+          "es": {
+            "colloquial": "¿Cuántas encuestas hemos preparado?",
+            "management": "Número de encuestas de satisfacción de partes interesadas diseñadas."
+          }
+        },
+        "calculation_method": "Count of surveys designed.",
+        "recommended_for": [
+          "regulated_industry",
+          "large_pmo"
         ]
       },
       {
@@ -147,88 +150,6 @@
         "recommended_for": [
           "large_pmo",
           "transformation_pmo"
-        ]
-      }
-    ],
-    "output": [
-      {
-        "name_en": "Continuous Improvement Cycle Initiated",
-        "name_de": "Kontinuierlicher Verbesserungszyklus initiiert",
-        "name_es": "Ciclo de Mejora Continua Iniciado",
-        "unit": "binary",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Haben wir einen neuen Verbesserungszyklus gestartet?",
-            "management": "Indikator für die Initiierung eines neuen PMO-Optimierungszyklus basierend auf Stakeholder-Feedback."
-          },
-          "en": {
-            "colloquial": "Have we started a new improvement cycle?",
-            "management": "Indicator for initiation of a new PMO optimization cycle based on stakeholder feedback."
-          },
-          "es": {
-            "colloquial": "¿Hemos iniciado un nuevo ciclo de mejora?",
-            "management": "Indicador para el inicio de un nuevo ciclo de optimización de PMO basado en los comentarios de las partes interesadas."
-          }
-        },
-        "calculation_method": "Binary (1 if new cycle started, 0 otherwise).",
-        "recommended_for": [
-          "startup_pmo",
-          "agile_org"
-        ]
-      },
-      {
-        "name_en": "Testimonials Collected",
-        "name_de": "Gesammelte Testimonials",
-        "name_es": "Testimonios Recopilados",
-        "unit": "count",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie viele positive Rückmeldungen haben wir erhalten?",
-            "management": "Anzahl der dokumentierten positiven Stakeholder-Testimonials."
-          },
-          "en": {
-            "colloquial": "How many positive feedbacks have we received?",
-            "management": "Number of documented positive stakeholder testimonials."
-          },
-          "es": {
-            "colloquial": "¿Cuántos comentarios positivos hemos recibido?",
-            "management": "Número de testimonios positivos de partes interesadas documentados."
-          }
-        },
-        "calculation_method": "Count of testimonials collected.",
-        "recommended_for": [
-          "regulated_industry",
-          "large_pmo"
-        ]
-      }
-    ],
-    "outcome": [
-      {
-        "name_en": "Future Investment Security",
-        "name_de": "Zukünftige Investitions-Sicherheit",
-        "name_es": "Seguridad de Inversión Futura",
-        "unit": "1-10 scale",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie sicher sind zukünftige PMO-Investitionen?",
-            "management": "Bewertung der Wahrscheinlichkeit fortgesetzter PMO-Budgets."
-          },
-          "en": {
-            "colloquial": "How secure are future PMO investments?",
-            "management": "Assessment of likelihood of continued PMO budgets."
-          },
-          "es": {
-            "colloquial": "¿Qué tan seguras son las inversiones futuras en PMO?",
-            "management": "Evaluación de la probabilidad de presupuestos continuos de PMO."
-          }
-        },
-        "calculation_method": "Average investment security score from executive survey.",
-        "recommended_for": [
-          "large_pmo",
-          "regulated_industry"
         ]
       },
       {
@@ -334,9 +255,7 @@
           "transformation_pmo",
           "startup_pmo"
         ]
-      }
-    ],
-    "feedback": [
+      },
       {
         "name_en": "Stakeholder Recommendation Willingness",
         "name_de": "Stakeholder-Empfehlungs-Bereitschaft",
@@ -364,10 +283,64 @@
         ]
       },
       {
+        "name_en": "Continuous Improvement Cycle Initiated",
+        "name_de": "Kontinuierlicher Verbesserungszyklus initiiert",
+        "name_es": "Ciclo de Mejora Continua Iniciado",
+        "unit": "binary",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Haben wir einen neuen Verbesserungszyklus gestartet?",
+            "management": "Indikator für die Initiierung eines neuen PMO-Optimierungszyklus basierend auf Stakeholder-Feedback."
+          },
+          "en": {
+            "colloquial": "Have we started a new improvement cycle?",
+            "management": "Indicator for initiation of a new PMO optimization cycle based on stakeholder feedback."
+          },
+          "es": {
+            "colloquial": "¿Hemos iniciado un nuevo ciclo de mejora?",
+            "management": "Indicador para el inicio de un nuevo ciclo de optimización de PMO basado en los comentarios de las partes interesadas."
+          }
+        },
+        "calculation_method": "Binary (1 if new cycle started, 0 otherwise).",
+        "recommended_for": [
+          "startup_pmo",
+          "agile_org"
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "name_en": "Feedback Collection Hours",
+        "name_de": "Feedback-Sammel-Stunden",
+        "name_es": "Horas de Recopilación de Comentarios",
+        "unit": "hours",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viel Zeit investieren wir ins Feedback sammeln?",
+            "management": "Zeitaufwand für systematische Stakeholder-Feedback-Erfassung."
+          },
+          "en": {
+            "colloquial": "How much time do we invest in collecting feedback?",
+            "management": "Time invested in systematic stakeholder feedback collection."
+          },
+          "es": {
+            "colloquial": "¿Cuánto tiempo invertimos en recopilar comentarios?",
+            "management": "Tiempo invertido en la recopilación sistemática de comentarios de las partes interesadas."
+          }
+        },
+        "calculation_method": "Sum of hours spent on feedback activities.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
         "name_en": "Net Promoter Score (NPS)",
         "name_de": "Net Promoter Score (NPS)",
         "name_es": "Puntuación de Promotor Neto (NPS)",
-        "unit": "score",
+        "unit": "%",
         "metric_type": "metric",
         "description": {
           "de": {
@@ -387,6 +360,32 @@
         "recommended_for": [
           "large_pmo",
           "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Testimonials Collected",
+        "name_de": "Gesammelte Testimonials",
+        "name_es": "Testimonios Recopilados",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele positive Rückmeldungen haben wir erhalten?",
+            "management": "Anzahl der dokumentierten positiven Stakeholder-Testimonials."
+          },
+          "en": {
+            "colloquial": "How many positive feedbacks have we received?",
+            "management": "Number of documented positive stakeholder testimonials."
+          },
+          "es": {
+            "colloquial": "¿Cuántos comentarios positivos hemos recibido?",
+            "management": "Número de testimonios positivos de partes interesadas documentados."
+          }
+        },
+        "calculation_method": "Count of testimonials collected.",
+        "recommended_for": [
+          "regulated_industry",
+          "large_pmo"
         ]
       },
       {

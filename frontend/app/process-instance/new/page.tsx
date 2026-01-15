@@ -140,6 +140,63 @@ function ProcessInstanceContent() {
     return null;
   };
   
+  // Helper: Extract category from metric key
+  const getCategoryFromKey = (metricKey: string): MetricCategory => {
+    const [category] = metricKey.split('-');
+    return category as MetricCategory;
+  };
+
+  // Helper: Sort metrics by category order (Input → Process → Output → Outcome → Feedback)
+  const sortMetricsByCategory = (metricKeys: string[]): string[] => {
+    const categoryOrder: MetricCategory[] = ['input', 'process', 'output', 'outcome', 'feedback'];
+    
+    return [...metricKeys].sort((a, b) => {
+      const catA = getCategoryFromKey(a);
+      const catB = getCategoryFromKey(b);
+      return categoryOrder.indexOf(catA) - categoryOrder.indexOf(catB);
+    });
+  };
+
+  // Helper: Get category icon
+  const getCategoryIcon = (category: MetricCategory): string => {
+    const icons = {
+      input: '🎯',
+      process: '⚡',
+      output: '📦',
+      outcome: '🏆',
+      feedback: '💬'
+    };
+    return icons[category];
+  };
+
+  // Helper: Get category name in current language
+  const getCategoryName = (category: MetricCategory): string => {
+    const names = {
+      de: {
+        input: 'INPUT',
+        process: 'PROZESS',
+        output: 'OUTPUT',
+        outcome: 'OUTCOME',
+        feedback: 'FEEDBACK'
+      },
+      es: {
+        input: 'ENTRADA',
+        process: 'PROCESO',
+        output: 'SALIDA',
+        outcome: 'RESULTADO',
+        feedback: 'RETROALIMENTACIÓN'
+      },
+      en: {
+        input: 'INPUT',
+        process: 'PROCESS',
+        output: 'OUTPUT',
+        outcome: 'OUTCOME',
+        feedback: 'FEEDBACK'
+      }
+    };
+    return names[language][category];
+  };
+  
   // Helper: Get metric name in current language
   const getMetricName = (metric: Metric) => {
     switch (language) {
@@ -192,6 +249,72 @@ function ProcessInstanceContent() {
   };
   
   // Save metric values to LocalStorage (Time-Series Support)
+  // DEVELOPMENT HELPER: Fill Demo Data! 🔥
+  const fillDemoData = () => {
+    const demoData: Record<string, MetricValue> = {};
+    
+    // Category-based Score Ranges (für realistische Verteilung)
+    // Basierend auf Logic Model Weights:
+    // INPUT (10%), PROCESS (15%), OUTPUT (20%), OUTCOME (35%), FEEDBACK (20%)
+    const categoryScoreRanges: Record<MetricCategory, { min: number; max: number }> = {
+      input:    { min: 0.50, max: 0.75 },  // 50-75%  → Niedrigere Scores (weniger wichtig)
+      process:  { min: 0.65, max: 0.90 },  // 65-90%  → Gute Scores
+      output:   { min: 0.70, max: 0.92 },  // 70-92%  → Sehr gute Scores
+      outcome:  { min: 0.75, max: 0.95 },  // 75-95%  → HÖCHSTE Scores (35% Impact!)
+      feedback: { min: 0.60, max: 0.88 },  // 60-88%  → Gute Scores
+    };
+    
+    selectedMetrics.forEach((metricKey) => {
+      const category = getCategoryFromKey(metricKey);
+      const scoreRange = categoryScoreRanges[category];
+      
+      // Get metric details to check for special cases
+      const metric = getMetricByKey(metricKey);
+      const isNPS = metric?.name_en.includes('Net Promoter Score') || false;
+      
+      let targetValue: number;
+      let currentValue: number;
+      
+      if (isNPS) {
+        // NPS: Range -100 to +100
+        // Target: 30-70 (good PMO benchmark)
+        // Current: 15-60 (realistically below target)
+        targetValue = Math.floor(Math.random() * 40) + 30;  // 30-70
+        currentValue = Math.floor(Math.random() * 45) + 15; // 15-60
+      } else {
+        // Ziel-Score für diese Category (mit Varianz)
+        const targetScore = scoreRange.min + Math.random() * (scoreRange.max - scoreRange.min);
+        
+        // Generiere Target Value (10k-60k)
+        targetValue = Math.floor(Math.random() * 50000) + 10000;
+        
+        // Berechne Current Value basierend auf Target Score
+        currentValue = Math.floor(targetValue * targetScore);
+      }
+      
+      demoData[metricKey] = {
+        metricKey,
+        metric_name: metricKey,
+        targetValue: targetValue.toString(),
+        currentValue: currentValue.toString(),
+      };
+    });
+    
+    setMetricValues(demoData);
+    
+    // Toast zeigen
+    setToastMessage({
+      title: language === 'de' ? '✅ Demo-Daten eingefügt!' :
+            language === 'es' ? '¡Datos de demostración insertados!' :
+            '✅ Demo Data Filled!',
+      subtitle: language === 'de' ? `${selectedMetrics.length} Metriken mit Logic Model Verteilung` :
+                language === 'es' ? `${selectedMetrics.length} métricas con distribución Logic Model` :
+                `${selectedMetrics.length} metrics with Logic Model distribution`
+    });
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
+  };
+
   const saveMetricValues = () => {
     // Validate: At least one metric must have values
     const hasValues = Object.values(metricValues).some(
@@ -469,15 +592,32 @@ function ProcessInstanceContent() {
       <main className="p-3 sm:p-6 max-w-4xl mx-auto">
         {/* Info Card */}
         <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 mb-6">
-          <div className="flex items-center gap-2 mb-2">
-            <h2 className="text-lg font-bold">
-              {language === 'de' ? 'Übersicht' :
-               language === 'es' ? 'Resumen' :
-               'Overview'}
-            </h2>
-            <span className="text-xs text-slate-500">
-              {mode === 'colloquial' ? '👥 Team' : '💼 Management'}
-            </span>
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <h2 className="text-lg font-bold">
+                {language === 'de' ? 'Übersicht' :
+                 language === 'es' ? 'Resumen' :
+                 'Overview'}
+              </h2>
+              <span className="text-xs text-slate-500">
+                {mode === 'colloquial' ? '👥 Team' : '💼 Management'}
+              </span>
+            </div>
+            
+            {/* DEVELOPMENT HELPER: Fill Demo Data Button! 🔥 */}
+            {selectedMetrics.length > 0 && (
+              <button
+                onClick={fillDemoData}
+                className="px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-xs font-medium rounded-lg transition shadow-lg"
+                title={language === 'de' ? 'Fülle alle Felder mit Demo-Daten' :
+                       language === 'es' ? 'Rellenar con datos de demostración' :
+                       'Fill all fields with demo data'}
+              >
+                🎲 {language === 'de' ? 'Demo-Daten' :
+                    language === 'es' ? 'Datos Demo' :
+                    'Demo Data'}
+              </button>
+            )}
           </div>
           <p className="text-slate-400 text-sm mb-4">
             {getOverviewDescription()}
@@ -727,9 +867,11 @@ function ProcessInstanceContent() {
               </p>
             </div>
           ) : (
-            selectedMetrics.map((metricKey) => {
+            sortMetricsByCategory(selectedMetrics).map((metricKey) => {
               const metric = getMetricDetails(metricKey);
               if (!metric) return null;
+              
+              const category = getCategoryFromKey(metricKey);
               
               const values = metricValues[metricKey] || {
                 metricKey,
@@ -746,6 +888,9 @@ function ProcessInstanceContent() {
                         {getMetricName(metric)}
                       </h3>
                       <div className="flex items-center gap-2 mb-3">
+                        <span className="px-2 py-1 rounded text-xs font-bold bg-slate-700 text-slate-300 border border-slate-600">
+                          {getCategoryIcon(category)} {getCategoryName(category)}
+                        </span>
                         <span className="px-2 py-1 rounded text-xs font-medium bg-blue-600 text-white">
                           {metric.unit}
                         </span>
@@ -925,10 +1070,8 @@ function ProcessInstanceContent() {
             </button>
             <button
               onClick={() => {
-                // TODO: Navigate to dashboard/visualization
-                alert(language === 'de' ? 'Dashboard/Visualisierung kommt in Phase 2! 📊' :
-                      language === 'es' ? '¡Panel/Visualización viene en Fase 2! 📊' :
-                      'Dashboard/Visualization coming in Phase 2! 📊');
+                // Navigate to Dashboard with current process
+                router.push(`/dashboard?process=${selectedProcess}`);
               }}
               disabled={savedEntries.filter(e => !e.deleted_at).length === 0}
               className={`px-4 py-3 sm:py-2 rounded-lg font-medium transition text-base sm:text-sm min-h-[48px] sm:min-h-0 flex-1 sm:flex-none ${

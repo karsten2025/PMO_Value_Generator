@@ -77,22 +77,154 @@ Beispiel-Struktur:
 ## 6.5 Responsive Design
 **ALLE neuen Frontend-Komponenten MÜSSEN responsive sein.**
 
-**Tailwind CSS Breakpoints:**
-- Mobile-First: Basis-Styles für Mobile (< 640px)
+### 6.5.1 Tailwind CSS Breakpoints
+- **Mobile-First Approach**: Basis-Styles für Mobile (< 640px)
 - `sm:` = ≥640px (Small Devices, Tablets)
 - `md:` = ≥768px (Medium Devices)
 - `lg:` = ≥1024px (Large Devices, Desktop)
+- `xl:` = ≥1280px (Extra Large Screens)
 
-**Pflicht-Patterns:**
-- **Layout**: `flex-col sm:flex-row` für horizontale Layouts, die auf Mobile stacken
-- **Spacing**: `p-3 sm:p-6` für adaptive Abstände
-- **Text**: `text-sm sm:text-base` für lesbare Schriftgrößen
+### 6.5.2 Layout Patterns
+
+#### **Standard Layouts**
+- **Flex Stacking**: `flex-col sm:flex-row` für horizontale Layouts, die auf Mobile stacken
+- **Spacing**: `p-3 sm:p-6` für adaptive Abstände, `gap-3 sm:gap-6` für Flex/Grid Gaps
+- **Text**: `text-sm sm:text-base lg:text-lg` für lesbare Schriftgrößen
 - **Grid**: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3` für adaptive Spalten
 - **Buttons**: `w-full sm:w-auto` für volle Breite auf Mobile
 
-**Testing:**
-- IMMER mit Browser DevTools verschiedene Bildschirmgrößen testen (375px, 768px, 1024px+)
-- Header, Navigation und Action Bars müssen auf allen Geräten funktionieren
-- Keine horizontalen Scrollbars auf Mobile
+#### **Header & Navigation**
+- **Desktop**: Volle Controls (Language, Mode, Settings) horizontal angeordnet
+- **Mobile**: 
+  - Minimal Header mit Hamburger Menu (☰)
+  - Titel verkürzt oder als Icon
+  - Controls im Slide-Out Panel
+  - Pattern: `hidden sm:flex` für Desktop-Only, `sm:hidden` für Mobile-Only
 
-**Ziel:** Optimale User Experience auf allen Geräten, vom Smartphone bis zum Desktop.
+#### **Hamburger Menu Pattern**
+```tsx
+// Mobile: Slide-in von rechts
+// Width: w-[85%] max-w-[320px]
+// Overlay: fixed inset-0 bg-black/70
+// Body-Scroll Lock aktivieren!
+```
+
+### 6.5.3 Komponenten-Patterns
+
+#### **Modals & Dialogs**
+- **Max-Width**: `max-w-2xl` oder `max-w-4xl` je nach Content
+- **Full-Width auf Mobile**: `w-full` + `p-4` für Padding
+- **Max-Height**: `max-h-[90vh]` mit `overflow-y-auto` für lange Inhalte
+- **Responsive Padding**: `p-4 sm:p-6` für Header/Footer
+
+#### **Form Inputs**
+- **Slider/Range**: Full-width auf allen Devices (`w-full`)
+- **Input Fields**: `w-full` mit `max-w-xs sm:max-w-sm` für Begrenzung
+- **Button Groups**: Vertikal stacken auf Mobile (`flex-col sm:flex-row gap-3`)
+
+#### **Cards & Panels**
+- **Collapsible auf Mobile**: Für lange Listen → Accordion Pattern
+- **Touch Targets**: Mindestens 44x44px (iOS) bzw. 48x48px (Android) für Touch-optimierte Buttons
+- **Hover States**: `hover:` nur mit `@media (hover: hover)` oder Fallback für Touch
+
+#### **Data Tables & Lists**
+- **Mobile**: Karten-Layout statt Tabellen (`grid-cols-1`)
+- **Desktop**: Tabellen oder Multi-Column Grid (`sm:grid-cols-2 lg:grid-cols-3`)
+- **Horizontal Scroll Prevention**: Cards müssen umbrechen, nicht horizontal scrollen
+
+### 6.5.4 Anti-Patterns (VERMEIDEN!)
+
+**❌ NIEMALS:**
+- Fixe Breiten ohne `max-w-` constraints (`w-[500px]` → ❌)
+- Horizontales Scrollen auf Mobile (außer Carousel)
+- Tiny Touch Targets < 44px
+- `overflow-x: scroll` auf Container-Level
+- Desktop-Only Features ohne Mobile-Alternative
+
+**✅ STATTDESSEN:**
+- Relative Breiten mit Max-Constraints (`w-full max-w-md`)
+- Vertikales Stacking auf Mobile
+- Touch-optimierte Button-Größen
+- `overflow-x: hidden` auf `html`, `body`, `#__next`
+- Progressive Enhancement (Mobile → Desktop)
+
+### 6.5.5 Overflow & Scrolling Control
+
+**Global CSS (globals.css):**
+```css
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
+}
+
+#__next {
+  width: 100%;
+  max-width: 100vw;
+}
+```
+
+**Komponenten-Level:**
+- Container: `overflow-hidden` oder `overflow-y-auto` (NIE `overflow-x: auto`)
+- Modals: `overflow-y-auto max-h-[90vh]`
+- Content Areas: `overflow-y-auto` mit expliziter `max-h-`
+
+### 6.5.6 Testing Checklist
+
+**Pflicht-Tests:**
+1. ✅ iPhone SE (375px) - Kleinster Viewport
+2. ✅ iPad (768px) - Tablet Breakpoint
+3. ✅ Desktop (1024px+) - Standard Desktop
+4. ✅ 4K/Ultra-Wide (1920px+) - Max-Width Constraints
+
+**Browser DevTools:**
+- Chrome: Device Toolbar (`Cmd/Ctrl + Shift + M`)
+- Test ALLE Breakpoints (375px, 640px, 768px, 1024px, 1280px)
+- Check horizontales Scrollen (sollte NIEMALS vorkommen)
+- Touch-Simulation aktivieren für Hover-States
+
+**Reale Devices:**
+- iPhone SE (2nd Gen) - 375x667px
+- iPad Pro - 1024x1366px
+- Standard Laptop - 1440x900px
+
+### 6.5.7 Performance & Accessibility
+
+**Performance:**
+- Lazy Load Bilder: `loading="lazy"`
+- Responsive Images: `srcset` für verschiedene Auflösungen
+- CSS statt JS für Responsive Layouts (Tailwind Breakpoints)
+
+**Accessibility:**
+- Touch Targets: Min. 44x44px (iOS), 48x48px (Android)
+- ARIA Labels für Icon-Only Buttons auf Mobile
+- Keyboard Navigation muss auf Desktop funktionieren
+- Focus States: Visible und kontrastreich
+
+### 6.5.8 Beispiel-Komponente
+
+```tsx
+// ✅ RICHTIG: Fully Responsive Component
+export function ResponsiveCard({ title, content }) {
+  return (
+    <div className="w-full max-w-2xl mx-auto">
+      {/* Header: Stacks vertical on mobile */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center 
+                      justify-between gap-3 sm:gap-4 p-4 sm:p-6">
+        <h2 className="text-lg sm:text-xl font-bold">{title}</h2>
+        <button className="w-full sm:w-auto px-4 py-2 rounded-lg">
+          Action
+        </button>
+      </div>
+      
+      {/* Content: Responsive padding */}
+      <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+        {content}
+      </div>
+    </div>
+  );
+}
+```
+
+**Ziel:** Optimale User Experience auf allen Geräten - vom Smartphone bis zum 4K Desktop.

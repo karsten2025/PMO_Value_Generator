@@ -1,0 +1,418 @@
+{
+  "meta": {
+    "generated_at": "2026-01-13",
+    "version": "showcase",
+    "process": {
+      "step_id": 9,
+      "internal_code": "IMP_VDL",
+      "title_en": "Outcome Realization",
+      "title_de": "Outcome-Realisierung",
+      "title_es": "Realización de Resultados",
+      "description_en": "Quantification and communication of realized business value through outcome-based metrics.",
+      "description_de": "Quantifizierung und Kommunikation des realisierten Business Value durch Outcome-basierte Metriken.",
+      "description_es": "Cuantificación y comunicación del valor empresarial realizado mediante métricas basadas en resultados."
+    },
+    "total_metrics": 15,
+    "metrics_per_category": 3
+  },
+  "metrics": {
+    "input": [],
+    "process": [
+      {
+        "name_en": "ROI Calculations Performed",
+        "name_de": "Durchgeführte ROI-Berechnungen",
+        "name_es": "Cálculos de ROI Realizados",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie oft haben wir den ROI berechnet?",
+            "management": "Anzahl der durchgeführten Return-on-Investment-Analysen."
+          },
+          "en": {
+            "colloquial": "How often have we calculated ROI?",
+            "management": "Number of return on investment analyses performed."
+          },
+          "es": {
+            "colloquial": "¿Con qué frecuencia hemos calculado el ROI?",
+            "management": "Número de análisis de retorno de inversión realizados."
+          }
+        },
+        "calculation_method": "Count of ROI calculations completed.",
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry"
+        ]
+      }
+    ],
+    "output": [],
+    "outcome": [
+      {
+        "name_en": "Value Measurement Hours",
+        "name_de": "Value-Measurement-Stunden",
+        "name_es": "Horas de Medición de Valor",
+        "unit": "hours",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viel Zeit investieren wir in die Nutzen-Messung?",
+            "management": "Zeitaufwand für systematische Outcome-Messung und ROI-Validierung."
+          },
+          "en": {
+            "colloquial": "How much time do we invest in value measurement?",
+            "management": "Time invested in systematic outcome measurement and ROI validation."
+          },
+          "es": {
+            "colloquial": "¿Cuánto tiempo invertimos en la medición de valor?",
+            "management": "Tiempo invertido en la medición sistemática de resultados y validación de ROI."
+          }
+        },
+        "calculation_method": "Sum of hours spent on value measurement.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Outcome Metrics Defined",
+        "name_de": "Definierte Outcome-Metriken",
+        "name_es": "Métricas de Resultado Definidas",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Erfolgs-Metriken tracken wir?",
+            "management": "Anzahl der definierten Outcome-Indikatoren zur Value-Messung."
+          },
+          "en": {
+            "colloquial": "How many success metrics are we tracking?",
+            "management": "Number of defined outcome indicators for value measurement."
+          },
+          "es": {
+            "colloquial": "¿Cuántas métricas de éxito estamos rastreando?",
+            "management": "Número de indicadores de resultados definidos para la medición de valor."
+          }
+        },
+        "calculation_method": "Count of outcome metrics tracked.",
+        "recommended_for": [
+          "regulated_industry",
+          "large_pmo"
+        ]
+      },
+      {
+        "name_en": "Case Studies Planned",
+        "name_de": "Geplante Case Studies",
+        "name_es": "Estudios de Caso Planificados",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Erfolgsgeschichten wollen wir dokumentieren?",
+            "management": "Anzahl der geplanten Success-Story-Dokumentationen."
+          },
+          "en": {
+            "colloquial": "How many success stories do we want to document?",
+            "management": "Number of planned success story documentations."
+          },
+          "es": {
+            "colloquial": "¿Cuántas historias de éxito queremos documentar?",
+            "management": "Número de documentaciones de historias de éxito planificadas."
+          }
+        },
+        "calculation_method": "Count of case studies in pipeline.",
+        "recommended_for": [
+          "startup_pmo",
+          "agile_org"
+        ]
+      },
+      {
+        "name_en": "Benefit Realization Reviews",
+        "name_de": "Benefit-Realization-Reviews",
+        "name_es": "Revisiones de Realización de Beneficios",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie oft überprüfen wir, ob sich der Nutzen realisiert hat?",
+            "management": "Anzahl der strukturierten Benefit-Realization-Assessments."
+          },
+          "en": {
+            "colloquial": "How often do we review whether benefits have been realized?",
+            "management": "Number of structured benefit realization assessments."
+          },
+          "es": {
+            "colloquial": "¿Con qué frecuencia revisamos si se han realizado los beneficios?",
+            "management": "Número de evaluaciones estructuradas de realización de beneficios."
+          }
+        },
+        "calculation_method": "Count of benefit reviews conducted.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Success Stories Documented",
+        "name_de": "Dokumentierte Erfolgsgeschichten",
+        "name_es": "Historias de Éxito Documentadas",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Erfolgsgeschichten haben wir aufgeschrieben?",
+            "management": "Anzahl der dokumentierten PMO-Success-Stories für Stakeholder-Kommunikation."
+          },
+          "en": {
+            "colloquial": "How many success stories have we written down?",
+            "management": "Number of documented PMO success stories for stakeholder communication."
+          },
+          "es": {
+            "colloquial": "¿Cuántas historias de éxito hemos escrito?",
+            "management": "Número de historias de éxito de PMO documentadas para la comunicación con las partes interesadas."
+          }
+        },
+        "calculation_method": "Count of case studies created.",
+        "recommended_for": [
+          "transformation_pmo",
+          "startup_pmo"
+        ]
+      },
+      {
+        "name_en": "Realized ROI Percentage",
+        "name_de": "Realisierter ROI-Prozentsatz",
+        "name_es": "Porcentaje de ROI Realizado",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Welchen Return on Investment haben wir erreicht?",
+            "management": "Tatsächlich realisierter ROI der PMO-Services basierend auf Outcome-Messung."
+          },
+          "en": {
+            "colloquial": "What return on investment did we achieve?",
+            "management": "Actually realized ROI of PMO services based on outcome measurement."
+          },
+          "es": {
+            "colloquial": "¿Qué retorno de inversión logramos?",
+            "management": "ROI realmente realizado de los servicios de PMO basado en la medición de resultados."
+          }
+        },
+        "calculation_method": "Realized benefits divided by actual costs, multiplied by 100.",
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry"
+        ]
+      },
+      {
+        "name_en": "Quantified Business Benefits",
+        "name_de": "Quantifizierte Business-Benefits",
+        "name_es": "Beneficios Empresariales Cuantificados",
+        "unit": "€",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Welchen messbaren Nutzen haben wir erbracht?",
+            "management": "Monetarisierter Gesamt-Business-Value der PMO-Interventionen."
+          },
+          "en": {
+            "colloquial": "What measurable value have we delivered?",
+            "management": "Monetized total business value of PMO interventions."
+          },
+          "es": {
+            "colloquial": "¿Qué valor medible hemos entregado?",
+            "management": "Valor empresarial total monetizado de las intervenciones de PMO."
+          }
+        },
+        "calculation_method": "Sum of quantified and validated business benefits.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Strategic Goals Achieved",
+        "name_de": "Erreichte strategische Ziele",
+        "name_es": "Objetivos Estratégicos Logrados",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele strategische Ziele haben wir erreicht?",
+            "management": "Anzahl der durch PMO-Intervention realisierten strategischen Unternehmensziele."
+          },
+          "en": {
+            "colloquial": "How many strategic goals have we achieved?",
+            "management": "Number of strategic business goals realized through PMO intervention."
+          },
+          "es": {
+            "colloquial": "¿Cuántos objetivos estratégicos hemos logrado?",
+            "management": "Número de objetivos empresariales estratégicos realizados mediante la intervención de PMO."
+          }
+        },
+        "calculation_method": "Count of achieved strategic goals.",
+        "recommended_for": [
+          "transformation_pmo",
+          "startup_pmo"
+        ]
+      },
+      {
+        "name_en": "Business Value Recognition",
+        "name_de": "Business-Value-Anerkennung",
+        "name_es": "Reconocimiento del Valor Empresarial",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie stark erkennen Stakeholder unseren Wert an?",
+            "management": "Grad der Stakeholder-Anerkennung des PMO-Wertbeitrags."
+          },
+          "en": {
+            "colloquial": "How strongly do stakeholders recognize our value?",
+            "management": "Degree of stakeholder recognition of PMO value contribution."
+          },
+          "es": {
+            "colloquial": "¿Qué tan fuertemente reconocen los interesados nuestro valor?",
+            "management": "Grado de reconocimiento de las partes interesadas de la contribución de valor de PMO."
+          }
+        },
+        "calculation_method": "Average recognition score from stakeholder survey.",
+        "recommended_for": [
+          "large_pmo",
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Executive Sponsorship Strength",
+        "name_de": "Executive-Sponsorship-Stärke",
+        "name_es": "Fuerza de Patrocinio Ejecutivo",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie stark unterstützt das Top-Management das PMO?",
+            "management": "Bewertung der Executive-Level-Unterstützung basierend auf Value-Nachweis."
+          },
+          "en": {
+            "colloquial": "How strongly does top management support the PMO?",
+            "management": "Assessment of executive-level support based on value evidence."
+          },
+          "es": {
+            "colloquial": "¿Qué tan fuertemente apoya la alta dirección al PMO?",
+            "management": "Evaluación del apoyo a nivel ejecutivo basado en evidencia de valor."
+          }
+        },
+        "calculation_method": "Average executive support score.",
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry"
+        ]
+      },
+      {
+        "name_en": "Value Story Impact Score",
+        "name_de": "Value-Story-Impact-Score",
+        "name_es": "Puntuación de Impacto de Historia de Valor",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie überzeugend sind unsere Erfolgsgeschichten?",
+            "management": "Bewertung der Wirksamkeit der Value-Kommunikation durch Success-Stories."
+          },
+          "en": {
+            "colloquial": "How convincing are our success stories?",
+            "management": "Assessment of effectiveness of value communication through success stories."
+          },
+          "es": {
+            "colloquial": "¿Qué tan convincentes son nuestras historias de éxito?",
+            "management": "Evaluación de la efectividad de la comunicación de valor a través de historias de éxito."
+          }
+        },
+        "calculation_method": "Average impact score from stakeholder feedback.",
+        "recommended_for": [
+          "transformation_pmo",
+          "startup_pmo"
+        ]
+      },
+      {
+        "name_en": "Value Communication Clarity",
+        "name_de": "Wert-Kommunikations-Klarheit",
+        "name_es": "Claridad de Comunicación de Valor",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie klar kommunizieren wir unseren Wert?",
+            "management": "Bewertung der Verständlichkeit der PMO-Value-Kommunikation."
+          },
+          "en": {
+            "colloquial": "How clearly do we communicate our value?",
+            "management": "Assessment of comprehensibility of PMO value communication."
+          },
+          "es": {
+            "colloquial": "¿Qué tan claramente comunicamos nuestro valor?",
+            "management": "Evaluación de la comprensibilidad de la comunicación de valor de PMO."
+          }
+        },
+        "calculation_method": "Average clarity score from stakeholder survey.",
+        "recommended_for": [
+          "large_pmo",
+          "agile_org"
+        ]
+      },
+      {
+        "name_en": "Value Evidence Requests",
+        "name_de": "Value-Evidence-Anfragen",
+        "name_es": "Solicitudes de Evidencia de Valor",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie oft werden wir nach Wert-Nachweisen gefragt?",
+            "management": "Anzahl der Stakeholder-Anfragen für zusätzliche Value-Evidenz."
+          },
+          "en": {
+            "colloquial": "How often are we asked for value evidence?",
+            "management": "Number of stakeholder requests for additional value evidence."
+          },
+          "es": {
+            "colloquial": "¿Con qué frecuencia nos piden evidencia de valor?",
+            "management": "Número de solicitudes de las partes interesadas para evidencia de valor adicional."
+          }
+        },
+        "calculation_method": "Count of evidence requests received.",
+        "recommended_for": [
+          "transformation_pmo",
+          "startup_pmo"
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "name_en": "ROI Credibility Rating",
+        "name_de": "ROI-Glaubwürdigkeits-Rating",
+        "name_es": "Calificación de Credibilidad de ROI",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie glaubwürdig sind unsere ROI-Zahlen?",
+            "management": "Stakeholder-Bewertung der Plausibilität der realisierten ROI-Werte."
+          },
+          "en": {
+            "colloquial": "How credible are our ROI numbers?",
+            "management": "Stakeholder assessment of plausibility of realized ROI values."
+          },
+          "es": {
+            "colloquial": "¿Qué tan creíbles son nuestros números de ROI?",
+            "management": "Evaluación de las partes interesadas sobre la plausibilidad de los valores de ROI realizados."
+          }
+        },
+        "calculation_method": "Average credibility score from stakeholder feedback.",
+        "recommended_for": [
+          "regulated_industry",
+          "large_pmo"
+        ]
+      }
+    ]
+  }
+}

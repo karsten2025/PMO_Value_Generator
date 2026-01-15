@@ -1,0 +1,377 @@
+{
+  "meta": {
+    "generated_at": "2026-01-13",
+    "version": "showcase",
+    "process": {
+      "step_id": 6,
+      "internal_code": "IMP_OPS",
+      "title_en": "Daily Operations",
+      "title_de": "Täglicher Betrieb",
+      "title_es": "Operaciones Diarias",
+      "description_en": "Operational excellence through continuous SLA compliance and performance management.",
+      "description_de": "Operative Exzellenz durch kontinuierliche SLA-Erfüllung und Performance-Management.",
+      "description_es": "Excelencia operativa mediante el cumplimiento continuo de SLA y gestión del rendimiento."
+    },
+    "total_metrics": 15,
+    "metrics_per_category": 3
+  },
+  "metrics": {
+    "input": [
+      {
+        "name_en": "Daily Resource Capacity",
+        "name_de": "Tägliche Ressourcenkapazität",
+        "name_es": "Capacidad Diaria de Recursos",
+        "unit": "hours",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Arbeitsstunden stehen täglich zur Verfügung?",
+            "management": "Verfügbare PMO-Ressourcenkapazität für operative Service-Delivery."
+          },
+          "en": {
+            "colloquial": "How many work hours are available daily?",
+            "management": "Available PMO resource capacity for operational service delivery."
+          },
+          "es": {
+            "colloquial": "¿Cuántas horas de trabajo están disponibles diariamente?",
+            "management": "Capacidad de recursos de PMO disponible para la entrega operativa de servicios."
+          }
+        },
+        "calculation_method": "Sum of daily available working hours.",
+        "recommended_for": ["large_pmo", "regulated_industry"]
+      },
+      {
+        "name_en": "Open Service Requests",
+        "name_de": "Offene Service-Anfragen",
+        "name_es": "Solicitudes de Servicio Abiertas",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Service-Anfragen sind noch offen?",
+            "management": "Anzahl der noch zu bearbeitenden Service-Requests im Backlog."
+          },
+          "en": {
+            "colloquial": "How many service requests are still open?",
+            "management": "Number of service requests still to be processed in backlog."
+          },
+          "es": {
+            "colloquial": "¿Cuántas solicitudes de servicio están aún abiertas?",
+            "management": "Número de solicitudes de servicio aún por procesar en el backlog."
+          }
+        },
+        "calculation_method": "Count of open service requests.",
+        "recommended_for": ["large_pmo", "transformation_pmo"]
+      },
+      {
+        "name_en": "Tools & Systems Available",
+        "name_de": "Verfügbare Tools & Systeme",
+        "name_es": "Herramientas y Sistemas Disponibles",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Welche Tools nutzen wir für den täglichen Betrieb?",
+            "management": "Anzahl der verfügbaren und genutzten PMO-Tools für Service-Operations."
+          },
+          "en": {
+            "colloquial": "Which tools do we use for daily operations?",
+            "management": "Number of available and utilized PMO tools for service operations."
+          },
+          "es": {
+            "colloquial": "¿Qué herramientas usamos para las operaciones diarias?",
+            "management": "Número de herramientas de PMO disponibles y utilizadas para operaciones de servicios."
+          }
+        },
+        "calculation_method": "Count of operational tools in use.",
+        "recommended_for": ["startup_pmo", "agile_org"]
+      }
+    ],
+    "process": [
+      {
+        "name_en": "Service Requests Processed",
+        "name_de": "Bearbeitete Service-Anfragen",
+        "name_es": "Solicitudes de Servicio Procesadas",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Anfragen haben wir bearbeitet?",
+            "management": "Anzahl der abgeschlossenen Service-Requests im Berichtszeitraum."
+          },
+          "en": {
+            "colloquial": "How many requests have we processed?",
+            "management": "Number of completed service requests in the reporting period."
+          },
+          "es": {
+            "colloquial": "¿Cuántas solicitudes hemos procesado?",
+            "management": "Número de solicitudes de servicio completadas en el período de informe."
+          }
+        },
+        "calculation_method": "Count of processed service requests.",
+        "recommended_for": ["large_pmo", "regulated_industry"]
+      },
+      {
+        "name_en": "Escalations Handled",
+        "name_de": "Bearbeitete Eskalationen",
+        "name_es": "Escalaciones Atendidas",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Eskalationen mussten wir bearbeiten?",
+            "management": "Anzahl der bearbeiteten Eskalationsfälle im operativen Betrieb."
+          },
+          "en": {
+            "colloquial": "How many escalations did we have to handle?",
+            "management": "Number of escalation cases handled in operational business."
+          },
+          "es": {
+            "colloquial": "¿Cuántas escalaciones tuvimos que atender?",
+            "management": "Número de casos de escalación atendidos en el negocio operativo."
+          }
+        },
+        "calculation_method": "Count of escalated issues resolved.",
+        "recommended_for": ["large_pmo", "transformation_pmo"]
+      },
+      {
+        "name_en": "Stakeholder Interactions",
+        "name_de": "Stakeholder-Interaktionen",
+        "name_es": "Interacciones con Interesados",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie oft hatten wir Kontakt mit Stakeholdern?",
+            "management": "Anzahl der täglichen Stakeholder-Touchpoints im operativen Betrieb."
+          },
+          "en": {
+            "colloquial": "How often did we have contact with stakeholders?",
+            "management": "Number of daily stakeholder touchpoints in operational business."
+          },
+          "es": {
+            "colloquial": "¿Con qué frecuencia tuvimos contacto con las partes interesadas?",
+            "management": "Número de puntos de contacto diarios con las partes interesadas en el negocio operativo."
+          }
+        },
+        "calculation_method": "Count of stakeholder interactions.",
+        "recommended_for": ["transformation_pmo", "agile_org"]
+      }
+    ],
+    "output": [
+      {
+        "name_en": "SLA Compliance Rate",
+        "name_de": "SLA-Erfüllungsrate",
+        "name_es": "Tasa de Cumplimiento de SLA",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Service-Level-Agreements haben wir eingehalten?",
+            "management": "Prozentsatz der erfüllten Service Level Agreements."
+          },
+          "en": {
+            "colloquial": "How many service level agreements did we meet?",
+            "management": "Percentage of fulfilled service level agreements."
+          },
+          "es": {
+            "colloquial": "¿Cuántos acuerdos de nivel de servicio cumplimos?",
+            "management": "Porcentaje de acuerdos de nivel de servicio cumplidos."
+          }
+        },
+        "calculation_method": "SLAs met divided by total SLAs, multiplied by 100.",
+        "recommended_for": ["large_pmo", "regulated_industry"]
+      },
+      {
+        "name_en": "Average Response Time",
+        "name_de": "Durchschnittliche Antwortzeit",
+        "name_es": "Tiempo Promedio de Respuesta",
+        "unit": "hours",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie schnell antworten wir auf Anfragen?",
+            "management": "Durchschnittliche Zeit bis zur ersten Reaktion auf Service-Requests."
+          },
+          "en": {
+            "colloquial": "How quickly do we respond to requests?",
+            "management": "Average time to first response on service requests."
+          },
+          "es": {
+            "colloquial": "¿Qué tan rápido respondemos a las solicitudes?",
+            "management": "Tiempo promedio hasta la primera respuesta a las solicitudes de servicio."
+          }
+        },
+        "calculation_method": "Sum of response times divided by number of requests.",
+        "recommended_for": ["large_pmo", "startup_pmo"]
+      },
+      {
+        "name_en": "Service Quality Score",
+        "name_de": "Service-Qualitäts-Score",
+        "name_es": "Puntuación de Calidad de Servicio",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie gut ist die Qualität unserer Services?",
+            "management": "Bewertung der operativen Service-Qualität durch Stakeholder."
+          },
+          "en": {
+            "colloquial": "How good is the quality of our services?",
+            "management": "Assessment of operational service quality by stakeholders."
+          },
+          "es": {
+            "colloquial": "¿Qué tan buena es la calidad de nuestros servicios?",
+            "management": "Evaluación de la calidad del servicio operativo por las partes interesadas."
+          }
+        },
+        "calculation_method": "Average quality score from stakeholder ratings.",
+        "recommended_for": ["transformation_pmo", "agile_org"]
+      }
+    ],
+    "outcome": [
+      {
+        "name_en": "Stakeholder Satisfaction with Operations",
+        "name_de": "Stakeholder-Zufriedenheit mit dem Betrieb",
+        "name_es": "Satisfacción de Interesados con Operaciones",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie zufrieden sind Stakeholder mit unserem Service?",
+            "management": "Bewertung der Stakeholder-Zufriedenheit mit operativer PMO-Leistung."
+          },
+          "en": {
+            "colloquial": "How satisfied are stakeholders with our service?",
+            "management": "Assessment of stakeholder satisfaction with operational PMO performance."
+          },
+          "es": {
+            "colloquial": "¿Qué tan satisfechos están los interesados con nuestro servicio?",
+            "management": "Evaluación de la satisfacción de las partes interesadas con el rendimiento operativo de PMO."
+          }
+        },
+        "calculation_method": "Average satisfaction score from stakeholder survey.",
+        "recommended_for": ["large_pmo", "transformation_pmo"]
+      },
+      {
+        "name_en": "Service Reliability Index",
+        "name_de": "Service-Zuverlässigkeits-Index",
+        "name_es": "Índice de Confiabilidad del Servicio",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie zuverlässig sind unsere Services?",
+            "management": "Prozentsatz der fehlerfreien Service-Delivery-Perioden."
+          },
+          "en": {
+            "colloquial": "How reliable are our services?",
+            "management": "Percentage of error-free service delivery periods."
+          },
+          "es": {
+            "colloquial": "¿Qué tan confiables son nuestros servicios?",
+            "management": "Porcentaje de períodos de entrega de servicios sin errores."
+          }
+        },
+        "calculation_method": "Error-free periods divided by total periods, multiplied by 100.",
+        "recommended_for": ["regulated_industry", "large_pmo"]
+      },
+      {
+        "name_en": "Operational Efficiency Gain",
+        "name_de": "Operative Effizienzsteigerung",
+        "name_es": "Ganancia de Eficiencia Operativa",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viel effizienter sind wir geworden?",
+            "management": "Steigerung der operativen Effizienz im Vergleich zur Baseline."
+          },
+          "en": {
+            "colloquial": "How much more efficient have we become?",
+            "management": "Increase in operational efficiency compared to baseline."
+          },
+          "es": {
+            "colloquial": "¿Cuánto más eficientes nos hemos vuelto?",
+            "management": "Aumento en la eficiencia operativa en comparación con la línea de base."
+          }
+        },
+        "calculation_method": "Current efficiency minus baseline efficiency, divided by baseline, multiplied by 100.",
+        "recommended_for": ["transformation_pmo", "startup_pmo"]
+      }
+    ],
+    "feedback": [
+      {
+        "name_en": "Daily Operations Satisfaction",
+        "name_de": "Zufriedenheit mit täglichen Operationen",
+        "name_es": "Satisfacción con Operaciones Diarias",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie zufrieden sind Nutzer mit dem täglichen Service?",
+            "management": "Tägliche Bewertung der User-Zufriedenheit mit PMO-Operations."
+          },
+          "en": {
+            "colloquial": "How satisfied are users with daily service?",
+            "management": "Daily assessment of user satisfaction with PMO operations."
+          },
+          "es": {
+            "colloquial": "¿Qué tan satisfechos están los usuarios con el servicio diario?",
+            "management": "Evaluación diaria de la satisfacción del usuario con las operaciones de PMO."
+          }
+        },
+        "calculation_method": "Average daily satisfaction score.",
+        "recommended_for": ["large_pmo", "agile_org"]
+      },
+      {
+        "name_en": "Issue Resolution Rating",
+        "name_de": "Problemlösungs-Rating",
+        "name_es": "Calificación de Resolución de Problemas",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie gut lösen wir Probleme?",
+            "management": "Bewertung der Problemlösungs-Qualität durch Stakeholder."
+          },
+          "en": {
+            "colloquial": "How well do we solve problems?",
+            "management": "Assessment of problem-solving quality by stakeholders."
+          },
+          "es": {
+            "colloquial": "¿Qué tan bien resolvemos los problemas?",
+            "management": "Evaluación de la calidad de resolución de problemas por las partes interesadas."
+          }
+        },
+        "calculation_method": "Average resolution quality score from stakeholder feedback.",
+        "recommended_for": ["transformation_pmo", "regulated_industry"]
+      },
+      {
+        "name_en": "Service Improvement Suggestions",
+        "name_de": "Service-Verbesserungsvorschläge",
+        "name_es": "Sugerencias de Mejora de Servicios",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Verbesserungsideen bekommen wir?",
+            "management": "Anzahl der eingereichten Stakeholder-Verbesserungsvorschläge."
+          },
+          "en": {
+            "colloquial": "How many improvement ideas do we receive?",
+            "management": "Number of submitted stakeholder improvement suggestions."
+          },
+          "es": {
+            "colloquial": "¿Cuántas ideas de mejora recibimos?",
+            "management": "Número de sugerencias de mejora de las partes interesadas presentadas."
+          }
+        },
+        "calculation_method": "Count of improvement suggestions received.",
+        "recommended_for": ["startup_pmo", "agile_org"]
+      }
+    ]
+  }
+}
+
+

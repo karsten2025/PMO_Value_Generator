@@ -1,0 +1,377 @@
+{
+  "meta": {
+    "generated_at": "2026-01-13",
+    "version": "showcase",
+    "process": {
+      "step_id": 7,
+      "internal_code": "OPT_MON",
+      "title_en": "Performance Tracking",
+      "title_de": "Performance-Tracking",
+      "title_es": "Seguimiento de Rendimiento",
+      "description_en": "Implementation of a KPI-based performance monitoring system for real-time tracking of service efficiency.",
+      "description_de": "Implementierung eines KPI-basierten Performance-Monitoring-Systems zur Echtzeitverfolgung von Service-Effizienz.",
+      "description_es": "Implementación de un sistema de monitoreo de rendimiento basado en KPIs para el seguimiento en tiempo real de la eficiencia del servicio."
+    },
+    "total_metrics": 15,
+    "metrics_per_category": 3
+  },
+  "metrics": {
+    "input": [
+      {
+        "name_en": "KPIs Defined",
+        "name_de": "Definierte KPIs",
+        "name_es": "KPIs Definidos",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele KPIs tracken wir?",
+            "management": "Anzahl der definierten und aktiv gemessenen Performance-Indikatoren."
+          },
+          "en": {
+            "colloquial": "How many KPIs are we tracking?",
+            "management": "Number of defined and actively measured performance indicators."
+          },
+          "es": {
+            "colloquial": "¿Cuántos KPIs estamos rastreando?",
+            "management": "Número de indicadores de rendimiento definidos y activamente medidos."
+          }
+        },
+        "calculation_method": "Count of active KPIs in monitoring system.",
+        "recommended_for": ["large_pmo", "regulated_industry"]
+      },
+      {
+        "name_en": "Data Sources Connected",
+        "name_de": "Angebundene Datenquellen",
+        "name_es": "Fuentes de Datos Conectadas",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Von wie vielen Systemen sammeln wir Daten?",
+            "management": "Anzahl der integrierten Datenquellen für Performance-Monitoring."
+          },
+          "en": {
+            "colloquial": "From how many systems do we collect data?",
+            "management": "Number of integrated data sources for performance monitoring."
+          },
+          "es": {
+            "colloquial": "¿De cuántos sistemas recopilamos datos?",
+            "management": "Número de fuentes de datos integradas para el monitoreo de rendimiento."
+          }
+        },
+        "calculation_method": "Count of connected data sources.",
+        "recommended_for": ["large_pmo", "transformation_pmo"]
+      },
+      {
+        "name_en": "Monitoring Tools Used",
+        "name_de": "Genutzte Monitoring-Tools",
+        "name_es": "Herramientas de Monitoreo Utilizadas",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Welche Tools nutzen wir für Performance-Tracking?",
+            "management": "Anzahl der eingesetzten Monitoring- und Dashboard-Tools."
+          },
+          "en": {
+            "colloquial": "Which tools do we use for performance tracking?",
+            "management": "Number of monitoring and dashboard tools deployed."
+          },
+          "es": {
+            "colloquial": "¿Qué herramientas usamos para el seguimiento de rendimiento?",
+            "management": "Número de herramientas de monitoreo y paneles implementados."
+          }
+        },
+        "calculation_method": "Count of monitoring tools in use.",
+        "recommended_for": ["startup_pmo", "agile_org"]
+      }
+    ],
+    "process": [
+      {
+        "name_en": "Performance Reviews Conducted",
+        "name_de": "Durchgeführte Performance-Reviews",
+        "name_es": "Revisiones de Rendimiento Realizadas",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie oft haben wir Performance besprochen?",
+            "management": "Anzahl der strukturierten Performance-Review-Meetings."
+          },
+          "en": {
+            "colloquial": "How often did we discuss performance?",
+            "management": "Number of structured performance review meetings."
+          },
+          "es": {
+            "colloquial": "¿Con qué frecuencia discutimos el rendimiento?",
+            "management": "Número de reuniones estructuradas de revisión de rendimiento."
+          }
+        },
+        "calculation_method": "Count of performance review sessions held.",
+        "recommended_for": ["large_pmo", "regulated_industry"]
+      },
+      {
+        "name_en": "KPI Reports Generated",
+        "name_de": "Generierte KPI-Reports",
+        "name_es": "Informes de KPI Generados",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Reports haben wir erstellt?",
+            "management": "Anzahl der generierten Performance-Dashboards und KPI-Reports."
+          },
+          "en": {
+            "colloquial": "How many reports have we created?",
+            "management": "Number of generated performance dashboards and KPI reports."
+          },
+          "es": {
+            "colloquial": "¿Cuántos informes hemos creado?",
+            "management": "Número de paneles de rendimiento e informes de KPI generados."
+          }
+        },
+        "calculation_method": "Count of reports generated.",
+        "recommended_for": ["large_pmo", "transformation_pmo"]
+      },
+      {
+        "name_en": "Data Quality Checks Performed",
+        "name_de": "Durchgeführte Datenqualitäts-Checks",
+        "name_es": "Verificaciones de Calidad de Datos Realizadas",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie oft prüfen wir die Datenqualität?",
+            "management": "Anzahl der Data-Quality-Validierungen für Performance-Daten."
+          },
+          "en": {
+            "colloquial": "How often do we check data quality?",
+            "management": "Number of data quality validations for performance data."
+          },
+          "es": {
+            "colloquial": "¿Con qué frecuencia verificamos la calidad de los datos?",
+            "management": "Número de validaciones de calidad de datos para datos de rendimiento."
+          }
+        },
+        "calculation_method": "Count of data quality checks performed.",
+        "recommended_for": ["regulated_industry", "agile_org"]
+      }
+    ],
+    "output": [
+      {
+        "name_en": "Real-time Dashboards Active",
+        "name_de": "Aktive Echtzeit-Dashboards",
+        "name_es": "Paneles en Tiempo Real Activos",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Live-Dashboards haben wir?",
+            "management": "Anzahl der aktiven Echtzeit-Performance-Dashboards."
+          },
+          "en": {
+            "colloquial": "How many live dashboards do we have?",
+            "management": "Number of active real-time performance dashboards."
+          },
+          "es": {
+            "colloquial": "¿Cuántos paneles en vivo tenemos?",
+            "management": "Número de paneles de rendimiento en tiempo real activos."
+          }
+        },
+        "calculation_method": "Count of active dashboards.",
+        "recommended_for": ["large_pmo", "transformation_pmo"]
+      },
+      {
+        "name_en": "Performance Trends Identified",
+        "name_de": "Identifizierte Performance-Trends",
+        "name_es": "Tendencias de Rendimiento Identificadas",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Welche Trends haben wir erkannt?",
+            "management": "Anzahl der identifizierten Performance-Trends durch Datenanalyse."
+          },
+          "en": {
+            "colloquial": "Which trends have we identified?",
+            "management": "Number of performance trends identified through data analysis."
+          },
+          "es": {
+            "colloquial": "¿Qué tendencias hemos identificado?",
+            "management": "Número de tendencias de rendimiento identificadas mediante análisis de datos."
+          }
+        },
+        "calculation_method": "Count of documented performance trends.",
+        "recommended_for": ["large_pmo", "startup_pmo"]
+      },
+      {
+        "name_en": "Alert Triggers Configured",
+        "name_de": "Konfigurierte Alert-Trigger",
+        "name_es": "Activadores de Alerta Configurados",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Alarm-Regeln haben wir eingerichtet?",
+            "management": "Anzahl der konfigurierten automatischen Alert-Mechanismen."
+          },
+          "en": {
+            "colloquial": "How many alarm rules have we set up?",
+            "management": "Number of configured automatic alert mechanisms."
+          },
+          "es": {
+            "colloquial": "¿Cuántas reglas de alarma hemos configurado?",
+            "management": "Número de mecanismos de alerta automáticos configurados."
+          }
+        },
+        "calculation_method": "Count of active alert triggers.",
+        "recommended_for": ["regulated_industry", "agile_org"]
+      }
+    ],
+    "outcome": [
+      {
+        "name_en": "Data-driven Decision Rate",
+        "name_de": "Datenbasierte Entscheidungsrate",
+        "name_es": "Tasa de Decisiones Basadas en Datos",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie oft treffen wir Entscheidungen basierend auf Daten?",
+            "management": "Prozentsatz der Entscheidungen, die auf Performance-Daten basieren."
+          },
+          "en": {
+            "colloquial": "How often do we make decisions based on data?",
+            "management": "Percentage of decisions based on performance data."
+          },
+          "es": {
+            "colloquial": "¿Con qué frecuencia tomamos decisiones basadas en datos?",
+            "management": "Porcentaje de decisiones basadas en datos de rendimiento."
+          }
+        },
+        "calculation_method": "Data-driven decisions divided by total decisions, multiplied by 100.",
+        "recommended_for": ["large_pmo", "transformation_pmo"]
+      },
+      {
+        "name_en": "Performance Transparency Score",
+        "name_de": "Performance-Transparenz-Score",
+        "name_es": "Puntuación de Transparencia de Rendimiento",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie transparent ist unsere Performance?",
+            "management": "Bewertung der Stakeholder-Wahrnehmung von Performance-Transparenz."
+          },
+          "en": {
+            "colloquial": "How transparent is our performance?",
+            "management": "Assessment of stakeholder perception of performance transparency."
+          },
+          "es": {
+            "colloquial": "¿Qué tan transparente es nuestro rendimiento?",
+            "management": "Evaluación de la percepción de las partes interesadas sobre la transparencia del rendimiento."
+          }
+        },
+        "calculation_method": "Average transparency score from stakeholder survey.",
+        "recommended_for": ["large_pmo", "regulated_industry"]
+      },
+      {
+        "name_en": "Early Warning Success Rate",
+        "name_de": "Frühwarn-Erfolgsrate",
+        "name_es": "Tasa de Éxito de Advertencia Temprana",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie oft haben unsere Warnungen funktioniert?",
+            "management": "Prozentsatz der erfolgreichen Früherkennungen von Performance-Problemen."
+          },
+          "en": {
+            "colloquial": "How often did our warnings work?",
+            "management": "Percentage of successful early detections of performance problems."
+          },
+          "es": {
+            "colloquial": "¿Con qué frecuencia funcionaron nuestras advertencias?",
+            "management": "Porcentaje de detecciones tempranas exitosas de problemas de rendimiento."
+          }
+        },
+        "calculation_method": "Successful early warnings divided by total warnings, multiplied by 100.",
+        "recommended_for": ["transformation_pmo", "startup_pmo"]
+      }
+    ],
+    "feedback": [
+      {
+        "name_en": "Dashboard Usability Score",
+        "name_de": "Dashboard-Usability-Score",
+        "name_es": "Puntuación de Usabilidad del Panel",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie benutzerfreundlich sind unsere Dashboards?",
+            "management": "Bewertung der Benutzerfreundlichkeit der Performance-Dashboards."
+          },
+          "en": {
+            "colloquial": "How user-friendly are our dashboards?",
+            "management": "Assessment of user-friendliness of performance dashboards."
+          },
+          "es": {
+            "colloquial": "¿Qué tan fáciles de usar son nuestros paneles?",
+            "management": "Evaluación de la facilidad de uso de los paneles de rendimiento."
+          }
+        },
+        "calculation_method": "Average usability score from user feedback.",
+        "recommended_for": ["large_pmo", "agile_org"]
+      },
+      {
+        "name_en": "KPI Relevance Rating",
+        "name_de": "KPI-Relevanz-Rating",
+        "name_es": "Calificación de Relevancia de KPI",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie relevant sind unsere KPIs?",
+            "management": "Stakeholder-Bewertung der Relevanz und Aussagekraft der KPIs."
+          },
+          "en": {
+            "colloquial": "How relevant are our KPIs?",
+            "management": "Stakeholder assessment of relevance and meaningfulness of KPIs."
+          },
+          "es": {
+            "colloquial": "¿Qué tan relevantes son nuestros KPIs?",
+            "management": "Evaluación de las partes interesadas sobre la relevancia y significado de los KPIs."
+          }
+        },
+        "calculation_method": "Average relevance score from stakeholder survey.",
+        "recommended_for": ["transformation_pmo", "regulated_industry"]
+      },
+      {
+        "name_en": "Monitoring System Improvement Requests",
+        "name_de": "Verbesserungsanfragen Monitoring-System",
+        "name_es": "Solicitudes de Mejora del Sistema de Monitoreo",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Verbesserungswünsche für unser Monitoring gibt es?",
+            "management": "Anzahl der Stakeholder-Anfragen zur Verbesserung des Monitoring-Systems."
+          },
+          "en": {
+            "colloquial": "How many improvement requests for our monitoring are there?",
+            "management": "Number of stakeholder requests to improve the monitoring system."
+          },
+          "es": {
+            "colloquial": "¿Cuántas solicitudes de mejora para nuestro monitoreo hay?",
+            "management": "Número de solicitudes de las partes interesadas para mejorar el sistema de monitoreo."
+          }
+        },
+        "calculation_method": "Count of improvement requests received.",
+        "recommended_for": ["startup_pmo", "agile_org"]
+      }
+    ]
+  }
+}
+
+

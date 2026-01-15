@@ -1,0 +1,402 @@
+{
+  "meta": {
+    "generated_at": "2026-01-13",
+    "version": "showcase",
+    "process": {
+      "step_id": 4,
+      "internal_code": "PLN_SDE",
+      "title_en": "Solution Design",
+      "title_de": "Lösungs-Design",
+      "title_es": "Diseño de Soluciones"
+    },
+    "total_metrics": 15,
+    "metrics_per_category": 3
+  },
+  "metrics": {
+    "input": [
+      {
+        "name_en": "Design Hours Allocated",
+        "name_de": "Zugewiesene Design-Stunden",
+        "name_es": "Horas de Diseño Asignadas",
+        "unit": "hours",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viel Zeit haben wir für das Design eingeplant?",
+            "management": "Ressourcenallokation für Service-Design und Prozess-Architektur."
+          },
+          "en": {
+            "colloquial": "How much time have we allocated for design?",
+            "management": "Resource allocation for service design and process architecture."
+          },
+          "es": {
+            "colloquial": "¿Cuánto tiempo hemos asignado para el diseño?",
+            "management": "Asignación de recursos para el diseño de servicios y la arquitectura de procesos."
+          }
+        },
+        "calculation_method": "Sum of design hours allocated.",
+        "recommended_for": [
+          "large_pmo"
+        ]
+      },
+      {
+        "name_en": "Service Design Templates Used",
+        "name_de": "Genutzte Service-Design-Templates",
+        "name_es": "Plantillas de Diseño de Servicios Utilizadas",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Welche Vorlagen nutzen wir für das Service-Design?",
+            "management": "Anzahl der methodischen Templates zur Standardisierung des Design-Prozesses."
+          },
+          "en": {
+            "colloquial": "Which templates do we use for service design?",
+            "management": "Number of methodological templates for standardizing the design process."
+          },
+          "es": {
+            "colloquial": "¿Qué plantillas usamos para el diseño de servicios?",
+            "management": "Número de plantillas metodológicas para estandarizar el proceso de diseño."
+          }
+        },
+        "calculation_method": "Count of design templates utilized.",
+        "recommended_for": [
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Stakeholders in Design Process",
+        "name_de": "Stakeholder im Design-Prozess",
+        "name_es": "Interesados en el Proceso de Diseño",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Personen sind am Design beteiligt?",
+            "management": "Anzahl der Co-Design-Teilnehmer zur Sicherstellung der Praxistauglichkeit."
+          },
+          "en": {
+            "colloquial": "How many people are involved in design?",
+            "management": "Number of co-design participants to ensure practical feasibility."
+          },
+          "es": {
+            "colloquial": "¿Cuántas personas están involucradas en el diseño?",
+            "management": "Número de participantes de co-diseño para garantizar la viabilidad práctica."
+          }
+        },
+        "calculation_method": "Count of stakeholders participating in design.",
+        "recommended_for": [
+          "agile_org"
+        ]
+      },
+      {
+        "name_en": "Prototype Solutions Tested",
+        "name_de": "Getestete Prototyp-Lösungen",
+        "name_es": "Soluciones Prototipo Probadas",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Lösungsprototypen haben wir getestet?",
+            "management": "Anzahl der pilotierten Service-Prototypen zur Validierung der Praxistauglichkeit."
+          },
+          "en": {
+            "colloquial": "How many solution prototypes have we tested?",
+            "management": "Number of piloted service prototypes to validate practical feasibility."
+          },
+          "es": {
+            "colloquial": "¿Cuántos prototipos de soluciones hemos probado?",
+            "management": "Número de prototipos de servicios pilotados para validar la viabilidad práctica."
+          }
+        },
+        "calculation_method": "Count of tested prototypes.",
+        "recommended_for": [
+          "startup_pmo"
+        ]
+      },
+      {
+        "name_en": "Design Iteration Requests",
+        "name_de": "Design-Iterations-Anfragen",
+        "name_es": "Solicitudes de Iteración de Diseño",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Änderungswünsche gab es?",
+            "management": "Anzahl der Stakeholder-Anfragen zur Anpassung des Service-Designs."
+          },
+          "en": {
+            "colloquial": "How many change requests were there?",
+            "management": "Number of stakeholder requests for service design adjustments."
+          },
+          "es": {
+            "colloquial": "¿Cuántas solicitudes de cambio hubo?",
+            "management": "Número de solicitudes de las partes interesadas para ajustes del diseño de servicios."
+          }
+        },
+        "calculation_method": "Count of design change requests received.",
+        "recommended_for": [
+          "agile_org"
+        ]
+      }
+    ],
+    "process": [
+      {
+        "name_en": "Co-Design Workshops",
+        "name_de": "Co-Design-Workshops",
+        "name_es": "Talleres de Co-Diseño",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Design-Workshops haben wir durchgeführt?",
+            "management": "Anzahl der kollaborativen Workshops zur partizipativen Lösungsentwicklung."
+          },
+          "en": {
+            "colloquial": "How many design workshops have we conducted?",
+            "management": "Number of collaborative workshops for participatory solution development."
+          },
+          "es": {
+            "colloquial": "¿Cuántos talleres de diseño hemos realizado?",
+            "management": "Número de talleres colaborativos para el desarrollo participativo de soluciones."
+          }
+        },
+        "calculation_method": "Count of co-design workshops held.",
+        "recommended_for": [
+          "large_pmo"
+        ]
+      }
+    ],
+    "output": [
+      {
+        "name_en": "SLAs Drafted",
+        "name_de": "Entworfene SLAs",
+        "name_es": "SLAs Elaborados",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Service-Level-Agreements haben wir erstellt?",
+            "management": "Anzahl der definierten Service Level Agreements zur Leistungsvereinbarung."
+          },
+          "en": {
+            "colloquial": "How many service level agreements have we created?",
+            "management": "Number of defined service level agreements for performance commitment."
+          },
+          "es": {
+            "colloquial": "¿Cuántos acuerdos de nivel de servicio hemos creado?",
+            "management": "Número de acuerdos de nivel de servicio definidos para el compromiso de rendimiento."
+          }
+        },
+        "calculation_method": "Count of SLAs drafted.",
+        "recommended_for": [
+          "regulated_industry"
+        ]
+      },
+      {
+        "name_en": "Service Catalog Completed",
+        "name_de": "Fertiggestellter Service-Katalog",
+        "name_es": "Catálogo de Servicios Completado",
+        "unit": "binary",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Haben wir einen vollständigen Service-Katalog erstellt?",
+            "management": "Formal dokumentierter Katalog aller PMO-Services mit SLAs und Prozess-Definitionen."
+          },
+          "en": {
+            "colloquial": "Have we created a complete service catalog?",
+            "management": "Formally documented catalog of all PMO services with SLAs and process definitions."
+          },
+          "es": {
+            "colloquial": "¿Hemos creado un catálogo de servicios completo?",
+            "management": "Catálogo formalmente documentado de todos los servicios de PMO con SLAs y definiciones de procesos."
+          }
+        },
+        "calculation_method": "Binary (1 if completed, 0 otherwise).",
+        "recommended_for": [
+          "large_pmo"
+        ]
+      },
+      {
+        "name_en": "Process Definitions Created",
+        "name_de": "Erstellte Prozessdefinitionen",
+        "name_es": "Definiciones de Procesos Creadas",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Prozesse haben wir definiert?",
+            "management": "Anzahl der formal dokumentierten PMO-Prozesse mit Governance-Strukturen."
+          },
+          "en": {
+            "colloquial": "How many processes have we defined?",
+            "management": "Number of formally documented PMO processes with governance structures."
+          },
+          "es": {
+            "colloquial": "¿Cuántos procesos hemos definido?",
+            "management": "Número de procesos de PMO formalmente documentados con estructuras de gobernanza."
+          }
+        },
+        "calculation_method": "Count of process definitions.",
+        "recommended_for": [
+          "regulated_industry"
+        ]
+      },
+      {
+        "name_en": "Resource Allocation Plan",
+        "name_de": "Ressourcen-Allokationsplan",
+        "name_es": "Plan de Asignación de Recursos",
+        "unit": "binary",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Haben wir einen Ressourcenplan erstellt?",
+            "management": "Dokumentierter Plan zur optimalen Ressourcenverteilung für Service-Delivery."
+          },
+          "en": {
+            "colloquial": "Have we created a resource plan?",
+            "management": "Documented plan for optimal resource allocation for service delivery."
+          },
+          "es": {
+            "colloquial": "¿Hemos creado un plan de recursos?",
+            "management": "Plan documentado para la asignación óptima de recursos para la prestación de servicios."
+          }
+        },
+        "calculation_method": "Binary (1 if completed, 0 otherwise).",
+        "recommended_for": [
+          "transformation_pmo"
+        ]
+      }
+    ],
+    "outcome": [
+      {
+        "name_en": "Stakeholder Design Satisfaction",
+        "name_de": "Stakeholder-Design-Zufriedenheit",
+        "name_es": "Satisfacción con el Diseño de Interesados",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie zufrieden sind Stakeholder mit dem Design?",
+            "management": "Bewertung der Stakeholder-Zufriedenheit mit den designten PMO-Services."
+          },
+          "en": {
+            "colloquial": "How satisfied are stakeholders with the design?",
+            "management": "Assessment of stakeholder satisfaction with designed PMO services."
+          },
+          "es": {
+            "colloquial": "¿Qué tan satisfechos están los interesados con el diseño?",
+            "management": "Evaluación de la satisfacción de las partes interesadas con los servicios de PMO diseñados."
+          }
+        },
+        "calculation_method": "Average satisfaction score from stakeholder survey.",
+        "recommended_for": [
+          "large_pmo"
+        ]
+      },
+      {
+        "name_en": "Anticipated Service Adoption Rate",
+        "name_de": "Erwartete Service-Adoptionsrate",
+        "name_es": "Tasa de Adopción de Servicios Anticipada",
+        "unit": "%",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele werden die Services voraussichtlich nutzen?",
+            "management": "Prognostizierte Adoptionsrate der designten PMO-Services."
+          },
+          "en": {
+            "colloquial": "How many will likely use the services?",
+            "management": "Forecasted adoption rate of designed PMO services."
+          },
+          "es": {
+            "colloquial": "¿Cuántos probablemente usarán los servicios?",
+            "management": "Tasa de adopción pronosticada de los servicios de PMO diseñados."
+          }
+        },
+        "calculation_method": "Survey-based adoption intent measurement.",
+        "recommended_for": [
+          "startup_pmo"
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "name_en": "Design-Reality Fit Score",
+        "name_de": "Design-Realitäts-Passungs-Score",
+        "name_es": "Puntuación de Ajuste Diseño-Realidad",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie praxistauglich ist unser Design?",
+            "management": "Bewertung der Umsetzbarkeit und Praktikabilität der designten Services."
+          },
+          "en": {
+            "colloquial": "How practical is our design?",
+            "management": "Assessment of implementability and practicability of designed services."
+          },
+          "es": {
+            "colloquial": "¿Qué tan práctico es nuestro diseño?",
+            "management": "Evaluación de la implementabilidad y practicabilidad de los servicios diseñados."
+          }
+        },
+        "calculation_method": "Average score from feasibility assessment.",
+        "recommended_for": [
+          "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "Design Clarity Rating",
+        "name_de": "Design-Klarheits-Rating",
+        "name_es": "Calificación de Claridad del Diseño",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie verständlich ist unser Service-Design?",
+            "management": "Bewertung der Klarheit und Nachvollziehbarkeit der Service-Spezifikationen."
+          },
+          "en": {
+            "colloquial": "How understandable is our service design?",
+            "management": "Assessment of clarity and comprehensibility of service specifications."
+          },
+          "es": {
+            "colloquial": "¿Qué tan comprensible es nuestro diseño de servicios?",
+            "management": "Evaluación de la claridad y comprensibilidad de las especificaciones de servicios."
+          }
+        },
+        "calculation_method": "Average clarity score from stakeholder feedback.",
+        "recommended_for": [
+          "large_pmo"
+        ]
+      },
+      {
+        "name_en": "SLA Acceptability Score",
+        "name_de": "SLA-Akzeptabilitäts-Score",
+        "name_es": "Puntuación de Aceptabilidad de SLA",
+        "unit": "1-10 scale",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Sind die Service-Level-Agreements realistisch?",
+            "management": "Stakeholder-Bewertung der Machbarkeit und Angemessenheit der SLAs."
+          },
+          "en": {
+            "colloquial": "Are the service level agreements realistic?",
+            "management": "Stakeholder assessment of feasibility and appropriateness of SLAs."
+          },
+          "es": {
+            "colloquial": "¿Son realistas los acuerdos de nivel de servicio?",
+            "management": "Evaluación de las partes interesadas sobre la viabilidad y adecuación de los SLAs."
+          }
+        },
+        "calculation_method": "Average acceptability score from stakeholder survey.",
+        "recommended_for": [
+          "regulated_industry"
+        ]
+      }
+    ]
+  }
+}

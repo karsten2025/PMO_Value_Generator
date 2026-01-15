@@ -73,6 +73,35 @@
         ]
       },
       {
+        "name_en": "Training Materials Created",
+        "name_de": "Erstellte Schulungsmaterialien",
+        "name_es": "Materiales de capacitación creados",
+        "unit": "count",
+        "metric_type": "metric",
+        "description": {
+          "de": {
+            "colloquial": "Wie viele Schulungsmaterialien wir erstellt haben.",
+            "management": "Die Anzahl der erstellten Schulungsmaterialien zeigt die Investition in Bildungsressourcen."
+          },
+          "en": {
+            "colloquial": "How many training materials we've created.",
+            "management": "The number of training materials created reflects investment in educational resources."
+          },
+          "es": {
+            "colloquial": "Cuántos materiales de capacitación hemos creado.",
+            "management": "El número de materiales de capacitación creados refleja la inversión en recursos educativos."
+          }
+        },
+        "calculation_method": "Count the total number of new training materials developed.",
+        "recommended_for": [
+          "large_pmo",
+          "regulated_industry",
+          "agile_org"
+        ]
+      }
+    ],
+    "process": [
+      {
         "name_en": "Trainer Hours Invested",
         "name_de": "Stunden Investiert von Trainern",
         "name_es": "Horas Invertidas por Instructores",
@@ -98,9 +127,7 @@
           "regulated_industry",
           "transformation_pmo"
         ]
-      }
-    ],
-    "process": [
+      },
       {
         "name_en": "Awareness Workshops Held",
         "name_de": "Abgehaltene Awareness-Workshops",
@@ -157,33 +184,6 @@
     ],
     "output": [
       {
-        "name_en": "Training Materials Created",
-        "name_de": "Erstellte Schulungsmaterialien",
-        "name_es": "Materiales de capacitación creados",
-        "unit": "count",
-        "metric_type": "metric",
-        "description": {
-          "de": {
-            "colloquial": "Wie viele Schulungsmaterialien wir erstellt haben.",
-            "management": "Die Anzahl der erstellten Schulungsmaterialien zeigt die Investition in Bildungsressourcen."
-          },
-          "en": {
-            "colloquial": "How many training materials we've created.",
-            "management": "The number of training materials created reflects investment in educational resources."
-          },
-          "es": {
-            "colloquial": "Cuántos materiales de capacitación hemos creado.",
-            "management": "El número de materiales de capacitación creados refleja la inversión en recursos educativos."
-          }
-        },
-        "calculation_method": "Count the total number of new training materials developed.",
-        "recommended_for": [
-          "large_pmo",
-          "regulated_industry",
-          "agile_org"
-        ]
-      },
-      {
         "name_en": "People Trained",
         "name_de": "Anzahl der geschulten Personen",
         "name_es": "Personas capacitadas",
@@ -208,32 +208,6 @@
           "large_pmo",
           "regulated_industry",
           "transformation_pmo"
-        ]
-      },
-      {
-        "name_en": "E-Learning Module Completions",
-        "name_de": "Abschlüsse von E-Learning-Modulen",
-        "name_es": "Completaciones de Módulos de E-Learning",
-        "unit": "count",
-        "metric_type": "activity",
-        "description": {
-          "de": {
-            "colloquial": "Anzahl der abgeschlossenen Online-Lernmodule.",
-            "management": "Überwachung der Abschlussrate von E-Learning-Modulen zur Bewertung der Bildungsbeteiligung."
-          },
-          "en": {
-            "colloquial": "Number of completed online learning modules.",
-            "management": "Tracking e-learning module completion rate to assess educational engagement."
-          },
-          "es": {
-            "colloquial": "Número de módulos de aprendizaje en línea completados.",
-            "management": "Seguimiento de la tasa de finalización de módulos de e-learning para evaluar la participación educativa."
-          }
-        },
-        "calculation_method": "Count the number of e-learning modules completed by participants.",
-        "recommended_for": [
-          "startup_pmo",
-          "agile_org"
         ]
       }
     ],
@@ -262,6 +236,32 @@
         "recommended_for": [
           "large_pmo",
           "transformation_pmo"
+        ]
+      },
+      {
+        "name_en": "E-Learning Module Completions",
+        "name_de": "Abschlüsse von E-Learning-Modulen",
+        "name_es": "Completaciones de Módulos de E-Learning",
+        "unit": "count",
+        "metric_type": "activity",
+        "description": {
+          "de": {
+            "colloquial": "Anzahl der abgeschlossenen Online-Lernmodule.",
+            "management": "Überwachung der Abschlussrate von E-Learning-Modulen zur Bewertung der Bildungsbeteiligung."
+          },
+          "en": {
+            "colloquial": "Number of completed online learning modules.",
+            "management": "Tracking e-learning module completion rate to assess educational engagement."
+          },
+          "es": {
+            "colloquial": "Número de módulos de aprendizaje en línea completados.",
+            "management": "Seguimiento de la tasa de finalización de módulos de e-learning para evaluar la participación educativa."
+          }
+        },
+        "calculation_method": "Count the number of e-learning modules completed by participants.",
+        "recommended_for": [
+          "startup_pmo",
+          "agile_org"
         ]
       },
       {
@@ -341,9 +341,7 @@
           "startup_pmo",
           "transformation_pmo"
         ]
-      }
-    ],
-    "feedback": [
+      },
       {
         "name_en": "Feedback Response Rate",
         "name_de": "Feedback-Antwortquote",
@@ -370,7 +368,9 @@
           "agile_org",
           "transformation_pmo"
         ]
-      },
+      }
+    ],
+    "feedback": [
       {
         "name_en": "Training Satisfaction Score",
         "name_de": "Training-Zufriedenheitspunktzahl",
@@ -402,7 +402,7 @@
         "name_en": "Net Promoter Score (NPS)",
         "name_de": "Net Promoter Score (NPS)",
         "name_es": "Puntuación de Promotor Neto (NPS)",
-        "unit": "score",
+        "unit": "%",
         "metric_type": "metric",
         "description": {
           "de": {
