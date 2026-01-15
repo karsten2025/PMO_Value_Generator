@@ -604,11 +604,27 @@ export default function MetricsPreviewPage() {
               disabled={selectedCount === 0}
               className={`px-6 py-2 rounded-lg font-medium transition ${
                 selectedCount > 0
+                  ? 'bg-green-600 text-white hover:bg-green-500 shadow-lg shadow-green-600/30'
+                  : 'bg-slate-700 text-slate-500 cursor-not-allowed'
+              }`}
+            >
+              💾 {language === 'de' ? 'Speichern' : language === 'es' ? 'Guardar' : 'Save'}
+            </button>
+            <button
+              onClick={() => {
+                saveSelection();
+                setTimeout(() => {
+                  window.location.href = `/process-instance/new?process=${selectedProcess}`;
+                }, 500);
+              }}
+              disabled={selectedCount === 0}
+              className={`px-6 py-2 rounded-lg font-medium transition ${
+                selectedCount > 0
                   ? 'bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/30'
                   : 'bg-slate-700 text-slate-500 cursor-not-allowed'
               }`}
             >
-              💾 {language === 'de' ? 'Auswahl speichern' : language === 'es' ? 'Guardar selección' : 'Save Selection'}
+              ▶️ {language === 'de' ? 'Weiter zu Werte-Erfassung' : language === 'es' ? 'Continuar a captura' : 'Continue to Value Capture'}
             </button>
           </div>
         </div>
