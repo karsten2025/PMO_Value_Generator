@@ -24,6 +24,7 @@ import PortfolioSelector from './components/PortfolioSelector';
 import PortfolioProjectList from './components/PortfolioProjectList';
 import ChatInterface from './components/ChatInterface';
 import MobileMenu from './components/MobileMenu';
+import GitHubStyleHeader from './components/GitHubStyleHeader';
 import { usePortfolio } from '@/app/contexts/PortfolioContext';
 import { useLanguage } from '@/app/contexts/LanguageContext';
 import { supabase, InstanceMetric } from '@/lib/supabase';
@@ -415,15 +416,30 @@ export default function FlywheelPage() {
 
   return (
     <div className="w-full h-screen bg-slate-900 text-white flex flex-col overflow-hidden" suppressHydrationWarning>
-      {/* Header mit Steuerung */}
-      {/* HEADER - MOBILE MINIMIZED */}
-      <header className="bg-slate-800 border-b border-slate-700">
+      {/* NEW: GitHub-Style Header */}
+      <GitHubStyleHeader
+        brandName="PMO Impact Cycle"
+        companyName="Acme Corp"
+        currentView={view}
+        onViewChange={(newView) => setView(newView)}
+        language={lang.toUpperCase() as 'DE' | 'EN' | 'ES'}
+        onLanguageChange={(newLang) => setLang(newLang.toLowerCase() as 'de' | 'en' | 'es')}
+        mode={mode}
+        onModeChange={setMode}
+        showSearch={false}
+        onAIAssistantClick={() => setIsChatOpen(true)}
+      />
+
+      {/* MOBILE HEADER - Keep existing for now */}
+      <header className="lg:hidden bg-slate-800 border-b border-slate-700">
         {/* Mobile Header - Ultra Compact */}
         <div className="sm:hidden p-3 flex items-center justify-between">
           <h1 className="text-lg font-bold text-blue-400">PMO Impact Cycle</h1>
           <MobileMenu 
             mode={mode} 
             onModeChange={setMode}
+            language={lang.toUpperCase() as 'DE' | 'EN' | 'ES'}
+            onLanguageChange={(newLang) => setLang(newLang.toLowerCase() as 'de' | 'en' | 'es')}
             additionalContent={
               <>
                 {/* AI Assistant im Mobile Menu */}
@@ -442,80 +458,6 @@ export default function FlywheelPage() {
               </>
             }
           />
-        </div>
-
-        {/* Desktop Header - Full Controls */}
-        <div className="hidden sm:flex p-4 justify-between items-center gap-4">
-          <div className="flex items-center gap-4">
-            <h1 className="text-xl font-bold text-blue-400">PMO Impact Cycle</h1>
-            {isLoadingMetrics && (
-              <span className="text-xs text-slate-400 animate-pulse">
-                Lade Metriken...
-              </span>
-            )}
-          </div>
-          
-          <div className="flex gap-4 items-center">
-            {/* Portfolio Selector */}
-            <PortfolioSelector />
-
-            {/* View Switcher */}
-            <div className="flex bg-slate-700 rounded-lg p-1">
-              <button 
-                onClick={() => setView('cycle')}
-                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${view === 'cycle' ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-                title="Impact Cycle View"
-              >
-                <Network size={16} /> Cycle
-              </button>
-              <button 
-                onClick={() => setView('projects')}
-                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${view === 'projects' ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-                title="Projects List View"
-              >
-                <LayoutGrid size={16} /> Projects
-              </button>
-            </div>
-
-            {/* Sprach-Umschalter */}
-            <div className="flex bg-slate-700 rounded-lg p-1">
-              {(['de', 'en', 'es'] as const).map((l) => (
-                <button 
-                  key={l}
-                  onClick={() => setLang(l)}
-                  className={`px-3 py-1 rounded-md transition ${lang === l ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-
-            {/* Register-Umschalter */}
-            <div className="flex bg-slate-700 rounded-lg p-1">
-              <button 
-                onClick={() => setMode('colloquial')}
-                className={`flex items-center gap-2 px-3 py-1 rounded-md ${mode === 'colloquial' ? 'bg-blue-600' : ''}`}
-              >
-                <User size={16} /> Normal
-              </button>
-              <button 
-                onClick={() => setMode('management')}
-                className={`flex items-center gap-2 px-3 py-1 rounded-md ${mode === 'management' ? 'bg-blue-600' : ''}`}
-              >
-                <Languages size={16} /> Management
-              </button>
-            </div>
-
-            {/* Chatbot Button */}
-            <button
-              onClick={() => setIsChatOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 hover:from-purple-700 hover:via-pink-700 hover:to-purple-700 rounded-lg transition-all shadow-lg hover:shadow-pink-500/50 animate-gradient"
-              title="PMO Knowledge Assistant"
-            >
-              <MessageSquare size={18} />
-              <span className="font-medium">AI Assistant</span>
-            </button>
-          </div>
         </div>
 
         {/* Mobile Second Row - Portfolio & View - NO OVERFLOW */}

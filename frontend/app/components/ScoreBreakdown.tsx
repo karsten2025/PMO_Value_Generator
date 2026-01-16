@@ -22,6 +22,11 @@ interface ScoreBreakdownProps {
 export default function ScoreBreakdown({ categoryScores, overallScore, language, onAdjustWeights }: ScoreBreakdownProps) {
   const weights = getCategoryWeights();
 
+  // Defensive: Ensure categoryScores exists
+  if (!categoryScores) {
+    return null;
+  }
+
   // Calculate points contribution for each category
   const breakdown: CategoryScore[] = [
     { category: 'input', score: categoryScores.input || 0, weight: weights.input, points: (categoryScores.input || 0) * weights.input },

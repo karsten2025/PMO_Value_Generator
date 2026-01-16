@@ -237,3 +237,4 @@ Jetzt kann der Bot:
 4. Alles in DE/EN/ES + 2 Registern
 
 
+

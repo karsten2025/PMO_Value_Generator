@@ -9,6 +9,7 @@ type Language = 'de' | 'en' | 'es';
 
 interface CategoryWeightsSettingsProps {
   language: Language;
+  onClose: () => void;
   onWeightsChange?: (weights: Record<MetricCategory, number>) => void;
 }
 
@@ -49,8 +50,7 @@ const CATEGORY_DESCRIPTIONS = {
   },
 };
 
-export default function CategoryWeightsSettings({ language, onWeightsChange }: CategoryWeightsSettingsProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function CategoryWeightsSettings({ language, onClose, onWeightsChange }: CategoryWeightsSettingsProps) {
   const [weights, setWeights] = useState<Record<MetricCategory, number>>(DEFAULT_CATEGORY_WEIGHTS);
   const [isDirty, setIsDirty] = useState(false);
 
@@ -99,7 +99,7 @@ export default function CategoryWeightsSettings({ language, onWeightsChange }: C
     
     // Simple alert for now (can be replaced with toast)
     alert(message);
-    setIsOpen(false);
+    onClose();
   };
 
   // Reset to defaults
@@ -139,20 +139,8 @@ export default function CategoryWeightsSettings({ language, onWeightsChange }: C
   };
 
   return (
-    <>
-      {/* SETTINGS BUTTON */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition text-sm"
-        title={getText('title')}
-      >
-        <Settings size={16} />
-        <span className="hidden sm:inline">{getText('title')}</span>
-      </button>
-
-      {/* MODAL OVERLAY */}
-      {isOpen && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+    /* MODAL OVERLAY */
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-900 border border-slate-700 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             {/* HEADER */}
             <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-700">
@@ -161,7 +149,7 @@ export default function CategoryWeightsSettings({ language, onWeightsChange }: C
                 {getText('title')}
               </h2>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={onClose}
                 className="p-2 hover:bg-slate-800 rounded-lg transition"
               >
                 <X size={20} className="text-slate-400" />
@@ -234,7 +222,7 @@ export default function CategoryWeightsSettings({ language, onWeightsChange }: C
               </button>
               <div className="flex-1" />
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={onClose}
                 className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition text-sm"
               >
                 {getText('close')}
@@ -253,8 +241,6 @@ export default function CategoryWeightsSettings({ language, onWeightsChange }: C
             </div>
           </div>
         </div>
-      )}
-    </>
   );
 }
 

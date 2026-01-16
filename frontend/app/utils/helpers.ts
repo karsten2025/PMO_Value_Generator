@@ -66,3 +66,4 @@ export function getKPITypeLabel(kpiType: string, lang: Language): string {
 }
 
 
+

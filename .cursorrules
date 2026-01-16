@@ -228,3 +228,239 @@ export function ResponsiveCard({ title, content }) {
 ```
 
 **Ziel:** Optimale User Experience auf allen Geräten - vom Smartphone bis zum 4K Desktop.
+
+## 7. Header & Navigation Patterns (GitHub-Style)
+
+### 7.1 Informations-Hierarchie
+**Struktur:**
+- Company (Smart Identity) > Portfolio (Breadcrumb) > View
+- Zwei gleichwertige Hauptansichten: Impact Cycle & Portfolio Overview
+- Settings und Language in Overflow Menu (rechts)
+
+**Visuelle Darstellung:**
+```
+📊 PMO Value Generator
+🏢 Company > 📋 Portfolio        [⚙️ Controls ▾]
+🔵 Impact Cycle • 📊 Portfolio   🔍 Search ⌘K
+```
+
+### 7.2 Multi-Tenancy Ansatz
+**Smart Identity Frontend:**
+- Company wird automatisch aus User Session erkannt (JWT Token)
+- Kein expliziter Company Switcher im Standard-Header
+- Multi-Company Users: Switcher im User Profile Dropdown
+- Backend: Strukturelle Trennung per `company_id` (RLS Policies)
+
+**Implementierung:**
+```typescript
+// Company aus Session/Token laden
+const { data: { user } } = await supabase.auth.getUser();
+const companyId = user?.user_metadata?.company_id;
+```
+
+**Company Display:**
+- Read-Only im Header (nur Info, nicht interaktiv)
+- Wenn Multi-Company: Click → Mini-Dropdown mit Company List
+
+### 7.3 Portfolio-Navigation
+**Breadcrumb Minimal (selten gewechselt):**
+- Portfolio Name im Header angezeigt (nicht prominent)
+- Click auf Name → Kleiner Selector Dropdown
+- Alternative: Über Settings oder User Menu
+- URL-basierte Navigation: `/portfolio/{id}/impact-cycle`
+
+**Pattern:**
+```tsx
+// Portfolio Selector (minimal, da selten gewechselt)
+<button onClick={openPortfolioSelector}>
+  📋 {currentPortfolio.name} [↗]
+</button>
+```
+
+### 7.4 Dual Main Views (Gleichwertig)
+**Zwei Hauptansichten:**
+1. **Impact Cycle**: Prozess-Visualisierung (React Flow)
+   - User Story: "Ich will den Workflow verstehen"
+   - Route: `/portfolio/{id}/impact-cycle`
+   
+2. **Portfolio Overview**: Tabelle aller Portfolios/Programme/Projekte
+   - User Story: "Ich will alle Projekte im Überblick sehen"
+   - Route: `/portfolio/{id}/overview`
+
+**Als Tabs dargestellt:**
+- Nicht Dropdown, sondern nebeneinander (gleichwertig!)
+- State-Persistenz via URL (nicht LocalStorage)
+- Active State visuell hervorgehoben
+
+**Pattern:**
+```tsx
+<nav className="flex gap-2">
+  <Link href="/portfolio/1/impact-cycle" 
+        className={activeView === 'cycle' ? 'active' : ''}>
+    🔵 Impact Cycle
+  </Link>
+  <Link href="/portfolio/1/overview"
+        className={activeView === 'overview' ? 'active' : ''}>
+    📊 Portfolio Overview
+  </Link>
+</nav>
+```
+
+### 7.5 Knowledge Base Integration
+**Modal Overlay Pattern:**
+- Nicht als Tab, sondern als Fullscreen Modal
+- Trigger: Settings Menu → "📚 Knowledge Base"
+- Suchfunktion für Practice Guide, PMBOK, OPM
+- Später: AI Assistant Integration (⌘K → Ask AI)
+
+**Implementierung:**
+```tsx
+// Modal mit Suchfunktion
+{showKnowledgeBase && (
+  <KnowledgeBaseModal
+    onClose={() => setShowKnowledgeBase(false)}
+    searchQuery={initialQuery}
+  />
+)}
+```
+
+**Features:**
+- Fullscreen Overlay (`fixed inset-0`)
+- Search mit Autocomplete
+- Kategorien: Practice Guide, PMBOK, OPM, Process Groups
+- Keyboard Navigation (Esc zum Schließen)
+
+### 7.6 Command Palette (⌘K)
+**Quick Access für Power Users:**
+- Keyboard Shortcut: Cmd+K (Mac) / Ctrl+K (Windows)
+- Suche über: Prozesse, Portfolios, Actions, Settings
+- Recent Items (History aus LocalStorage)
+- GitHub/VS Code/Linear Style
+
+**Pattern:**
+```tsx
+// Global keyboard listener
+useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      setShowCommandPalette(true);
+    }
+  };
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, []);
+```
+
+**Funktionen:**
+- Navigate to Portfolio/Process
+- Quick Actions (Change Language, Toggle Mode)
+- Search Knowledge Base
+- Recent History (max. 10 Items)
+
+### 7.7 Controls Dropdown (Overflow Menu)
+**Inhalt:**
+```
+[⚙️ Controls ▾]
+├─ 🌐 Language: EN [DE|EN|ES]
+├─ 💼 Register: Normal [👥|💼]
+├─ ──────────────────
+├─ 📚 Knowledge Base →
+├─ ⚖️ Category Weights →
+├─ 🤖 AI Assistant →
+├─ ──────────────────
+├─ ⚙️ Settings
+└─ 🆘 Help
+```
+
+**Design Prinzipien:**
+- Selten genutzte Features verstecken (Progressive Disclosure)
+- Häufige Actions (Language, Mode) inline änderbar
+- Sub-Menus mit Pfeil (→) markieren
+- Keyboard Navigation (Tab, Enter, Esc)
+
+### 7.8 Responsive Header Pattern
+**Breakpoint-Strategie:**
+
+**Desktop (>1024px):**
+```tsx
+<header>
+  <div className="hidden lg:flex">
+    {/* Company + Portfolio Breadcrumb */}
+    {/* Main View Tabs */}
+    {/* Controls Dropdown */}
+    {/* Search ⌘K */}
+  </div>
+</header>
+```
+
+**Tablet (768-1024px):**
+- Text verkürzen: "Digital Transformation" → "Portfolio"
+- Icons behalten
+- Search minimieren (nur Icon)
+
+**Mobile (<768px):**
+```tsx
+<header>
+  <div className="lg:hidden flex">
+    {/* Logo + Portfolio ▾ */}
+    {/* Hamburger Menu (☰) */}
+  </div>
+</header>
+```
+- Hamburger Menu (☰) enthält: Tabs + Controls + Search
+- Slide-in von rechts
+- Overlay mit `bg-black/70`
+
+### 7.9 URL-basierte Navigation
+**Routing Schema:**
+```
+/ → Landing Page (Company Selection wenn Multi-Tenant)
+/portfolio/{id}/impact-cycle → Impact Cycle View
+/portfolio/{id}/overview → Portfolio Overview
+/portfolio/{id}/process/{processId} → Process Detail
+/portfolio/{id}/project/{projectId} → Project Detail
+/settings → User Settings
+```
+
+**State Management:**
+- **URL** für View State (Impact Cycle vs. Overview)
+- **LocalStorage** für UI Preferences (Language, Mode, collapsed states)
+- **Supabase** für User Data (Company, Portfolio assignments)
+
+**Pattern:**
+```tsx
+// URL-basierte Navigation mit useRouter
+const router = useRouter();
+const { portfolioId } = router.query;
+
+// View Wechsel
+const switchView = (view: 'cycle' | 'overview') => {
+  router.push(`/portfolio/${portfolioId}/${view}`);
+};
+```
+
+### 7.10 Design Tokens (GitHub-Style)
+**Visual Hierarchy:**
+```
+Element              Font Size    Weight      Color
+───────────────────────────────────────────────────
+Brand (PMO)          text-lg      bold        blue-400
+Company              text-sm      medium      slate-400
+Portfolio            text-base    semibold    white
+View Tabs            text-sm      medium      slate-300
+Controls             text-sm      normal      slate-400
+```
+
+**Spacing:**
+- Header Padding: `p-4` (16px vertikal/horizontal)
+- Gap zwischen Elementen: `gap-3 sm:gap-4` (12-16px)
+- Dropdown Padding: `p-2` (8px), Item: `px-4 py-2`
+
+**Interactive States:**
+- Hover: `hover:bg-slate-700` (10% heller)
+- Active: `bg-slate-700 text-blue-400` (blau + Häkchen ✓)
+- Focus: `ring-2 ring-blue-500` (Keyboard Navigation)
+- Disabled: `opacity-50 cursor-not-allowed`
+
+**Ziel:** Konsistente, GitHub-inspirierte Navigation mit klarer Informationshierarchie und optimaler UX.

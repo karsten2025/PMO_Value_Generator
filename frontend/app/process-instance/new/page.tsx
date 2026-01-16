@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import MobileMenu from '../../components/MobileMenu';
+import CompactHeaderControls from '../../components/CompactHeaderControls';
 
 // Import Metric Data
 import process1Data from '../../preview-metrics/process_1_metrics_showcase.json';
@@ -529,17 +530,16 @@ function ProcessInstanceContent() {
           />
         </div>
 
-        {/* Desktop Header - Full Controls */}
+        {/* Desktop Header - Smart Unified Controls */}
         <div className="hidden sm:flex p-4 justify-between items-center gap-4">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => router.back()}
-              className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
+              className="p-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
+              aria-label="Back"
+              title={language === 'de' ? 'Zurück' : language === 'es' ? 'Volver' : 'Back'}
             >
               <ArrowLeft size={18} />
-              <span className="text-sm">
-                {language === 'de' ? 'Zurück' : language === 'es' ? 'Volver' : 'Back'}
-              </span>
             </button>
             
             <h1 className="text-xl font-bold text-blue-400">
@@ -547,43 +547,14 @@ function ProcessInstanceContent() {
             </h1>
           </div>
 
-          {/* Controls: Language + Mode */}
-          <div className="flex gap-4 items-center">
-            {/* Language Switcher */}
-            <div className="flex bg-slate-700 rounded-lg p-1">
-              {(['de', 'en', 'es'] as Language[]).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLanguage(l)}
-                  className={`px-3 py-1 rounded-md transition ${
-                    language === l ? 'bg-blue-600' : 'hover:bg-slate-600'
-                  }`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-
-            {/* Mode Switcher (2x3 Matrix) */}
-            <div className="flex bg-slate-700 rounded-lg p-1">
-              <button
-                onClick={() => setMode('colloquial')}
-                className={`px-3 py-1 rounded-md transition text-sm ${
-                  mode === 'colloquial' ? 'bg-blue-600' : 'hover:bg-slate-600'
-                }`}
-              >
-                {mode === 'colloquial' ? '👥' : ''} {language === 'de' ? 'Normal' : language === 'es' ? 'Normal' : 'Normal'}
-              </button>
-              <button
-                onClick={() => setMode('management')}
-                className={`px-3 py-1 rounded-md transition text-sm ${
-                  mode === 'management' ? 'bg-blue-600' : 'hover:bg-slate-600'
-                }`}
-              >
-                {mode === 'management' ? '💼' : ''} {language === 'de' ? 'Management' : language === 'es' ? 'Gerencia' : 'Management'}
-              </button>
-            </div>
-          </div>
+          {/* Smart Unified Controls */}
+          <CompactHeaderControls
+            language={language.toUpperCase() as 'DE' | 'EN' | 'ES'}
+            onLanguageChange={(lang) => setLanguage(lang.toLowerCase() as Language)}
+            mode={mode}
+            onModeChange={setMode}
+            showCommandHint={false}
+          />
         </div>
       </header>
 

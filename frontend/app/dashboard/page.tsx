@@ -2,11 +2,12 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ArrowLeft, TrendingUp, TrendingDown, Minus, Activity, ChevronDown, ChevronUp, Target, Zap, Package, Award, MessageSquare, Info } from 'lucide-react';
+import { ArrowLeft, TrendingUp, TrendingDown, Minus, Activity, ChevronDown, ChevronUp, Target, Zap, Package, Award, MessageSquare, Info, Settings } from 'lucide-react';
 import MobileMenu from '../components/MobileMenu';
 import TrendChart from '../components/TrendChart';
 import CategoryWeightsSettings from '../components/CategoryWeightsSettings';
 import ScoreBreakdown from '../components/ScoreBreakdown';
+import CompactHeaderControls from '../components/CompactHeaderControls';
 import {
   calculateMetricScore,
   calculateProcessScore,
@@ -68,6 +69,7 @@ function DashboardContent() {
   });
   const [expandedProcesses, setExpandedProcesses] = useState<Set<number>>(new Set());
   const [weightsUpdateTrigger, setWeightsUpdateTrigger] = useState(0);
+  const [showWeightsSettings, setShowWeightsSettings] = useState(false);
 
   // FIX HYDRATION: Nach Mount Language aus LocalStorage laden
   useEffect(() => {
@@ -172,7 +174,40 @@ function DashboardContent() {
             'Digital Transformation [DUMMY]',
             allProcessScores
           );
-          setPortfolioScore(portfolio);
+          
+          // Berechne aggregierte Category Scores für ScoreBreakdown
+          const aggregatedCategoryScores: Record<MetricCategory, number> = {
+            input: 0,
+            process: 0,
+            output: 0,
+            outcome: 0,
+            feedback: 0
+          };
+          
+          // Durchschnitt aller Prozess-Category-Scores
+          allProcessScores.forEach(proc => {
+            aggregatedCategoryScores.input += proc.category_scores.input || 0;
+            aggregatedCategoryScores.process += proc.category_scores.process || 0;
+            aggregatedCategoryScores.output += proc.category_scores.output || 0;
+            aggregatedCategoryScores.outcome += proc.category_scores.outcome || 0;
+            aggregatedCategoryScores.feedback += proc.category_scores.feedback || 0;
+          });
+          
+          // Durchschnitt berechnen
+          const processCount = allProcessScores.length;
+          Object.keys(aggregatedCategoryScores).forEach(cat => {
+            aggregatedCategoryScores[cat as MetricCategory] = Math.round(
+              aggregatedCategoryScores[cat as MetricCategory] / processCount
+            );
+          });
+          
+          // Add category_scores to portfolio object (type assertion needed)
+          const portfolioWithCategories = {
+            ...portfolio,
+            category_scores: aggregatedCategoryScores
+          };
+          
+          setPortfolioScore(portfolioWithCategories as any);
 
           // LOAD TREND DATA: Extrahiere historische Scores
           const trend = loadTrendData();
@@ -302,11 +337,6 @@ function DashboardContent() {
     }
   };
 
-  // Handler: Weights wurden geändert → Neu berechnen
-  const handleWeightsChange = () => {
-    setWeightsUpdateTrigger(prev => prev + 1);
-  };
-
   // Loading State bis mounted
   if (!mounted) {
     return (
@@ -342,30 +372,21 @@ function DashboardContent() {
             onModeChange={setMode}
             language={language.toUpperCase() as 'DE' | 'EN' | 'ES'}
             onLanguageChange={(lang) => setLanguage(lang.toLowerCase() as Language)}
-            additionalContent={
-              <div className="pt-4 border-t border-slate-700">
-                <CategoryWeightsSettings 
-                  language={language} 
-                  onWeightsChange={handleWeightsChange}
-                />
-              </div>
-            }
           />
         </div>
 
         {/* Desktop Header */}
         <div className="hidden sm:flex p-4 justify-between items-center gap-4">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => router.push('/')}
-              className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
+              className="p-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
+              aria-label="Back to Impact Cycle"
+              title={language === 'de' ? 'Zurück zum Impact Cycle' : 
+                     language === 'es' ? 'Volver al Ciclo de Impacto' : 
+                     'Back to Impact Cycle'}
             >
               <ArrowLeft size={18} />
-              <span className="text-sm">
-                {language === 'de' ? 'Zurück zum Impact Cycle' : 
-                 language === 'es' ? 'Volver al Ciclo de Impacto' : 
-                 'Back to Impact Cycle'}
-              </span>
             </button>
             
             <h1 className="text-xl font-bold text-blue-400">
@@ -373,48 +394,31 @@ function DashboardContent() {
             </h1>
           </div>
 
-          {/* Controls */}
-          <div className="flex gap-4 items-center">
-            {/* Language */}
-            <div className="flex bg-slate-700 rounded-lg p-1">
-              {(['de', 'en', 'es'] as Language[]).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLanguage(l)}
-                  className={`px-3 py-1 rounded-md transition ${
-                    language === l ? 'bg-blue-600' : 'hover:bg-slate-600'
-                  }`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-
-            {/* Mode */}
-            <div className="flex bg-slate-700 rounded-lg p-1">
-              <button
-                onClick={() => setMode('colloquial')}
-                className={`px-3 py-1 rounded-md transition text-sm ${
-                  mode === 'colloquial' ? 'bg-blue-600' : 'hover:bg-slate-600'
-                }`}
-              >
-                👥 {language === 'de' ? 'Normal' : language === 'es' ? 'Normal' : 'Normal'}
-              </button>
-              <button
-                onClick={() => setMode('management')}
-                className={`px-3 py-1 rounded-md transition text-sm ${
-                  mode === 'management' ? 'bg-blue-600' : 'hover:bg-slate-600'
-                }`}
-              >
-                💼 {language === 'de' ? 'Management' : language === 'es' ? 'Gerencia' : 'Management'}
-              </button>
-            </div>
-
-            {/* Category Weights Settings */}
-            <CategoryWeightsSettings 
-              language={language} 
-              onWeightsChange={handleWeightsChange}
+          {/* Smart Unified Controls */}
+          <div className="flex gap-3 items-center">
+            <CompactHeaderControls
+              language={language.toUpperCase() as 'DE' | 'EN' | 'ES'}
+              onLanguageChange={(lang) => setLanguage(lang.toLowerCase() as Language)}
+              mode={mode}
+              onModeChange={setMode}
+              showCommandHint={false}
             />
+
+            {/* Category Weights Button */}
+            <button
+              onClick={() => setShowWeightsSettings(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
+              title={language === 'de' ? 'Kategorie-Gewichtungen anpassen' :
+                     language === 'es' ? 'Ajustar pesos de categoría' :
+                     'Adjust Category Weights'}
+            >
+              <Settings size={16} />
+              <span className="hidden lg:inline text-sm text-white">
+                {language === 'de' ? 'Gewichtungen' :
+                 language === 'es' ? 'Pesos' :
+                 'Weights'}
+              </span>
+            </button>
           </div>
         </div>
       </header>
@@ -679,6 +683,18 @@ function DashboardContent() {
           )}
         </div>
       </main>
+
+      {/* CATEGORY WEIGHTS SETTINGS MODAL */}
+      {showWeightsSettings && (
+        <CategoryWeightsSettings
+          language={language}
+          onClose={() => {
+            setShowWeightsSettings(false);
+            // Trigger reload when weights change
+            setWeightsUpdateTrigger(prev => prev + 1);
+          }}
+        />
+      )}
     </div>
   );
 }

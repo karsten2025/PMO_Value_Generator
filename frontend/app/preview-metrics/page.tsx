@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import MobileMenu from '../components/MobileMenu';
+import CompactHeaderControls from '../components/CompactHeaderControls';
 
 // Import aller 10 Prozess-Metriken (SHOWCASE VERSION: 15 Metriken pro Prozess)
 import process1Data from './process_1_metrics_showcase.json';
@@ -346,7 +347,7 @@ function MetricsPreviewContent() {
           />
         </div>
 
-        {/* Desktop Header - Full Controls */}
+        {/* Desktop Header - Smart Unified Controls */}
         <div className="hidden sm:flex p-4 justify-between items-center gap-4">
           <div className="flex items-center gap-4">
             <h1 className="text-xl font-bold text-blue-400">🔍 Metric Pool Preview</h1>
@@ -357,39 +358,17 @@ function MetricsPreviewContent() {
             </div>
           </div>
           
-          <div className="flex gap-4 items-center">
-            {/* Language */}
-            <div className="flex bg-slate-700 rounded-lg p-1">
-              {(['de', 'en', 'es'] as Language[]).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => {
-                    console.log('✅ Sprache wechseln zu:', l, 'Aktuell:', language);
-                    setLanguage(l);
-                  }}
-                  className={`px-3 py-1 rounded-md transition ${language === l ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-
-            {/* Mode */}
-            <div className="flex bg-slate-700 rounded-lg p-1">
-              <button
-                onClick={() => setMode('colloquial')}
-                className={`flex items-center gap-2 px-3 py-1 rounded-md ${mode === 'colloquial' ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-              >
-                👥 Normal
-              </button>
-              <button
-                onClick={() => setMode('management')}
-                className={`flex items-center gap-2 px-3 py-1 rounded-md ${mode === 'management' ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-              >
-                💼 Management
-              </button>
-            </div>
-          </div>
+          {/* Smart Unified Controls */}
+          <CompactHeaderControls
+            language={language.toUpperCase() as 'DE' | 'EN' | 'ES'}
+            onLanguageChange={(lang) => {
+              console.log('✅ Sprache wechseln zu:', lang, 'Aktuell:', language);
+              setLanguage(lang.toLowerCase() as Language);
+            }}
+            mode={mode}
+            onModeChange={setMode}
+            showCommandHint={false}
+          />
         </div>
 
         {/* Mobile Second Row - Process Selector (KOMPAKT) */}
