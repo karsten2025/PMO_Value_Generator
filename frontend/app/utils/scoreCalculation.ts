@@ -62,6 +62,13 @@ export interface PortfolioScore {
   processes: ProcessScore[];
   overall_score: number; // 0-100, Durchschnitt aller Prozesse
   health_status: 'excellent' | 'good' | 'warning' | 'critical';
+  category_scores: {
+    input: number;
+    process: number;
+    output: number;
+    outcome: number;
+    feedback: number;
+  };
 }
 
 // ===========================
