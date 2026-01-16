@@ -294,12 +294,40 @@ export function calculatePortfolioScore(
   // Health Status bestimmen
   const health_status = getPerformanceLevel(overall_score);
 
+  // Category Scores = Durchschnitt aller Process Category Scores
+  const category_scores = {
+    input: 0,
+    process: 0,
+    output: 0,
+    outcome: 0,
+    feedback: 0
+  };
+
+  if (processes.length > 0) {
+    processes.forEach(proc => {
+      category_scores.input += proc.category_scores.input;
+      category_scores.process += proc.category_scores.process;
+      category_scores.output += proc.category_scores.output;
+      category_scores.outcome += proc.category_scores.outcome;
+      category_scores.feedback += proc.category_scores.feedback;
+    });
+
+    // Durchschnitt berechnen
+    const processCount = processes.length;
+    category_scores.input = Math.round(category_scores.input / processCount);
+    category_scores.process = Math.round(category_scores.process / processCount);
+    category_scores.output = Math.round(category_scores.output / processCount);
+    category_scores.outcome = Math.round(category_scores.outcome / processCount);
+    category_scores.feedback = Math.round(category_scores.feedback / processCount);
+  }
+
   return {
     portfolio_id: portfolioId,
     portfolio_name: portfolioName,
     processes,
     overall_score,
     health_status,
+    category_scores,
   };
 }
 
