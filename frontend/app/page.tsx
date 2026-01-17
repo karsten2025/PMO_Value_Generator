@@ -459,27 +459,6 @@ export default function FlywheelPage() {
             }
           />
         </div>
-
-        {/* Mobile Second Row - Portfolio & View - NO OVERFLOW */}
-        <div className="sm:hidden px-2 pb-2 flex gap-1.5">
-          <div className="flex-1 min-w-0">
-            <PortfolioSelector />
-          </div>
-          <div className="flex bg-slate-700 rounded-lg p-0.5 flex-shrink-0">
-            <button 
-              onClick={() => setView('cycle')}
-              className={`flex items-center gap-0.5 px-1.5 py-1 rounded-md transition text-xs ${view === 'cycle' ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-            >
-              <Network size={12} />
-            </button>
-            <button 
-              onClick={() => setView('projects')}
-              className={`flex items-center gap-0.5 px-1.5 py-1 rounded-md transition text-xs ${view === 'projects' ? 'bg-blue-600' : 'hover:bg-slate-600'}`}
-            >
-              <LayoutGrid size={12} />
-            </button>
-          </div>
-        </div>
       </header>
 
       {/* Diagramm-Bereich */}

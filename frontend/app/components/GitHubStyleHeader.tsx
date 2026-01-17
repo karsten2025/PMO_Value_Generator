@@ -290,10 +290,39 @@ export default function GitHubStyleHeader({
         </div>
       </div>
 
-      {/* MOBILE HEADER (<768px) - Passed to parent for hamburger menu */}
-      <div className="sm:hidden flex items-center justify-between px-3 py-3">
-        <h1 className="text-lg font-bold text-blue-400">📊 PMO</h1>
-        {/* Mobile Menu rendered by parent */}
+      {/* MOBILE HEADER (<768px) */}
+      <div className="sm:hidden">
+        <div className="flex items-center justify-between px-3 py-3">
+          <h1 className="text-lg font-bold text-blue-400">📊 PMO</h1>
+          {/* Mobile Menu rendered by parent */}
+        </div>
+        
+        {/* Mobile View Tabs */}
+        <div className="flex gap-1 px-3 pb-2">
+          <button
+            onClick={() => onViewChange('cycle')}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition text-sm font-medium ${
+              currentView === 'cycle'
+                ? 'bg-blue-600 text-white'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            }`}
+          >
+            <span>🔵</span>
+            <span>{getViewLabel('cycle')}</span>
+          </button>
+
+          <button
+            onClick={() => onViewChange('projects')}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition text-sm font-medium ${
+              currentView === 'projects'
+                ? 'bg-blue-600 text-white'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            }`}
+          >
+            <span>📊</span>
+            <span>{getViewLabel('projects')}</span>
+          </button>
+        </div>
       </div>
     </header>
   );
