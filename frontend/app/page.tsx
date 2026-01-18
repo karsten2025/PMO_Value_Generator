@@ -12,7 +12,7 @@
  * Die 10 Schritte mit vollständiger 2×3 Matrix (DE/EN/ES × Normal/Management)
  */
 
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, Suspense } from 'react';
 import { ReactFlow, Background, Controls } from '@xyflow/react';
 import { useSearchParams } from 'next/navigation';
 import '@xyflow/react/dist/style.css';
@@ -41,7 +41,8 @@ const nodeTypes = {
   healthHub: HealthHubNode,
 };
 
-export default function FlywheelPage() {
+// Inner component that uses useSearchParams
+function FlywheelPageContent() {
   // Portfolio Context
   const { selectedPortfolio } = usePortfolio();
   const { language: contextLanguage, register: contextRegister, setLanguage: setContextLanguage, setRegister: setContextRegister } = useLanguage();
@@ -807,5 +808,16 @@ export default function FlywheelPage() {
       {/* Chatbot Interface */}
       <ChatInterface isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </div>
+  );
+}
+
+// Wrapper with Suspense boundary for useSearchParams
+export default function FlywheelPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="text-slate-400">Loading...</div>
+    </div>}>
+      <FlywheelPageContent />
+    </Suspense>
   );
 }
