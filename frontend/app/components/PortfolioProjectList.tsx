@@ -263,13 +263,24 @@ export default function PortfolioProjectList({
                     {/* Project Header */}
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1 pr-4">
-                        <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-center gap-2 mb-2 flex-wrap">
                           <h3 className="text-xl font-bold text-white">
                             {project.name_matrix?.[lang]?.[mode] || project.name}
                           </h3>
                           <span className="text-xl">
                             {getStatusEmoji(progress)}
                           </span>
+                          {/* PMP Plan Button */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.location.href = `/portfolio/${portfolioId}/project/${project.id}`;
+                            }}
+                            className="ml-2 px-2 py-1 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded text-xs transition-colors flex items-center gap-1"
+                            title={lang === 'de' ? 'Projektplan anzeigen' : lang === 'en' ? 'View Project Plan' : 'Ver Plan del Proyecto'}
+                          >
+                            📋 {lang === 'de' ? 'Plan' : lang === 'en' ? 'Plan' : 'Plan'}
+                          </button>
                         </div>
                         <p className="text-sm text-slate-400 leading-relaxed">
                           {project.description_matrix?.[lang]?.[mode] || project.description}

@@ -14,6 +14,7 @@
 
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { ReactFlow, Background, Controls } from '@xyflow/react';
+import { useSearchParams } from 'next/navigation';
 import '@xyflow/react/dist/style.css';
 import { Languages, User, Target, TrendingUp, Users as UsersIcon, CheckCircle, LayoutGrid, Network, MessageSquare } from 'lucide-react';
 import uiLabels from '../mock/ui-labels-matrix.json';
@@ -44,6 +45,9 @@ export default function FlywheelPage() {
   // Portfolio Context
   const { selectedPortfolio } = usePortfolio();
   const { language: contextLanguage, register: contextRegister, setLanguage: setContextLanguage, setRegister: setContextRegister } = useLanguage();
+  
+  // URL Parameters
+  const searchParams = useSearchParams();
 
   // FIX HYDRATION: Mounted State - verhindert Mismatch zwischen Server und Client
   const [mounted, setMounted] = useState(false);
@@ -58,6 +62,14 @@ export default function FlywheelPage() {
   // View State: Impact Cycle oder Projects List
   const [view, setView] = useState<'cycle' | 'projects'>('cycle');
   const [isChatOpen, setIsChatOpen] = useState(false); // Chatbot state
+  
+  // Check URL parameter for view on mount
+  useEffect(() => {
+    const viewParam = searchParams.get('view');
+    if (viewParam === 'projects') {
+      setView('projects');
+    }
+  }, [searchParams]);
   
   // Sync local state with LanguageContext
   const setLang = (newLang: 'de' | 'en' | 'es') => {

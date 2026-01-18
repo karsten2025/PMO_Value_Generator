@@ -37,9 +37,16 @@ export default function ProjectDetailSidebar({
   const [kpis, setKpis] = useState<EnrichedKPI[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Check if this is the DUMMY project
+  const isDummyProject = project.name?.includes('Cloud Migration') || project.name?.includes('DUMMY');
+
   useEffect(() => {
-    loadProjectKPIs();
-  }, [project.id]);
+    if (isDummyProject) {
+      loadDemoKPIs();
+    } else {
+      loadProjectKPIs();
+    }
+  }, [project.id, isDummyProject]);
 
   const loadProjectKPIs = async () => {
     setLoading(true);
@@ -97,6 +104,130 @@ export default function ProjectDetailSidebar({
     } finally {
       setLoading(false);
     }
+  };
+
+  // ========================================
+  // DEMO KPIs für Cloud Migration DUMMY
+  // ========================================
+  const loadDemoKPIs = () => {
+    setLoading(true);
+
+    const demoKPIs: EnrichedKPI[] = [
+      // Strategic KPIs
+      {
+        id: 'demo-spi',
+        kpi_library_id: 'spi',
+        kpi_type: 'strategic',
+        title: lang === 'de' ? 'Schedule Performance Index (SPI)' : lang === 'es' ? 'Índice de Rendimiento del Cronograma' : 'Schedule Performance Index (SPI)',
+        description: lang === 'de' ? 'Zeitplan-Effizienz: > 1.0 = Vor Plan, < 1.0 = Verzögert' : lang === 'es' ? 'Eficiencia del cronograma: > 1.0 = Adelantado, < 1.0 = Retrasado' : 'Schedule efficiency: > 1.0 = Ahead, < 1.0 = Behind',
+        unit: '',
+        icon: 'calendar',
+        target_value: 1.0,
+        actual_value: 0.95,
+        progress: 95,
+      },
+      {
+        id: 'demo-cpi',
+        kpi_library_id: 'cpi',
+        kpi_type: 'strategic',
+        title: lang === 'de' ? 'Cost Performance Index (CPI)' : lang === 'es' ? 'Índice de Rendimiento de Costos' : 'Cost Performance Index (CPI)',
+        description: lang === 'de' ? 'Budget-Effizienz: > 1.0 = Unter Budget, < 1.0 = Über Budget' : lang === 'es' ? 'Eficiencia del presupuesto: > 1.0 = Bajo presupuesto, < 1.0 = Sobre presupuesto' : 'Budget efficiency: > 1.0 = Under budget, < 1.0 = Over budget',
+        unit: '',
+        icon: 'dollar-sign',
+        target_value: 1.0,
+        actual_value: 0.98,
+        progress: 98,
+      },
+      {
+        id: 'demo-stakeholder',
+        kpi_library_id: 'stakeholder-satisfaction',
+        kpi_type: 'strategic',
+        title: lang === 'de' ? 'Stakeholder-Zufriedenheit' : lang === 'es' ? 'Satisfacción de Stakeholders' : 'Stakeholder Satisfaction',
+        description: lang === 'de' ? 'Durchschnittliche Zufriedenheit der Stakeholder' : lang === 'es' ? 'Satisfacción promedio de stakeholders' : 'Average stakeholder satisfaction score',
+        unit: '%',
+        icon: 'users',
+        target_value: 85,
+        actual_value: 89,
+        progress: 105,
+      },
+      // Tactical KPIs
+      {
+        id: 'demo-velocity',
+        kpi_library_id: 'team-velocity',
+        kpi_type: 'tactical',
+        title: lang === 'de' ? 'Team Velocity' : lang === 'es' ? 'Velocidad del Equipo' : 'Team Velocity',
+        description: lang === 'de' ? 'Story Points pro Sprint' : lang === 'es' ? 'Puntos de historia por sprint' : 'Story points completed per sprint',
+        unit: ' SP',
+        icon: 'zap',
+        target_value: 45,
+        actual_value: 48,
+        progress: 107,
+      },
+      {
+        id: 'demo-burndown',
+        kpi_library_id: 'sprint-burndown',
+        kpi_type: 'tactical',
+        title: lang === 'de' ? 'Sprint Burndown' : lang === 'es' ? 'Burndown del Sprint' : 'Sprint Burndown',
+        description: lang === 'de' ? 'Restliche Arbeit im aktuellen Sprint' : lang === 'es' ? 'Trabajo restante en el sprint actual' : 'Remaining work in current sprint',
+        unit: '%',
+        icon: 'trending-down',
+        target_value: 100,
+        actual_value: 72,
+        progress: 72,
+      },
+      {
+        id: 'demo-budget-util',
+        kpi_library_id: 'budget-utilization',
+        kpi_type: 'tactical',
+        title: lang === 'de' ? 'Budget-Auslastung' : lang === 'es' ? 'Utilización del Presupuesto' : 'Budget Utilization',
+        description: lang === 'de' ? 'Verbrauchtes Budget vs. Zeitplan' : lang === 'es' ? 'Presupuesto gastado vs. cronograma' : 'Budget spent vs. timeline progress',
+        unit: '%',
+        icon: 'percent',
+        target_value: 65,
+        actual_value: 65,
+        progress: 100,
+      },
+      // Operational KPIs
+      {
+        id: 'demo-defect-rate',
+        kpi_library_id: 'defect-rate',
+        kpi_type: 'operational',
+        title: lang === 'de' ? 'Fehlerrate' : lang === 'es' ? 'Tasa de Defectos' : 'Defect Rate',
+        description: lang === 'de' ? 'Anzahl der Fehler pro 1000 Codezeilen' : lang === 'es' ? 'Número de defectos por 1000 líneas de código' : 'Number of defects per 1000 lines of code',
+        unit: ' /1k LOC',
+        icon: 'alert-circle',
+        target_value: 5,
+        actual_value: 3,
+        progress: 140, // Lower is better, but we invert for display
+      },
+      {
+        id: 'demo-test-coverage',
+        kpi_library_id: 'test-coverage',
+        kpi_type: 'operational',
+        title: lang === 'de' ? 'Test-Abdeckung' : lang === 'es' ? 'Cobertura de Pruebas' : 'Test Coverage',
+        description: lang === 'de' ? 'Prozentsatz des Codes mit automatisierten Tests' : lang === 'es' ? 'Porcentaje de código con pruebas automatizadas' : 'Percentage of code covered by automated tests',
+        unit: '%',
+        icon: 'check-circle',
+        target_value: 80,
+        actual_value: 85,
+        progress: 106,
+      },
+      {
+        id: 'demo-deployment-freq',
+        kpi_library_id: 'deployment-frequency',
+        kpi_type: 'operational',
+        title: lang === 'de' ? 'Deployment-Frequenz' : lang === 'es' ? 'Frecuencia de Despliegue' : 'Deployment Frequency',
+        description: lang === 'de' ? 'Anzahl erfolgreicher Deployments pro Woche' : lang === 'es' ? 'Número de despliegues exitosos por semana' : 'Number of successful deployments per week',
+        unit: ' /week',
+        icon: 'upload-cloud',
+        target_value: 5,
+        actual_value: 6,
+        progress: 120,
+      },
+    ];
+
+    setKpis(demoKPIs);
+    setLoading(false);
   };
 
   // Gruppiere KPIs nach Typ
@@ -249,9 +380,37 @@ export default function ProjectDetailSidebar({
       {/* KPI Groups */}
       <div className="p-6 space-y-6">
         {kpis.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-12 text-slate-400">
-            <AlertCircle className="w-12 h-12 mb-4 opacity-50" />
-            <p className="text-center">{labels.noKpis[lang][mode]}</p>
+          <div className="flex flex-col items-center justify-center py-12">
+            <AlertCircle className="w-16 h-16 mb-4 text-slate-600" />
+            <p className="text-center text-slate-400 mb-6 max-w-md">
+              {isDummyProject ? (
+                <>
+                  {lang === 'de' && 'Keine Projekt-KPIs verfügbar'}
+                  {lang === 'en' && 'No project KPIs available'}
+                  {lang === 'es' && 'No hay KPIs de proyecto disponibles'}
+                </>
+              ) : (
+                <>
+                  {lang === 'de' && mode === 'colloquial' && 'Noch keine Kennzahlen erfasst. Füge projektspezifische KPIs hinzu um den Fortschritt zu tracken.'}
+                  {lang === 'de' && mode === 'management' && 'No KPIs tracked for this project yet. Define project-specific KPIs to monitor performance.'}
+                  {lang === 'en' && mode === 'colloquial' && 'No metrics tracked yet. Add project-specific KPIs to monitor progress.'}
+                  {lang === 'en' && mode === 'management' && 'No KPIs tracked for this project yet. Define project-specific KPIs to monitor performance.'}
+                  {lang === 'es' && mode === 'colloquial' && 'Aún no hay métricas rastreadas. Agrega KPIs específicos del proyecto para monitorear el progreso.'}
+                  {lang === 'es' && mode === 'management' && 'No se rastrean KPIs para este proyecto aún. Defina KPIs específicos del proyecto para monitorear el rendimiento.'}
+                </>
+              )}
+            </p>
+            {!isDummyProject && (
+              <button
+                onClick={() => alert('KPI-Editor - Coming soon! 🚀')}
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors flex items-center gap-2"
+              >
+                <TrendingUp className="w-5 h-5" />
+                {lang === 'de' && 'KPIs hinzufügen'}
+                {lang === 'en' && 'Add KPIs'}
+                {lang === 'es' && 'Agregar KPIs'}
+              </button>
+            )}
           </div>
         ) : (
           <>
