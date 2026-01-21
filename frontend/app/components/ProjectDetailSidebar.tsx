@@ -1,10 +1,10 @@
 "use client";
 
-// Project Detail Sidebar - Zeigt alle KPIs eines Projekts
+// Project Detail Sidebar - KPI Editor (Inline Editing)
 // Gemäß .cursorrules: 2x3 Matrix (DE/EN/ES x Colloquial/Management)
 
 import React, { useState, useEffect } from 'react';
-import { X, Target, Layers, Settings, TrendingUp, AlertCircle } from 'lucide-react';
+import { X, TrendingUp, AlertCircle, Plus, Save, Trash2 } from 'lucide-react';
 import { supabase, type Project, type KPIValue } from '@/lib/supabase';
 import kpiLibrary from '../../mock/kpi-library-mock.json';
 
@@ -18,14 +18,13 @@ interface ProjectDetailSidebarProps {
 interface EnrichedKPI {
   id: string;
   kpi_library_id: string;
-  kpi_type: 'strategic' | 'tactical' | 'operational';
   title: string;
   description: string;
   unit: string;
-  icon: string;
   target_value: number;
   actual_value: number;
   progress: number;
+  isNew?: boolean; // Flag für neu hinzugefügte KPIs
 }
 
 export default function ProjectDetailSidebar({ 
@@ -68,11 +67,9 @@ export default function ProjectDetailSidebar({
             return {
               id: kv.id,
               kpi_library_id: kv.kpi_id,
-              kpi_type: 'operational' as const,
               title: 'Unknown KPI',
               description: 'No definition found',
               unit: '%',
-              icon: 'help-circle',
               target_value: kv.target_value,
               actual_value: kv.actual_value,
               progress: Math.round((kv.actual_value / kv.target_value) * 100)
@@ -86,11 +83,9 @@ export default function ProjectDetailSidebar({
           return {
             id: kv.id,
             kpi_library_id: kv.kpi_id,
-            kpi_type: kpiDef.kpi_type as 'strategic' | 'tactical' | 'operational',
             title,
             description,
             unit: kpiDef.unit,
-            icon: kpiDef.icon,
             target_value: kv.target_value,
             actual_value: kv.actual_value,
             progress: Math.round((kv.actual_value / kv.target_value) * 100)
@@ -113,15 +108,12 @@ export default function ProjectDetailSidebar({
     setLoading(true);
 
     const demoKPIs: EnrichedKPI[] = [
-      // Strategic KPIs
       {
         id: 'demo-spi',
         kpi_library_id: 'spi',
-        kpi_type: 'strategic',
         title: lang === 'de' ? 'Schedule Performance Index (SPI)' : lang === 'es' ? 'Índice de Rendimiento del Cronograma' : 'Schedule Performance Index (SPI)',
         description: lang === 'de' ? 'Zeitplan-Effizienz: > 1.0 = Vor Plan, < 1.0 = Verzögert' : lang === 'es' ? 'Eficiencia del cronograma: > 1.0 = Adelantado, < 1.0 = Retrasado' : 'Schedule efficiency: > 1.0 = Ahead, < 1.0 = Behind',
         unit: '',
-        icon: 'calendar',
         target_value: 1.0,
         actual_value: 0.95,
         progress: 95,
@@ -129,11 +121,9 @@ export default function ProjectDetailSidebar({
       {
         id: 'demo-cpi',
         kpi_library_id: 'cpi',
-        kpi_type: 'strategic',
         title: lang === 'de' ? 'Cost Performance Index (CPI)' : lang === 'es' ? 'Índice de Rendimiento de Costos' : 'Cost Performance Index (CPI)',
         description: lang === 'de' ? 'Budget-Effizienz: > 1.0 = Unter Budget, < 1.0 = Über Budget' : lang === 'es' ? 'Eficiencia del presupuesto: > 1.0 = Bajo presupuesto, < 1.0 = Sobre presupuesto' : 'Budget efficiency: > 1.0 = Under budget, < 1.0 = Over budget',
         unit: '',
-        icon: 'dollar-sign',
         target_value: 1.0,
         actual_value: 0.98,
         progress: 98,
@@ -141,24 +131,19 @@ export default function ProjectDetailSidebar({
       {
         id: 'demo-stakeholder',
         kpi_library_id: 'stakeholder-satisfaction',
-        kpi_type: 'strategic',
         title: lang === 'de' ? 'Stakeholder-Zufriedenheit' : lang === 'es' ? 'Satisfacción de Stakeholders' : 'Stakeholder Satisfaction',
         description: lang === 'de' ? 'Durchschnittliche Zufriedenheit der Stakeholder' : lang === 'es' ? 'Satisfacción promedio de stakeholders' : 'Average stakeholder satisfaction score',
         unit: '%',
-        icon: 'users',
         target_value: 85,
         actual_value: 89,
         progress: 105,
       },
-      // Tactical KPIs
       {
         id: 'demo-velocity',
         kpi_library_id: 'team-velocity',
-        kpi_type: 'tactical',
         title: lang === 'de' ? 'Team Velocity' : lang === 'es' ? 'Velocidad del Equipo' : 'Team Velocity',
         description: lang === 'de' ? 'Story Points pro Sprint' : lang === 'es' ? 'Puntos de historia por sprint' : 'Story points completed per sprint',
         unit: ' SP',
-        icon: 'zap',
         target_value: 45,
         actual_value: 48,
         progress: 107,
@@ -166,11 +151,9 @@ export default function ProjectDetailSidebar({
       {
         id: 'demo-burndown',
         kpi_library_id: 'sprint-burndown',
-        kpi_type: 'tactical',
         title: lang === 'de' ? 'Sprint Burndown' : lang === 'es' ? 'Burndown del Sprint' : 'Sprint Burndown',
         description: lang === 'de' ? 'Restliche Arbeit im aktuellen Sprint' : lang === 'es' ? 'Trabajo restante en el sprint actual' : 'Remaining work in current sprint',
         unit: '%',
-        icon: 'trending-down',
         target_value: 100,
         actual_value: 72,
         progress: 72,
@@ -178,36 +161,19 @@ export default function ProjectDetailSidebar({
       {
         id: 'demo-budget-util',
         kpi_library_id: 'budget-utilization',
-        kpi_type: 'tactical',
         title: lang === 'de' ? 'Budget-Auslastung' : lang === 'es' ? 'Utilización del Presupuesto' : 'Budget Utilization',
         description: lang === 'de' ? 'Verbrauchtes Budget vs. Zeitplan' : lang === 'es' ? 'Presupuesto gastado vs. cronograma' : 'Budget spent vs. timeline progress',
         unit: '%',
-        icon: 'percent',
         target_value: 65,
         actual_value: 65,
         progress: 100,
       },
-      // Operational KPIs
-      {
-        id: 'demo-defect-rate',
-        kpi_library_id: 'defect-rate',
-        kpi_type: 'operational',
-        title: lang === 'de' ? 'Fehlerrate' : lang === 'es' ? 'Tasa de Defectos' : 'Defect Rate',
-        description: lang === 'de' ? 'Anzahl der Fehler pro 1000 Codezeilen' : lang === 'es' ? 'Número de defectos por 1000 líneas de código' : 'Number of defects per 1000 lines of code',
-        unit: ' /1k LOC',
-        icon: 'alert-circle',
-        target_value: 5,
-        actual_value: 3,
-        progress: 140, // Lower is better, but we invert for display
-      },
       {
         id: 'demo-test-coverage',
         kpi_library_id: 'test-coverage',
-        kpi_type: 'operational',
         title: lang === 'de' ? 'Test-Abdeckung' : lang === 'es' ? 'Cobertura de Pruebas' : 'Test Coverage',
         description: lang === 'de' ? 'Prozentsatz des Codes mit automatisierten Tests' : lang === 'es' ? 'Porcentaje de código con pruebas automatizadas' : 'Percentage of code covered by automated tests',
         unit: '%',
-        icon: 'check-circle',
         target_value: 80,
         actual_value: 85,
         progress: 106,
@@ -215,11 +181,9 @@ export default function ProjectDetailSidebar({
       {
         id: 'demo-deployment-freq',
         kpi_library_id: 'deployment-frequency',
-        kpi_type: 'operational',
         title: lang === 'de' ? 'Deployment-Frequenz' : lang === 'es' ? 'Frecuencia de Despliegue' : 'Deployment Frequency',
         description: lang === 'de' ? 'Anzahl erfolgreicher Deployments pro Woche' : lang === 'es' ? 'Número de despliegues exitosos por semana' : 'Number of successful deployments per week',
         unit: ' /week',
-        icon: 'upload-cloud',
         target_value: 5,
         actual_value: 6,
         progress: 120,
@@ -230,17 +194,62 @@ export default function ProjectDetailSidebar({
     setLoading(false);
   };
 
-  // Gruppiere KPIs nach Typ
-  const groupedKPIs = {
-    strategic: kpis.filter(k => k.kpi_type === 'strategic'),
-    tactical: kpis.filter(k => k.kpi_type === 'tactical'),
-    operational: kpis.filter(k => k.kpi_type === 'operational'),
-  };
-
   // Berechne Gesamt-Progress
   const overallProgress = kpis.length > 0
     ? Math.round(kpis.reduce((sum, k) => sum + k.progress, 0) / kpis.length)
     : 0;
+
+  // ========================================
+  // KPI UPDATE HANDLERS (Inline Editing)
+  // ========================================
+  const updateKPI = (id: string, field: 'title' | 'actual_value' | 'target_value', value: string | number) => {
+    setKpis((prev) =>
+      prev.map((kpi) => {
+        if (kpi.id !== id) return kpi;
+
+        const updated = { ...kpi, [field]: value };
+
+        // Recalculate progress if values changed
+        if (field === 'actual_value' || field === 'target_value') {
+          const actual = field === 'actual_value' ? Number(value) : kpi.actual_value;
+          const target = field === 'target_value' ? Number(value) : kpi.target_value;
+          updated.progress = target > 0 ? Math.round((actual / target) * 100) : 0;
+        }
+
+        return updated;
+      })
+    );
+  };
+
+  const addNewKPI = () => {
+    const newKPI: EnrichedKPI = {
+      id: `new-${Date.now()}`,
+      kpi_library_id: '',
+      title: lang === 'de' ? 'Neue Metrik' : lang === 'es' ? 'Nueva Métrica' : 'New Metric',
+      description: '',
+      unit: '%',
+      target_value: 100,
+      actual_value: 0,
+      progress: 0,
+      isNew: true,
+    };
+    setKpis((prev) => [...prev, newKPI]);
+  };
+
+  const deleteKPI = (id: string) => {
+    setKpis((prev) => prev.filter((kpi) => kpi.id !== id));
+  };
+
+  const saveKPIs = () => {
+    console.log('💾 KPIs to save:', kpis);
+    alert(
+      lang === 'de'
+        ? 'KPIs gespeichert! (Siehe Console)'
+        : lang === 'es'
+        ? 'KPIs guardados! (Ver consola)'
+        : 'KPIs saved! (See console)'
+    );
+  };
 
   // Helper functions
   const getProgressColor = (progress: number) => {
@@ -253,46 +262,6 @@ export default function ProjectDetailSidebar({
     if (progress >= 80) return 'text-green-500';
     if (progress >= 50) return 'text-yellow-500';
     return 'text-red-500';
-  };
-
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'strategic': return <Target className="w-5 h-5 text-yellow-500" />;
-      case 'tactical': return <Layers className="w-5 h-5 text-blue-500" />;
-      case 'operational': return <Settings className="w-5 h-5 text-green-500" />;
-      default: return null;
-    }
-  };
-
-  const getTypeLabel = (type: string) => {
-    const labels = {
-      strategic: {
-        de: { colloquial: 'Strategisch', management: 'Strategic Alignment' },
-        en: { colloquial: 'Strategic', management: 'Strategic Alignment' },
-        es: { colloquial: 'Estratégico', management: 'Alineación Estratégica' }
-      },
-      tactical: {
-        de: { colloquial: 'Taktisch', management: 'Tactical Governance' },
-        en: { colloquial: 'Tactical', management: 'Tactical Governance' },
-        es: { colloquial: 'Táctico', management: 'Gobernanza Táctica' }
-      },
-      operational: {
-        de: { colloquial: 'Operativ', management: 'Operational Excellence' },
-        en: { colloquial: 'Operational', management: 'Operational Excellence' },
-        es: { colloquial: 'Operativo', management: 'Excelencia Operativa' }
-      }
-    };
-
-    return labels[type as keyof typeof labels]?.[lang]?.[mode] || type;
-  };
-
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case 'strategic': return 'border-yellow-500/30 bg-yellow-500/5';
-      case 'tactical': return 'border-blue-500/30 bg-blue-500/5';
-      case 'operational': return 'border-green-500/30 bg-green-500/5';
-      default: return 'border-slate-500/30 bg-slate-500/5';
-    }
   };
 
   // UI Labels (mehrsprachig)
@@ -321,6 +290,16 @@ export default function ProjectDetailSidebar({
       de: { colloquial: 'Aktuell', management: 'Current' },
       en: { colloquial: 'Current', management: 'Current' },
       es: { colloquial: 'Actual', management: 'Current' }
+    },
+    addMetric: {
+      de: { colloquial: 'Metrik hinzufügen', management: 'Add KPI' },
+      en: { colloquial: 'Add Metric', management: 'Add KPI' },
+      es: { colloquial: 'Agregar Métrica', management: 'Agregar KPI' }
+    },
+    save: {
+      de: { colloquial: 'Speichern', management: 'Save Changes' },
+      en: { colloquial: 'Save', management: 'Save Changes' },
+      es: { colloquial: 'Guardar', management: 'Guardar Cambios' }
     },
     noKpis: {
       de: { colloquial: 'Keine Kennzahlen vorhanden', management: 'No KPIs tracked for this project' },
@@ -377,8 +356,8 @@ export default function ProjectDetailSidebar({
         </div>
       </div>
 
-      {/* KPI Groups */}
-      <div className="p-6 space-y-6">
+      {/* KPI List (Flat, Editable) */}
+      <div className="p-6 space-y-4">
         {kpis.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12">
             <AlertCircle className="w-16 h-16 mb-4 text-slate-600" />
@@ -400,85 +379,128 @@ export default function ProjectDetailSidebar({
                 </>
               )}
             </p>
-            {!isDummyProject && (
-              <button
-                onClick={() => alert('KPI-Editor - Coming soon! 🚀')}
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors flex items-center gap-2"
-              >
-                <TrendingUp className="w-5 h-5" />
-                {lang === 'de' && 'KPIs hinzufügen'}
-                {lang === 'en' && 'Add KPIs'}
-                {lang === 'es' && 'Agregar KPIs'}
-              </button>
-            )}
+            <button
+              onClick={addNewKPI}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors flex items-center gap-2"
+            >
+              <Plus className="w-5 h-5" />
+              {labels.addMetric[lang][mode]}
+            </button>
           </div>
         ) : (
           <>
-            {(['strategic', 'tactical', 'operational'] as const).map((type) => {
-              const typeKPIs = groupedKPIs[type];
-              if (typeKPIs.length === 0) return null;
-
-              return (
-                <div key={type} className={`border-2 rounded-xl p-4 ${getTypeColor(type)}`}>
-                  {/* Group Header */}
-                  <div className="flex items-center gap-2 mb-4">
-                    {getTypeIcon(type)}
-                    <h3 className="text-lg font-bold text-white uppercase tracking-wide">
-                      {getTypeLabel(type)}
-                    </h3>
-                    <span className="text-xs text-slate-400">
-                      ({typeKPIs.length})
-                    </span>
+            {/* Flat KPI List with Inline Editing */}
+            <div className="space-y-3">
+              {kpis.map((kpi, index) => (
+                <div
+                  key={kpi.id}
+                  className="bg-slate-800/80 rounded-xl p-4 border border-slate-700 hover:border-slate-600 transition-all"
+                >
+                  {/* KPI Header with Inline Title Edit */}
+                  <div className="flex items-start justify-between mb-3 gap-3">
+                    <div className="flex-1">
+                      <input
+                        type="text"
+                        value={kpi.title}
+                        onChange={(e) => updateKPI(kpi.id, 'title', e.target.value)}
+                        className="w-full bg-slate-700/50 text-white text-sm font-semibold px-3 py-2 rounded-lg border border-slate-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
+                        placeholder={lang === 'de' ? 'Metrik-Name' : lang === 'es' ? 'Nombre de métrica' : 'Metric name'}
+                      />
+                      {kpi.description && (
+                        <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                          {kpi.description}
+                        </p>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => deleteKPI(kpi.id)}
+                      className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                      title={lang === 'de' ? 'Löschen' : lang === 'es' ? 'Eliminar' : 'Delete'}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </div>
 
-                  {/* KPI Cards */}
-                  <div className="space-y-3">
-                    {typeKPIs.map((kpi) => (
+                  {/* Progress Bar with Live Update */}
+                  <div className="mb-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs text-slate-400">Progress</span>
+                      <span className={`text-lg font-black ${getProgressTextColor(kpi.progress)}`}>
+                        {kpi.progress}%
+                      </span>
+                    </div>
+                    <div className="w-full bg-slate-700 rounded-full h-2.5 overflow-hidden">
                       <div
-                        key={kpi.id}
-                        className="bg-slate-800/50 rounded-lg p-3 border border-slate-700/50"
-                      >
-                        {/* KPI Header */}
-                        <div className="flex items-start justify-between mb-2">
-                          <div className="flex-1 pr-2">
-                            <h4 className="text-sm font-semibold text-slate-200 mb-1">
-                              {kpi.title}
-                            </h4>
-                            <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
-                              {kpi.description}
-                            </p>
-                          </div>
-                          <div className={`text-xl font-black ${getProgressTextColor(kpi.progress)}`}>
-                            {kpi.progress}%
-                          </div>
-                        </div>
+                        className={`h-2.5 rounded-full transition-all duration-500 ${getProgressColor(kpi.progress)}`}
+                        style={{ width: `${Math.min(kpi.progress, 100)}%` }}
+                      />
+                    </div>
+                  </div>
 
-                        {/* Progress Bar */}
-                        <div className="w-full bg-slate-700 rounded-full h-2 mb-2 overflow-hidden">
-                          <div
-                            className={`h-2 rounded-full transition-all ${getProgressColor(kpi.progress)}`}
-                            style={{ width: `${Math.min(kpi.progress, 100)}%` }}
-                          />
-                        </div>
-
-                        {/* Values */}
-                        <div className="flex items-center justify-between text-xs">
-                          <span className="text-slate-400">
-                            {labels.current[lang][mode]}: <span className="font-semibold text-white">{kpi.actual_value}{kpi.unit}</span>
-                          </span>
-                          <span className="text-slate-400">
-                            {labels.target[lang][mode]}: <span className="font-semibold text-white">{kpi.target_value}{kpi.unit}</span>
-                          </span>
-                        </div>
+                  {/* Inline Value Editors */}
+                  <div className="grid grid-cols-2 gap-3">
+                    {/* Actual Value */}
+                    <div>
+                      <label className="text-xs text-slate-400 block mb-1">
+                        {labels.current[lang][mode]}
+                      </label>
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          value={kpi.actual_value}
+                          onChange={(e) => updateKPI(kpi.id, 'actual_value', parseFloat(e.target.value) || 0)}
+                          className="w-full bg-slate-700/50 text-white text-sm font-semibold px-3 py-1.5 rounded-lg border border-slate-600 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 outline-none transition-all"
+                          step="0.01"
+                        />
+                        <span className="text-xs text-slate-400 whitespace-nowrap">{kpi.unit}</span>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Target Value */}
+                    <div>
+                      <label className="text-xs text-slate-400 block mb-1">
+                        {labels.target[lang][mode]}
+                      </label>
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          value={kpi.target_value}
+                          onChange={(e) => updateKPI(kpi.id, 'target_value', parseFloat(e.target.value) || 0)}
+                          className="w-full bg-slate-700/50 text-white text-sm font-semibold px-3 py-1.5 rounded-lg border border-slate-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
+                          step="0.01"
+                        />
+                        <span className="text-xs text-slate-400 whitespace-nowrap">{kpi.unit}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
+
+            {/* Add Metric Button */}
+            <button
+              onClick={addNewKPI}
+              className="w-full py-3 border-2 border-dashed border-slate-600 hover:border-blue-500 text-slate-400 hover:text-blue-400 rounded-xl font-semibold transition-all flex items-center justify-center gap-2"
+            >
+              <Plus className="w-5 h-5" />
+              {labels.addMetric[lang][mode]}
+            </button>
           </>
         )}
       </div>
+
+      {/* Save Button (Sticky Footer) */}
+      {kpis.length > 0 && (
+        <div className="sticky bottom-0 bg-slate-900 border-t border-slate-700 p-4">
+          <button
+            onClick={saveKPIs}
+            className="w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2"
+          >
+            <Save className="w-5 h-5" />
+            {labels.save[lang][mode]}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
