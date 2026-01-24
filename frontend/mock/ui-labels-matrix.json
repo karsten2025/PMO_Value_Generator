@@ -198,6 +198,36 @@
         "management": "Integración verificada S/4HANA ERP Backbone - Sincronización en tiempo real activa"
       }
     }
+  },
+  "azure_plan_button": {
+    "label": {
+      "de": {
+        "colloquial": "KI-Vorschau",
+        "management": "Azure Neural Data Aggregation"
+      },
+      "en": {
+        "colloquial": "AI Preview",
+        "management": "Azure Neural Data Aggregation"
+      },
+      "es": {
+        "colloquial": "Vista IA",
+        "management": "Agregación Neural Azure"
+      }
+    },
+    "tooltip": {
+      "de": {
+        "colloquial": "Synthetisierte Echtzeit-Daten aus Azure Cloud & Jira/Azure DevOps. Weitsicht-Faktor: Hoch.",
+        "management": "Synthetisierte Echtzeit-Daten aus Azure Cloud & Jira/Azure DevOps. Weitsicht-Faktor: Hoch."
+      },
+      "en": {
+        "colloquial": "Synthesized real-time data from Azure Cloud & Jira/Azure DevOps. Foresight Factor: High.",
+        "management": "Synthesized real-time data from Azure Cloud & Jira/Azure DevOps. Foresight Factor: High."
+      },
+      "es": {
+        "colloquial": "Datos en tiempo real sintetizados de Azure Cloud & Jira/Azure DevOps. Factor de Previsión: Alto.",
+        "management": "Datos en tiempo real sintetizados de Azure Cloud & Jira/Azure DevOps. Factor de Previsión: Alto."
+      }
+    }
   }
 }
 

@@ -9,6 +9,36 @@ import { supabase, type Project, type KPIValue } from '@/lib/supabase';
 import { Target, Layers, Settings, ChevronDown, AlertCircle } from 'lucide-react';
 import ProjectDetailSidebar from './ProjectDetailSidebar';
 import ProjectFinanceValue from './ProjectFinanceValue';
+import uiLabels from '@/mock/ui-labels-matrix.json';
+
+/**
+ * AZURE CLOUD + AI SPARKLE ICON
+ * =============================
+ * Symbolisiert KI-gestützte Azure-Aggregation
+ */
+const AzureAIIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {/* Azure Cloud */}
+    <path
+      d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"
+      fill="#008AD7"
+      opacity="0.8"
+    />
+    {/* AI Sparkle in Center */}
+    <g transform="translate(12, 12)">
+      <path
+        d="M0,-4 L0.5,-1 L4,0 L0.5,1 L0,4 L-0.5,1 L-4,0 L-0.5,-1 Z"
+        fill="#FFD700"
+        stroke="white"
+        strokeWidth="0.5"
+      />
+    </g>
+  </svg>
+);
 
 interface PortfolioProjectListProps {
   portfolioId: string;
@@ -30,6 +60,13 @@ export default function PortfolioProjectList({
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'strategic' | 'tactical' | 'operational'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [hoveredPlanButton, setHoveredPlanButton] = useState<string | null>(null);
+
+  // UI-Labels laden
+  const azureLabels = uiLabels.azure_plan_button;
+  const getAzureLabel = (key: 'label' | 'tooltip') => {
+    return azureLabels[key]?.[lang]?.[mode] || azureLabels[key]?.en?.colloquial || '';
+  };
 
   useEffect(() => {
     loadProjects();
@@ -271,17 +308,36 @@ export default function PortfolioProjectList({
                           <span className="text-xl">
                             {getStatusEmoji(progress)}
                           </span>
-                          {/* PMP Plan Button */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              window.location.href = `/portfolio/${portfolioId}/project/${project.id}`;
-                            }}
-                            className="ml-2 px-2 py-1 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded text-xs transition-colors flex items-center gap-1"
-                            title={lang === 'de' ? 'Projektplan anzeigen' : lang === 'en' ? 'View Project Plan' : 'Ver Plan del Proyecto'}
-                          >
-                            📋 {lang === 'de' ? 'Plan' : lang === 'en' ? 'Plan' : 'Plan'}
-                          </button>
+                          
+                          {/* Azure AI Plan Button - Glassmorphism Style */}
+                          <div className="relative inline-block">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.location.href = `/portfolio/${portfolioId}/project/${project.id}`;
+                              }}
+                              onMouseEnter={() => setHoveredPlanButton(project.id)}
+                              onMouseLeave={() => setHoveredPlanButton(null)}
+                              className="group relative ml-2 px-4 py-2.5 bg-slate-800/40 backdrop-blur-md hover:bg-slate-700/60 text-slate-200 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2.5 border border-blue-500/30 hover:border-blue-400/60 hover:shadow-lg hover:shadow-blue-500/20 animate-pulse"
+                              style={{ animationDuration: '3s' }}
+                            >
+                              <AzureAIIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-semibold">
+                                {getAzureLabel('label')}
+                              </span>
+                            </button>
+                            
+                            {/* Tooltip */}
+                            {hoveredPlanButton === project.id && (
+                              <div className="absolute left-0 top-full mt-2 z-50 w-72 p-3 bg-slate-900 border border-blue-500/30 rounded-lg shadow-2xl shadow-blue-500/10">
+                                <div className="text-xs text-slate-300 leading-relaxed">
+                                  {getAzureLabel('tooltip')}
+                                </div>
+                                {/* Tooltip Arrow */}
+                                <div className="absolute -top-2 left-4 w-3 h-3 bg-slate-900 border-l border-t border-blue-500/30 transform rotate-45"></div>
+                              </div>
+                            )}
+                          </div>
                         </div>
                         <p className="text-sm text-slate-400 leading-relaxed">
                           {project.description_matrix?.[lang]?.[mode] || project.description}
