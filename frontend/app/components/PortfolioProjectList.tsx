@@ -8,6 +8,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { supabase, type Project, type KPIValue } from '@/lib/supabase';
 import { Target, Layers, Settings, ChevronDown, AlertCircle } from 'lucide-react';
 import ProjectDetailSidebar from './ProjectDetailSidebar';
+import ProjectFinanceValue from './ProjectFinanceValue';
 
 interface PortfolioProjectListProps {
   portfolioId: string;
@@ -305,11 +306,17 @@ export default function PortfolioProjectList({
                         👤 {project.project_owner}
                       </span>
                       <span className="text-slate-300 flex items-center gap-1">
-                        💰 {formatBudget(project.budget)}
-                      </span>
-                      <span className="text-slate-300 flex items-center gap-1">
                         📅 {formatDate(project.start_date)} → {formatDate(project.end_date)}
                       </span>
+                    </div>
+
+                    {/* Finance Widget (CapEx/OpEx) */}
+                    <div className="mb-3">
+                      <ProjectFinanceValue 
+                        projectId={project.id} 
+                        lang={lang} 
+                        mode={mode} 
+                      />
                     </div>
 
                     {/* Scores */}

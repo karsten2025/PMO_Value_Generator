@@ -56,6 +56,134 @@
         "management": "Confirmar Evidencia en Instancia" 
       }
     }
+  },
+  "project_finance": {
+    "title": {
+      "de": {
+        "colloquial": "Budget & Kosten",
+        "management": "Strategic Capital Allocation"
+      },
+      "en": {
+        "colloquial": "Budget & Costs",
+        "management": "Strategic Capital Allocation"
+      },
+      "es": {
+        "colloquial": "Presupuesto y Costos",
+        "management": "Asignación Estratégica de Capital"
+      }
+    },
+    "category": {
+      "de": {
+        "colloquial": "Kategorie",
+        "management": "Category"
+      },
+      "en": {
+        "colloquial": "Category",
+        "management": "Category"
+      },
+      "es": {
+        "colloquial": "Categoría",
+        "management": "Categoría"
+      }
+    },
+    "planned": {
+      "de": {
+        "colloquial": "Geplant",
+        "management": "Planned Budget"
+      },
+      "en": {
+        "colloquial": "Planned",
+        "management": "Planned Budget"
+      },
+      "es": {
+        "colloquial": "Planificado",
+        "management": "Presupuesto Planificado"
+      }
+    },
+    "actual": {
+      "de": {
+        "colloquial": "Ausgegeben",
+        "management": "Actual Spending"
+      },
+      "en": {
+        "colloquial": "Spent",
+        "management": "Actual Spending"
+      },
+      "es": {
+        "colloquial": "Gastado",
+        "management": "Gasto Real"
+      }
+    },
+    "variance": {
+      "de": {
+        "colloquial": "Abweichung",
+        "management": "Budget Variance"
+      },
+      "en": {
+        "colloquial": "Difference",
+        "management": "Budget Variance"
+      },
+      "es": {
+        "colloquial": "Diferencia",
+        "management": "Varianza Presupuestaria"
+      }
+    },
+    "capex": {
+      "de": {
+        "colloquial": "Investitionen",
+        "management": "Capital Expenditure (CapEx)"
+      },
+      "en": {
+        "colloquial": "Investments",
+        "management": "Capital Expenditure (CapEx)"
+      },
+      "es": {
+        "colloquial": "Inversiones",
+        "management": "Gastos de Capital (CapEx)"
+      }
+    },
+    "opex": {
+      "de": {
+        "colloquial": "Laufende Kosten",
+        "management": "Operational Expenditure (OpEx)"
+      },
+      "en": {
+        "colloquial": "Running Costs",
+        "management": "Operational Expenditure (OpEx)"
+      },
+      "es": {
+        "colloquial": "Costos Operativos",
+        "management": "Gastos Operacionales (OpEx)"
+      }
+    },
+    "total": {
+      "de": {
+        "colloquial": "Gesamt",
+        "management": "Total Budget"
+      },
+      "en": {
+        "colloquial": "Total",
+        "management": "Total Budget"
+      },
+      "es": {
+        "colloquial": "Total",
+        "management": "Presupuesto Total"
+      }
+    },
+    "no_data": {
+      "de": {
+        "colloquial": "Noch keine Finanzdaten vorhanden",
+        "management": "No financial data available"
+      },
+      "en": {
+        "colloquial": "No financial data yet",
+        "management": "No financial data available"
+      },
+      "es": {
+        "colloquial": "Aún no hay datos financieros",
+        "management": "No hay datos financieros disponibles"
+      }
+    }
   }
 }
 
