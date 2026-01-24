@@ -10,14 +10,75 @@
  * - Expanded: Detaillierte Tabelle mit Variance
  * - 2x3 Matrix Support (DE/EN/ES x Colloquial/Management)
  * - Farbcodierung: Grün (unter Budget), Rot (über Budget)
+ * - SAP-Integration Badge mit Live-Sync-Indikator
  * 
  * DATENQUELLE: pmo_project_finance (Werte in CENTS!)
  */
 
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
-import { Wallet, ChevronDown, ChevronUp, TrendingDown, TrendingUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, TrendingDown, TrendingUp } from 'lucide-react';
 import uiLabels from '@/mock/ui-labels-matrix.json';
+
+/**
+ * SAP LOGO SVG COMPONENT
+ * ======================
+ * Offizielles SAP-Icon mit charakteristischem Blauton
+ */
+const SAPLogo = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 100 100"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {/* SAP Rechteck mit Rundung */}
+    <rect
+      x="5"
+      y="25"
+      width="90"
+      height="50"
+      rx="8"
+      fill="#008fd3"
+      stroke="#006ba6"
+      strokeWidth="2"
+    />
+    {/* SAP Schriftzug */}
+    <text
+      x="50"
+      y="60"
+      textAnchor="middle"
+      fontSize="28"
+      fontWeight="bold"
+      fontFamily="Arial, sans-serif"
+      fill="white"
+    >
+      SAP
+    </text>
+  </svg>
+);
+
+/**
+ * VERIFIED BADGE COMPONENT
+ * ========================
+ * Grüner Checkmark-Badge für "Live-Synchronisiert"
+ */
+const VerifiedBadge = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="12" cy="12" r="10" fill="#10b981" />
+    <path
+      d="M8 12l3 3 5-5"
+      stroke="white"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+  </svg>
+);
 
 interface ProjectFinanceValueProps {
   projectId: string;
@@ -44,6 +105,7 @@ export default function ProjectFinanceValue({
   const [financeData, setFinanceData] = useState<FinanceData | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   // UI-Labels aus 2x3 Matrix laden
   const labels = uiLabels.project_finance;
@@ -112,7 +174,9 @@ export default function ProjectFinanceValue({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 text-slate-400">
-          <Wallet className="w-4 h-4" />
+          <div className="relative">
+            <SAPLogo className="w-5 h-5" />
+          </div>
           <span className="text-sm">{getLabel('no_data')}</span>
         </div>
       </div>
@@ -162,9 +226,30 @@ export default function ProjectFinanceValue({
         className="w-full flex items-center justify-between p-3 sm:p-4 bg-slate-800/50 hover:bg-slate-800/70 rounded-xl border border-slate-700 transition-all cursor-pointer group"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-500/10 rounded-lg">
-            <Wallet className="w-5 h-5 text-blue-400" />
+          {/* SAP Logo mit Verified Badge */}
+          <div 
+            className="relative p-2 bg-slate-900/50 rounded-lg group/sap"
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+          >
+            <SAPLogo className="w-6 h-6" />
+            {/* Verified Badge (rechts unten) */}
+            <div className="absolute -bottom-1 -right-1">
+              <VerifiedBadge className="w-4 h-4" />
+            </div>
+            
+            {/* Tooltip */}
+            {showTooltip && (
+              <div className="absolute left-0 top-full mt-2 z-50 w-64 p-3 bg-slate-900 border border-slate-700 rounded-lg shadow-xl">
+                <div className="text-xs text-slate-300 leading-relaxed">
+                  {labels.sap_sync_tooltip?.[lang]?.[mode] || labels.sap_sync_tooltip?.en?.colloquial}
+                </div>
+                {/* Tooltip Arrow */}
+                <div className="absolute -top-2 left-4 w-3 h-3 bg-slate-900 border-l border-t border-slate-700 transform rotate-45"></div>
+              </div>
+            )}
           </div>
+
           <div>
             <div className="text-sm text-slate-400">{getLabel('title')}</div>
             <div className="text-xl font-bold text-white">

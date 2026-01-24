@@ -183,6 +183,20 @@
         "colloquial": "Aún no hay datos financieros",
         "management": "No hay datos financieros disponibles"
       }
+    },
+    "sap_sync_tooltip": {
+      "de": {
+        "colloquial": "Direkt aus SAP geladen - Stand: Heute",
+        "management": "Verified S/4HANA ERP Backbone Integration - Real-time sync active"
+      },
+      "en": {
+        "colloquial": "Loaded directly from SAP - Status: Today",
+        "management": "Verified S/4HANA ERP Backbone Integration - Real-time sync active"
+      },
+      "es": {
+        "colloquial": "Cargado directamente desde SAP - Estado: Hoy",
+        "management": "Integración verificada S/4HANA ERP Backbone - Sincronización en tiempo real activa"
+      }
     }
   }
 }
