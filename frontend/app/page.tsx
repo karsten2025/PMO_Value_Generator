@@ -15,6 +15,7 @@
 import React, { useState, useMemo, useEffect, useCallback, Suspense } from 'react';
 import { ReactFlow, Background, Controls } from '@xyflow/react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import '@xyflow/react/dist/style.css';
 import { Languages, User, Target, TrendingUp, Users as UsersIcon, CheckCircle, LayoutGrid, Network, MessageSquare } from 'lucide-react';
 import uiLabels from '../mock/ui-labels-matrix.json';
@@ -447,7 +448,18 @@ function FlywheelPageContent() {
       <header className="lg:hidden bg-slate-800 border-b border-slate-700">
         {/* Mobile Header - Ultra Compact */}
         <div className="sm:hidden p-3 flex items-center justify-between">
-          <h1 className="text-lg font-bold text-blue-400">PMO Impact Cycle</h1>
+          <h1 className="text-lg font-bold text-blue-400 flex items-center gap-2">
+            <div className="rounded-full overflow-hidden">
+              <Image 
+                src="/torus-logo.png" 
+                alt="Torus PMO Logo" 
+                width={36} 
+                height={36}
+                className="object-cover mix-blend-screen scale-110 drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]"
+              />
+            </div>
+            PMO Impact Cycle
+          </h1>
           <MobileMenu 
             mode={mode} 
             onModeChange={setMode}

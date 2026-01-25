@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Settings, ChevronDown, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 type Language = 'DE' | 'EN' | 'ES';
 type Mode = 'colloquial' | 'management';
@@ -118,8 +119,17 @@ export default function GitHubStyleHeader({
         <div className="flex items-center px-6 py-3 border-b border-slate-700/50">
           {/* Left: Brand + Company + Controls */}
           <div className="flex items-center gap-3">
-            <h1 className="text-lg font-bold text-blue-400">
-              📊 {brandName}
+            <h1 className="text-lg font-bold text-blue-400 flex items-center gap-3">
+              <div className="rounded-full overflow-hidden">
+                <Image 
+                  src="/torus-logo.png" 
+                  alt="Torus PMO Logo" 
+                  width={48} 
+                  height={48}
+                  className="object-cover mix-blend-screen scale-110 drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]"
+                />
+              </div>
+              {brandName}
             </h1>
             
             {/* Company Name (read-only) */}
@@ -253,7 +263,18 @@ export default function GitHubStyleHeader({
       {/* TABLET HEADER (768px - 1024px) */}
       <div className="hidden sm:flex lg:hidden items-center justify-between px-4 py-3">
         <div className="flex items-center gap-3">
-          <h1 className="text-base font-bold text-blue-400">📊 PMO</h1>
+          <h1 className="text-base font-bold text-blue-400 flex items-center gap-2">
+            <div className="rounded-full overflow-hidden">
+              <Image 
+                src="/torus-logo.png" 
+                alt="Torus PMO Logo" 
+                width={32} 
+                height={32}
+                className="object-cover mix-blend-screen scale-110 drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]"
+              />
+            </div>
+            PMO
+          </h1>
           {companyName && (
             <span className="text-xs text-slate-400">{companyName}</span>
           )}
@@ -293,7 +314,18 @@ export default function GitHubStyleHeader({
       {/* MOBILE HEADER (<768px) */}
       <div className="sm:hidden">
         <div className="flex items-center justify-between px-3 py-3">
-          <h1 className="text-lg font-bold text-blue-400">📊 PMO</h1>
+          <h1 className="text-lg font-bold text-blue-400 flex items-center gap-2">
+            <div className="rounded-full overflow-hidden">
+              <Image 
+                src="/torus-logo.png" 
+                alt="Torus PMO Logo" 
+                width={36} 
+                height={36}
+                className="object-cover mix-blend-screen scale-110 drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]"
+              />
+            </div>
+            PMO
+          </h1>
           {/* Mobile Menu rendered by parent */}
         </div>
         
