@@ -136,3 +136,15 @@ html, body {
   fill: rgb(51, 65, 85) !important; /* slate-700 */
 }
 
+/* Print: A4 Executive Briefing (docs/phase1) */
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+

@@ -158,8 +158,8 @@ export default function ChatInterface({ isOpen, onClose }: ChatInterfaceProps) {
         return;
       }
       
-      // Regular PMO knowledge query - call RAG Backend directly
-      const response = await fetch('http://localhost:8000/query', {
+      // Regular PMO knowledge query – immer über Next.js API Route (nicht direkt localhost)
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -169,16 +169,16 @@ export default function ChatInterface({ isOpen, onClose }: ChatInterfaceProps) {
         })
       });
 
-      if (!response.ok) {
-        throw new Error(`API Error: ${response.status}`);
-      }
-
       const data = await response.json();
+
+      if (data.backendUnavailable || data.answer == null) {
+        throw new Error('BACKEND_UNAVAILABLE');
+      }
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: data.answer || 'Keine Antwort erhalten.',
+        content: data.answer,
         timestamp: new Date(),
         sources: data.sources || []
       };

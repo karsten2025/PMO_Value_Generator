@@ -27,6 +27,7 @@ import PortfolioProjectList from './components/PortfolioProjectList';
 import ChatInterface from './components/ChatInterface';
 import MobileMenu from './components/MobileMenu';
 import GitHubStyleHeader from './components/GitHubStyleHeader';
+import SystemsEngineeringHUD from './components/SystemsEngineeringHUD';
 import { usePortfolio } from '@/app/contexts/PortfolioContext';
 import { useLanguage } from '@/app/contexts/LanguageContext';
 import { supabase, InstanceMetric } from '@/lib/supabase';
@@ -819,6 +820,9 @@ function FlywheelPageContent() {
 
       {/* Chatbot Interface */}
       <ChatInterface isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+
+      {/* Methodology Sidebar (System DNA HUD) */}
+      <SystemsEngineeringHUD />
     </div>
   );
 }

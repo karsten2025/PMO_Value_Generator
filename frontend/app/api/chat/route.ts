@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Python RAG Backend URL (läuft lokal auf Port 8000)
+    // Python RAG Backend: lokal Port 8000, Production z.B. PYTHON_RAG_URL auf Railway/Render/Fly.io setzen
     const PYTHON_RAG_URL = process.env.PYTHON_RAG_URL || 'http://localhost:8000';
 
     // Forward request to Python backend
@@ -50,15 +50,15 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Chat API error:', error);
-    
-    // Fallback für Development (wenn Backend nicht läuft)
+    // Strukturierter Fallback: Frontend kann freundliche Nachricht anzeigen statt rohem Fehler
     return NextResponse.json({
-      answer: '🚧 **Development Mode**: Das Python RAG Backend ist nicht erreichbar.\n\nBitte starte den Server mit:\n```bash\npython extraction/rag_api.py\n```\n\nDer Server sollte auf Port 8000 laufen.',
+      answer: null,
       sources: [],
       language: 'en',
       register: 'colloquial',
+      backendUnavailable: true,
       error: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
+    }, { status: 200 });
   }
 }
 
