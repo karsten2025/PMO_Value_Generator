@@ -91,7 +91,7 @@ export const SE_LIFECYCLE_DATA: SEPhase[] = [
         management: "Transición al entorno operativo, validación y habilitación de usuarios."
       }
     },
-    downloadLink: "/docs/se-phase-3-production.pdf"
+    downloadLink: "/docs/phase3"
   },
   {
     id: "utilization",
@@ -116,7 +116,7 @@ export const SE_LIFECYCLE_DATA: SEPhase[] = [
         management: "Ejecución operativa, monitoreo del sistema y realización del ROI."
       }
     },
-    downloadLink: "/docs/se-phase-4-utilization.pdf"
+    downloadLink: "/docs/phase4"
   },
   {
     id: "retirement",
@@ -141,6 +141,6 @@ export const SE_LIFECYCLE_DATA: SEPhase[] = [
         management: "Análisis del rendimiento del sistema, refactorización y reemplazo planificado."
       }
     },
-    downloadLink: "/docs/se-phase-5-retirement.pdf"
+    downloadLink: "/docs/phase5"
   }
 ];
