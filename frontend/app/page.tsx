@@ -28,6 +28,7 @@ import ChatInterface from './components/ChatInterface';
 import MobileMenu from './components/MobileMenu';
 import GitHubStyleHeader from './components/GitHubStyleHeader';
 import SystemsEngineeringHUD from './components/SystemsEngineeringHUD';
+import HealthHubSidebarContent, { type Project, type Weights, type CalculatedScores } from './components/HealthHubSidebarContent';
 import { usePortfolio } from '@/app/contexts/PortfolioContext';
 import { useLanguage } from '@/app/contexts/LanguageContext';
 import { supabase, InstanceMetric } from '@/lib/supabase';
@@ -36,6 +37,16 @@ import { KPIValue, MilestoneCompletion } from './types';
 import * as helpers from './utils/helpers';
 
 // Die 10 Schritte des PMO Impact Cycle (importiert aus ./data/impactCycleData)
+
+// Mock-Projekte für Health Hub Berechnung
+const MOCK_PROJECTS: Project[] = [
+  { id: 'p1', name: 'Cloud-Migration Programm', type: 'strategic', progress: 87, status: 'green' },
+  { id: 'p2', name: 'Digitaler Arbeitsplatz Initiative', type: 'strategic', progress: 74, status: 'yellow' },
+  { id: 'p3', name: 'PMO-Tool Einführung', type: 'tactical', progress: 27, status: 'red' },
+  { id: 'p4', name: 'Team-Onboarding Programm', type: 'tactical', progress: 71, status: 'yellow' },
+  { id: 'p5', name: 'Monats-Reporting Automatisierung', type: 'operational', progress: 94, status: 'green' },
+  { id: 'p6', name: 'Dashboard-Optimierung', type: 'operational', progress: 82, status: 'green' },
+];
 
 // Custom Node Types für ReactFlow
 const nodeTypes = {
@@ -97,11 +108,43 @@ function FlywheelPageContent() {
   const [isLoadingMetrics, setIsLoadingMetrics] = useState(false);
   const [milestoneCompletions, setMilestoneCompletions] = useState<MilestoneCompletion>({});
   
-  // Health Hub Scores
+  // Health Hub Scores (aus Supabase/Fallback)
   const [strategicScore, setStrategicScore] = useState(0);
   const [tacticalScore, setTacticalScore] = useState(0);
   const [operationalScore, setOperationalScore] = useState(0);
   const [totalImpactScore, setTotalImpactScore] = useState(0);
+
+  // Health Hub Konfiguration (Sidebar)
+  const [weights, setWeights] = useState<Weights>({ str: 40, tac: 30, ops: 30 });
+  const [includedProjectIds, setIncludedProjectIds] = useState<string[]>(MOCK_PROJECTS.map((p) => p.id));
+
+  // Berechnete Scores aus Projektauswahl + Gewichtung (Live-Update)
+  const calculatedScores = useMemo((): CalculatedScores => {
+    const filtered = MOCK_PROJECTS.filter((p) => includedProjectIds.includes(p.id));
+    if (filtered.length === 0) {
+      return { strategic: 0, tactical: 0, operational: 0, total: 0 };
+    }
+    const strategic = filtered.filter((p) => p.type === "strategic");
+    const tactical = filtered.filter((p) => p.type === "tactical");
+    const operational = filtered.filter((p) => p.type === "operational");
+
+    const avgStrategic = strategic.length > 0 ? strategic.reduce((s, p) => s + p.progress, 0) / strategic.length : 0;
+    const avgTactical = tactical.length > 0 ? tactical.reduce((s, p) => s + p.progress, 0) / tactical.length : 0;
+    const avgOperational = operational.length > 0 ? operational.reduce((s, p) => s + p.progress, 0) / operational.length : 0;
+
+    const sum = weights.str + weights.tac + weights.ops;
+    const wStr = sum > 0 ? weights.str / sum : 1 / 3;
+    const wTac = sum > 0 ? weights.tac / sum : 1 / 3;
+    const wOps = sum > 0 ? weights.ops / sum : 1 / 3;
+
+    const total = avgStrategic * wStr + avgTactical * wTac + avgOperational * wOps;
+    return {
+      strategic: avgStrategic,
+      tactical: avgTactical,
+      operational: avgOperational,
+      total,
+    };
+  }, [includedProjectIds, weights]);
 
   // Lade KPI-Metriken aus Supabase für das gewählte Portfolio
   const loadMetricsForPortfolio = useCallback(async () => {
@@ -291,18 +334,18 @@ function FlywheelPageContent() {
       type: 'healthHub',
       position: { x: centerX - 250, y: centerY - 250 }, // Zentriert (500x500 Komponente)
       data: {
-        strategicScore,
-        tacticalScore,
-        operationalScore,
-        totalImpactScore,
+        strategicScore: calculatedScores.strategic,
+        tacticalScore: calculatedScores.tactical,
+        operationalScore: calculatedScores.operational,
+        totalImpactScore: calculatedScores.total,
         portfolioName: selectedPortfolio?.name || 'Portfolio'
       },
       draggable: false,
-      selectable: false,
+      selectable: true,
     };
 
     return [...impactNodes, healthHubNode];
-  }, [lang, mode, milestoneCompletions, strategicScore, tacticalScore, operationalScore, totalImpactScore, selectedPortfolio]);
+  }, [lang, mode, milestoneCompletions, calculatedScores, selectedPortfolio]);
 
   const edges = IMPACT_CYCLE_DATA.map((item, index) => ({
     id: `e${index}`,
@@ -534,6 +577,18 @@ function FlywheelPageContent() {
             overflow-hidden
           `}
         >
+          {selectedNode === 'health-hub' && (
+            <HealthHubSidebarContent
+              weights={weights}
+              onWeightsChange={setWeights}
+              projects={MOCK_PROJECTS}
+              includedProjectIds={includedProjectIds}
+              onIncludedProjectIdsChange={setIncludedProjectIds}
+              calculatedScores={calculatedScores}
+              lang={lang}
+              onClose={() => setSelectedNode(null)}
+            />
+          )}
           {selectedMilestone && (
             <>
               {/* Sidebar Header */}
