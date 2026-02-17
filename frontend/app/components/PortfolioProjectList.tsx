@@ -5,7 +5,7 @@
 // Mit Drill-Down zu einzelnem Projekt-Impact-Cycle
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { supabase, type Project, type KPIValue } from '@/lib/supabase';
+import { supabase, type Project } from '@/lib/supabase';
 import { Target, Layers, Settings, ChevronDown, AlertCircle } from 'lucide-react';
 import ProjectDetailSidebar from './ProjectDetailSidebar';
 import ProjectFinanceValue from './ProjectFinanceValue';
@@ -46,6 +46,7 @@ interface PortfolioProjectListProps {
   lang: 'de' | 'en' | 'es';
   mode: 'colloquial' | 'management';
   onProjectSelect: (projectId: string) => void;
+  onProjectSaveComplete?: () => void;
 }
 
 export default function PortfolioProjectList({ 
@@ -53,7 +54,8 @@ export default function PortfolioProjectList({
   portfolioName,
   lang,
   mode,
-  onProjectSelect 
+  onProjectSelect,
+  onProjectSaveComplete,
 }: PortfolioProjectListProps) {
   const [projects, setProjects] = useState<Project[]>([]);
   const [projectProgress, setProjectProgress] = useState<Record<string, number>>({});
@@ -88,11 +90,10 @@ export default function PortfolioProjectList({
       if (projectsData) {
         setProjects(projectsData);
 
-        // 2. Berechne Progress für jedes Projekt
+        // 2. Berechne Progress ausschließlich aus project.metrics (Custom Metrics)
         const progressMap: Record<string, number> = {};
         for (const project of projectsData) {
-          const progress = await calculateProjectProgress(project.id);
-          progressMap[project.id] = progress;
+          progressMap[project.id] = calculateProjectProgressFromMetrics(project);
         }
         setProjectProgress(progressMap);
       }
@@ -103,29 +104,15 @@ export default function PortfolioProjectList({
     }
   };
 
-  const calculateProjectProgress = async (projectId: string): Promise<number> => {
-    try {
-      // Hole alle KPIs für dieses Projekt
-      const { data: kpis, error } = await supabase
-        .from('pmo_kpi_values')
-        .select('actual_value, target_value')
-        .eq('project_id', projectId);
-
-      if (error || !kpis || kpis.length === 0) return 0;
-
-      // Durchschnittlicher Fortschritt
-      const avgProgress = kpis.reduce((sum, kpi) => {
-        const percent = kpi.target_value > 0 
-          ? (kpi.actual_value / kpi.target_value) * 100 
-          : 0;
-        return sum + Math.min(percent, 100);
-      }, 0) / kpis.length;
-
-      return Math.round(avgProgress);
-    } catch (error) {
-      console.error(`Error calculating progress for project ${projectId}:`, error);
-      return 0;
-    }
+  // Progress ausschließlich aus project.metrics (Custom Metrics) – bei leerem Array: 0%
+  const calculateProjectProgressFromMetrics = (project: Project): number => {
+    const metrics = (project as any).metrics;
+    if (!Array.isArray(metrics) || metrics.length === 0) return 0;
+    const sum = metrics.reduce((acc: number, m: { current: number; goal: number }) => {
+      const fulfillment = m.goal > 0 ? (m.current / m.goal) * 100 : 0;
+      return acc + Math.min(fulfillment, 100);
+    }, 0);
+    return Math.round(sum / metrics.length);
   };
 
   // Filter & Grouping
@@ -433,6 +420,10 @@ export default function PortfolioProjectList({
           lang={lang}
           mode={mode}
           onClose={() => setSelectedProject(null)}
+          onSaveComplete={() => {
+            loadProjects();
+            onProjectSaveComplete?.();
+          }}
         />
       )}
     </div>

@@ -31,22 +31,12 @@ import SystemsEngineeringHUD from './components/SystemsEngineeringHUD';
 import HealthHubSidebarContent, { type Project, type Weights, type CalculatedScores } from './components/HealthHubSidebarContent';
 import { usePortfolio } from '@/app/contexts/PortfolioContext';
 import { useLanguage } from '@/app/contexts/LanguageContext';
-import { supabase, InstanceMetric } from '@/lib/supabase';
+import { supabase, InstanceMetric, type Project as SupabaseProject } from '@/lib/supabase';
 import { IMPACT_CYCLE_DATA } from './data/impactCycleData';
 import { KPIValue, MilestoneCompletion } from './types';
 import * as helpers from './utils/helpers';
 
 // Die 10 Schritte des PMO Impact Cycle (importiert aus ./data/impactCycleData)
-
-// Mock-Projekte für Health Hub Berechnung
-const MOCK_PROJECTS: Project[] = [
-  { id: 'p1', name: 'Cloud-Migration Programm', type: 'strategic', progress: 87, status: 'green' },
-  { id: 'p2', name: 'Digitaler Arbeitsplatz Initiative', type: 'strategic', progress: 74, status: 'yellow' },
-  { id: 'p3', name: 'PMO-Tool Einführung', type: 'tactical', progress: 27, status: 'red' },
-  { id: 'p4', name: 'Team-Onboarding Programm', type: 'tactical', progress: 71, status: 'yellow' },
-  { id: 'p5', name: 'Monats-Reporting Automatisierung', type: 'operational', progress: 94, status: 'green' },
-  { id: 'p6', name: 'Dashboard-Optimierung', type: 'operational', progress: 82, status: 'green' },
-];
 
 // Custom Node Types für ReactFlow
 const nodeTypes = {
@@ -116,11 +106,62 @@ function FlywheelPageContent() {
 
   // Health Hub Konfiguration (Sidebar)
   const [weights, setWeights] = useState<Weights>({ str: 40, tac: 30, ops: 30 });
-  const [includedProjectIds, setIncludedProjectIds] = useState<string[]>(MOCK_PROJECTS.map((p) => p.id));
+  const [portfolioProjects, setPortfolioProjects] = useState<SupabaseProject[]>([]);
+  const [includedProjectIds, setIncludedProjectIds] = useState<string[]>([]);
+
+  // Projekte aus Supabase laden (Single Source of Truth für Portfolio + Health Hub)
+  const loadPortfolioProjects = useCallback(async () => {
+    if (!selectedPortfolio) {
+      setPortfolioProjects([]);
+      setIncludedProjectIds([]);
+      return;
+    }
+    const { data, error } = await supabase
+      .from('pmo_projects')
+      .select('*')
+      .eq('portfolio_id', selectedPortfolio.id)
+      .eq('status', 'active')
+      .order('strategic_alignment', { ascending: false });
+    if (error) {
+      console.error('Error loading portfolio projects:', error);
+      setPortfolioProjects([]);
+      return;
+    }
+    const projects = data || [];
+    setPortfolioProjects(projects);
+    setIncludedProjectIds(projects.map((p) => p.id));
+  }, [selectedPortfolio?.id]);
+
+  useEffect(() => {
+    loadPortfolioProjects();
+  }, [loadPortfolioProjects]);
+
+  // Transformiere DB-Projekte zu HealthHub-Format (mit progress aus metrics)
+  const healthHubProjects = useMemo((): Project[] => {
+    return portfolioProjects.map((p) => {
+      const metrics = (p as any).metrics;
+      const progress = Array.isArray(metrics) && metrics.length > 0
+        ? Math.round(
+            metrics.reduce((acc: number, m: { current: number; goal: number }) => {
+              const f = m.goal > 0 ? (m.current / m.goal) * 100 : 0;
+              return acc + Math.min(f, 100);
+            }, 0) / metrics.length
+          )
+        : 0;
+      const status: 'green' | 'yellow' | 'red' = progress >= 80 ? 'green' : progress >= 50 ? 'yellow' : 'red';
+      return {
+        id: p.id,
+        name: p.name_matrix?.[lang]?.[mode] || p.name,
+        type: p.strategic_alignment as 'strategic' | 'tactical' | 'operational',
+        progress,
+        status,
+      };
+    });
+  }, [portfolioProjects, lang, mode]);
 
   // Berechnete Scores aus Projektauswahl + Gewichtung (Live-Update)
   const calculatedScores = useMemo((): CalculatedScores => {
-    const filtered = MOCK_PROJECTS.filter((p) => includedProjectIds.includes(p.id));
+    const filtered = healthHubProjects.filter((p) => includedProjectIds.includes(p.id));
     if (filtered.length === 0) {
       return { strategic: 0, tactical: 0, operational: 0, total: 0 };
     }
@@ -144,7 +185,7 @@ function FlywheelPageContent() {
       operational: avgOperational,
       total,
     };
-  }, [includedProjectIds, weights]);
+  }, [includedProjectIds, weights, healthHubProjects]);
 
   // Lade KPI-Metriken aus Supabase für das gewählte Portfolio
   const loadMetricsForPortfolio = useCallback(async () => {
@@ -559,6 +600,7 @@ function FlywheelPageContent() {
               // setView('cycle');
               // loadProjectImpactCycle(projectId);
             }}
+            onProjectSaveComplete={loadPortfolioProjects}
           />
         )}
 
@@ -581,7 +623,7 @@ function FlywheelPageContent() {
             <HealthHubSidebarContent
               weights={weights}
               onWeightsChange={setWeights}
-              projects={MOCK_PROJECTS}
+              projects={healthHubProjects}
               includedProjectIds={includedProjectIds}
               onIncludedProjectIdsChange={setIncludedProjectIds}
               calculatedScores={calculatedScores}

@@ -87,6 +87,16 @@ export interface Project {
   tags: string[];
   created_at?: string;
   updated_at?: string;
+  /** Benutzerdefinierte Metriken (JSONB) */
+  metrics?: CustomMetric[];
+}
+
+export interface CustomMetric {
+  id: string;
+  name: string;
+  unit: string;
+  current: number;
+  goal: number;
 }
 
 export interface KPIValue {
