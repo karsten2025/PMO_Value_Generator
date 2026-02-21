@@ -89,6 +89,10 @@ export interface Project {
   updated_at?: string;
   /** Benutzerdefinierte Metriken (JSONB) */
   metrics?: CustomMetric[];
+  /** Opt-In: Aktive Impact Dimensions (Project Definition Hub) */
+  active_modules?: string[];
+  /** Zielwerte/Baseline für Dashboard-Metriken */
+  baseline_data?: Record<string, unknown>;
 }
 
 export interface CustomMetric {

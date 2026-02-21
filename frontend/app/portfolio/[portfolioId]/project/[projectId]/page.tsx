@@ -9,8 +9,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, LayoutGrid, BarChart3, FileText } from 'lucide-react';
 import { ProjectCardPMPSection } from '@/app/components/ProjectCardPMPSection';
+import ProjectDefinitionHub from '@/app/components/ProjectDefinitionHub';
 import { ProjectMilestonesSection } from '@/app/components/ProjectMilestonesSection';
 import { ProjectRisksSection } from '@/app/components/ProjectRisksSection';
 import { ProjectChangeManagementSection } from '@/app/components/ProjectChangeManagementSection';
@@ -44,6 +45,8 @@ export default function ProjectPMPPage({ params }: PageProps) {
   const [register, setRegister] = useState<'colloquial' | 'management'>('colloquial');
   
   const [project, setProject] = useState<any>(null);
+  const [charter, setCharter] = useState<any>(null);
+  const [activeTab, setActiveTab] = useState<'blueprint' | 'dashboard' | 'details'>('blueprint');
   const [pmp, setPmp] = useState<ProjectManagementPlan | null>(null);
   const [milestones, setMilestones] = useState<ProjectMilestone[]>([]);
   const [risks, setRisks] = useState<ProjectRisk[]>([]);
@@ -98,6 +101,18 @@ export default function ProjectPMPPage({ params }: PageProps) {
       }
       
       setProject(projectData);
+
+      // Load Charter (Business Case) für Inheritance
+      try {
+        const { data: charterData } = await supabase
+          .from('pmo_project_charters')
+          .select('*')
+          .eq('project_id', projectId)
+          .single();
+        setCharter(charterData);
+      } catch {
+        setCharter(null);
+      }
 
       // ========================================
       // DEMO DATA für Cloud Migration DUMMY
@@ -366,6 +381,34 @@ export default function ProjectPMPPage({ params }: PageProps) {
     setChanges(demoChanges);
   };
 
+  const handleSaveDefinition = async (
+    activeModules: string[],
+    baselineData: Record<string, unknown>
+  ) => {
+    if (!projectId) return;
+    const { error } = await supabase
+      .from('pmo_projects')
+      .update({
+        active_modules: activeModules,
+        baseline_data: baselineData,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', projectId);
+    if (error) throw error;
+    setProject((prev: any) => ({
+      ...prev,
+      active_modules: activeModules,
+      baseline_data: baselineData,
+    }));
+    alert(
+      lang === 'de'
+        ? 'Baseline gespeichert!'
+        : lang === 'es'
+        ? '¡Línea base guardada!'
+        : 'Baseline saved!'
+    );
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-900 flex items-center justify-center">
@@ -426,11 +469,94 @@ export default function ProjectPMPPage({ params }: PageProps) {
             />
           </div>
         </div>
+
+        {/* Tabs: Blueprint | Dashboard | Details */}
+        <div className="flex gap-1 px-4 sm:px-6 lg:px-8 border-b border-slate-700">
+          <button
+            onClick={() => setActiveTab('blueprint')}
+            className={`px-4 py-3 text-sm font-medium flex items-center gap-2 transition-colors ${
+              activeTab === 'blueprint'
+                ? 'text-cyan-400 border-b-2 border-cyan-500'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <LayoutGrid className="w-4 h-4" />
+            {lang === 'de' && 'Blueprint'}
+            {lang === 'en' && 'Blueprint'}
+            {lang === 'es' && 'Plan'}
+          </button>
+          <button
+            onClick={() => setActiveTab('dashboard')}
+            className={`px-4 py-3 text-sm font-medium flex items-center gap-2 transition-colors ${
+              activeTab === 'dashboard'
+                ? 'text-cyan-400 border-b-2 border-cyan-500'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <BarChart3 className="w-4 h-4" />
+            {lang === 'de' && 'Dashboard'}
+            {lang === 'en' && 'Dashboard'}
+            {lang === 'es' && 'Panel'}
+          </button>
+          <button
+            onClick={() => setActiveTab('details')}
+            className={`px-4 py-3 text-sm font-medium flex items-center gap-2 transition-colors ${
+              activeTab === 'details'
+                ? 'text-cyan-400 border-b-2 border-cyan-500'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <FileText className="w-4 h-4" />
+            {lang === 'de' && 'Details'}
+            {lang === 'en' && 'Details'}
+            {lang === 'es' && 'Detalles'}
+          </button>
+        </div>
       </div>
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-8">
+          {/* Tab: Blueprint (Definition Hub) */}
+          {activeTab === 'blueprint' && (
+            <ProjectDefinitionHub
+              projectId={projectId}
+              project={project}
+              charter={charter}
+              lang={lang}
+              mode={register}
+              onSave={handleSaveDefinition}
+            />
+          )}
+
+          {/* Tab: Dashboard (Metriken-Übersicht) */}
+          {activeTab === 'dashboard' && (
+            <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
+              <h2 className="text-xl font-bold text-cyan-400 mb-4">
+                {lang === 'de' && 'Metriken-Dashboard'}
+                {lang === 'en' && 'Metrics Dashboard'}
+                {lang === 'es' && 'Panel de Métricas'}
+              </h2>
+              <p className="text-slate-400 mb-4">
+                {lang === 'de' && 'Definiere zuerst die Ziele im Blueprint. Die Ist-Werte werden hier gegen die Baseline gemessen.'}
+                {lang === 'en' && 'Define targets in the Blueprint first. Actual values will be measured against the baseline here.'}
+                {lang === 'es' && 'Define primero los objetivos en el Plan. Los valores reales se medirán contra la línea base aquí.'}
+              </p>
+              <div className="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
+                <div
+                  className="h-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full transition-all"
+                  style={{ width: `${project.progress ?? 0}%` }}
+                />
+              </div>
+              <p className="text-sm text-slate-500 mt-2">
+                {project.progress ?? 0}% {lang === 'de' ? 'Fortschritt' : lang === 'es' ? 'Progreso' : 'Progress'}
+              </p>
+            </div>
+          )}
+
+          {/* Tab: Details (PMP Sections) */}
+          {activeTab === 'details' && (
+            <>
           {/* Project Header */}
           <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
             <h1 className="text-3xl font-bold text-white mb-2">
@@ -519,6 +645,8 @@ export default function ProjectPMPPage({ params }: PageProps) {
               isEditable={true}
             />
           </div>
+            </>
+          )}
         </div>
       </div>
     </div>
