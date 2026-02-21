@@ -156,7 +156,7 @@ export default function ProjectLifecycleView({
   }, [projects, searchQuery]);
 
   const hasProcessData = useCallback(
-    (project: ProjectItem | undefined, processId: string): boolean => {
+    (project: ProjectItem | null | undefined, processId: string): boolean => {
       if (!project?.artifacts_data) return false;
       const key = PROCESS_ARTIFACT_KEYS[processId];
       if (!key) return false;
