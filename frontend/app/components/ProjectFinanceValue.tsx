@@ -84,6 +84,8 @@ interface ProjectFinanceValueProps {
   projectId: string;
   lang: 'de' | 'en' | 'es';
   mode: 'colloquial' | 'management';
+  /** artifacts_data.financials.sap_connected steuert SAP-Icon Anzeige */
+  artifactsData?: Record<string, unknown>;
 }
 
 interface FinanceData {
@@ -100,8 +102,10 @@ interface FinanceData {
 export default function ProjectFinanceValue({ 
   projectId, 
   lang, 
-  mode 
+  mode,
+  artifactsData,
 }: ProjectFinanceValueProps) {
+  const sapConnected = (artifactsData?.financials as Record<string, unknown> | undefined)?.sap_connected === true;
   const [financeData, setFinanceData] = useState<FinanceData | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -174,9 +178,11 @@ export default function ProjectFinanceValue({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 text-slate-400">
-          <div className="relative">
-            <SAPLogo className="w-5 h-5" />
-          </div>
+          {sapConnected && (
+            <div className="relative">
+              <SAPLogo className="w-5 h-5" />
+            </div>
+          )}
           <span className="text-sm">{getLabel('no_data')}</span>
         </div>
       </div>
@@ -226,29 +232,27 @@ export default function ProjectFinanceValue({
         className="w-full flex items-center justify-between p-3 sm:p-4 bg-slate-800/50 hover:bg-slate-800/70 rounded-xl border border-slate-700 transition-all cursor-pointer group"
       >
         <div className="flex items-center gap-3">
-          {/* SAP Logo mit Verified Badge */}
-          <div 
-            className="relative p-2 bg-slate-900/50 rounded-lg group/sap"
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
-          >
-            <SAPLogo className="w-6 h-6" />
-            {/* Verified Badge (rechts unten) */}
-            <div className="absolute -bottom-1 -right-1">
-              <VerifiedBadge className="w-4 h-4" />
-            </div>
-            
-            {/* Tooltip */}
-            {showTooltip && (
-              <div className="absolute left-0 top-full mt-2 z-50 w-64 p-3 bg-slate-900 border border-slate-700 rounded-lg shadow-xl">
-                <div className="text-xs text-slate-300 leading-relaxed">
-                  {labels.sap_sync_tooltip?.[lang]?.[mode] || labels.sap_sync_tooltip?.en?.colloquial}
-                </div>
-                {/* Tooltip Arrow */}
-                <div className="absolute -top-2 left-4 w-3 h-3 bg-slate-900 border-l border-t border-slate-700 transform rotate-45"></div>
+          {/* SAP Logo nur bei sap_connected */}
+          {sapConnected && (
+            <div 
+              className="relative p-2 bg-slate-900/50 rounded-lg group/sap"
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+            >
+              <SAPLogo className="w-6 h-6" />
+              <div className="absolute -bottom-1 -right-1">
+                <VerifiedBadge className="w-4 h-4" />
               </div>
-            )}
-          </div>
+              {showTooltip && (
+                <div className="absolute left-0 top-full mt-2 z-50 w-64 p-3 bg-slate-900 border border-slate-700 rounded-lg shadow-xl">
+                  <div className="text-xs text-slate-300 leading-relaxed">
+                    {labels.sap_sync_tooltip?.[lang]?.[mode] || labels.sap_sync_tooltip?.en?.colloquial}
+                  </div>
+                  <div className="absolute -top-2 left-4 w-3 h-3 bg-slate-900 border-l border-t border-slate-700 transform rotate-45"></div>
+                </div>
+              )}
+            </div>
+          )}
 
           <div>
             <div className="text-sm text-slate-400">{getLabel('title')}</div>

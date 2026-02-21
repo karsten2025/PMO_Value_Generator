@@ -7,6 +7,26 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { supabase, type Project } from '@/lib/supabase';
 import { Target, Layers, Settings, ChevronDown, AlertCircle } from 'lucide-react';
+
+/** Avatar: Initialen aus Projektname auf farbigem Grund, wenn kein Bild vorhanden */
+function ProjectAvatar({ project }: { project: Project }) {
+  const name = project.name_matrix?.['de']?.colloquial ?? project.name ?? '?';
+  const initials = name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase() || '?';
+  const hue = (initials.charCodeAt(0) * 17 + (initials.charCodeAt(1) || 0) * 7) % 360;
+  return (
+    <span
+      className="inline-flex w-8 h-8 items-center justify-center rounded-full text-xs font-bold text-white shrink-0"
+      style={{ backgroundColor: `hsl(${hue}, 55%, 45%)` }}
+    >
+      {initials}
+    </span>
+  );
+}
 import ProjectDetailSidebar from './ProjectDetailSidebar';
 import ProjectFinanceValue from './ProjectFinanceValue';
 import uiLabels from '@/mock/ui-labels-matrix.json';
@@ -83,6 +103,7 @@ export default function PortfolioProjectList({
         .select('*')
         .eq('portfolio_id', portfolioId)
         .eq('status', 'active')
+        .order('governance_tier', { ascending: false })
         .order('strategic_alignment', { ascending: false }); // Strategic zuerst
 
       if (projectsError) throw projectsError;
@@ -115,17 +136,21 @@ export default function PortfolioProjectList({
     return Math.round(sum / metrics.length);
   };
 
+  // Tier: governance_tier (Workflow) hat Vorrang vor strategic_alignment
+  const getProjectTier = (p: Project) =>
+    (p as { governance_tier?: string | null }).governance_tier ?? p.strategic_alignment ?? null;
+
   // Filter & Grouping
   const filteredProjects = useMemo(() => {
     if (filter === 'all') return projects;
-    return projects.filter(p => p.strategic_alignment === filter);
+    return projects.filter(p => getProjectTier(p) === filter);
   }, [projects, filter]);
 
   const groupedProjects = useMemo(() => {
     return {
-      strategic: filteredProjects.filter(p => p.strategic_alignment === 'strategic'),
-      tactical: filteredProjects.filter(p => p.strategic_alignment === 'tactical'),
-      operational: filteredProjects.filter(p => p.strategic_alignment === 'operational'),
+      strategic: filteredProjects.filter(p => getProjectTier(p) === 'strategic'),
+      tactical: filteredProjects.filter(p => getProjectTier(p) === 'tactical'),
+      operational: filteredProjects.filter(p => getProjectTier(p) === 'operational'),
     };
   }, [filteredProjects]);
 
@@ -166,14 +191,16 @@ export default function PortfolioProjectList({
     return '🔴';
   };
 
-  const getScoreBadge = (score: 'low' | 'medium' | 'high', label: string) => {
-    const colors = {
+  const getScoreBadge = (score: 'low' | 'medium' | 'high' | null | undefined, label: string) => {
+    if (score == null) return null;
+    const colors: Record<string, string> = {
       low: 'text-red-400 bg-red-500/10',
       medium: 'text-yellow-400 bg-yellow-500/10',
       high: 'text-green-400 bg-green-500/10',
     };
+    const color = colors[score] ?? 'text-slate-400 bg-slate-500/10';
     return (
-      <span className={`px-2 py-1 rounded text-xs font-medium ${colors[score]}`}>
+      <span className={`px-2 py-1 rounded text-xs font-medium ${color}`}>
         {label}: {score.charAt(0).toUpperCase() + score.slice(1)}
       </span>
     );
@@ -282,7 +309,7 @@ export default function PortfolioProjectList({
                 return (
                   <div
                     key={project.id}
-                    className={`bg-slate-800 rounded-xl p-5 border-2 transition-all cursor-pointer hover:scale-[1.01] hover:shadow-xl ${getAlignmentColor(project.strategic_alignment)}`}
+                    className={`bg-slate-800 rounded-xl p-5 border-2 transition-all cursor-pointer hover:scale-[1.01] hover:shadow-xl ${getAlignmentColor(getProjectTier(project) ?? '')}`}
                     onClick={() => setSelectedProject(project)}
                   >
                     {/* Project Header */}
@@ -345,27 +372,29 @@ export default function PortfolioProjectList({
 
                     {/* Project Meta */}
                     <div className="flex items-center flex-wrap gap-3 text-sm mb-3">
-                      <span className="text-slate-300 flex items-center gap-1">
-                        👤 {project.project_owner}
+                      <span className="text-slate-300 flex items-center gap-2">
+                        <ProjectAvatar project={project} />
+                        {project.project_owner || '—'}
                       </span>
                       <span className="text-slate-300 flex items-center gap-1">
                         📅 {formatDate(project.start_date)} → {formatDate(project.end_date)}
                       </span>
                     </div>
 
-                    {/* Finance Widget (CapEx/OpEx) */}
+                    {/* Finance Widget (CapEx/OpEx) - SAP nur bei sap_connected */}
                     <div className="mb-3">
                       <ProjectFinanceValue 
                         projectId={project.id} 
                         lang={lang} 
-                        mode={mode} 
+                        mode={mode}
+                        artifactsData={project.artifacts_data}
                       />
                     </div>
 
                     {/* Scores */}
                     <div className="flex items-center gap-2 flex-wrap mb-3">
-                      {getScoreBadge(project.impact_score, 'Impact')}
-                      {getScoreBadge(project.risk_level, 'Risk')}
+                      {getScoreBadge(project.impact_score ?? null, 'Impact')}
+                      {getScoreBadge(project.risk_level ?? null, 'Risk')}
                     </div>
 
                     {/* Tags */}

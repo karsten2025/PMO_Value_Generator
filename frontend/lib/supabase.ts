@@ -76,8 +76,10 @@ export interface Project {
   description: string | null;
   description_matrix?: MatrixData; // 2x3 Matrix für Beschreibungen
   portfolio_id: string;
-  status: 'active' | 'on_hold' | 'completed' | 'cancelled' | 'planning';
+  status: 'active' | 'on_hold' | 'completed' | 'cancelled' | 'planning' | 'intake';
   strategic_alignment: 'strategic' | 'tactical' | 'operational';
+  /** Workflow: Governance-Ebene (Vorrang vor strategic_alignment) */
+  governance_tier?: 'strategic' | 'tactical' | 'operational' | null;
   impact_score: 'low' | 'medium' | 'high';
   risk_level: 'low' | 'medium' | 'high';
   project_owner: string;
@@ -93,6 +95,8 @@ export interface Project {
   active_modules?: string[];
   /** Zielwerte/Baseline für Dashboard-Metriken */
   baseline_data?: Record<string, unknown>;
+  /** Prozess-Artefakte (Needs Assessment, Business Case, etc.) */
+  artifacts_data?: Record<string, Record<string, unknown>>;
 }
 
 export interface CustomMetric {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Settings, ChevronDown, Search } from 'lucide-react';
+import { Settings, ChevronDown, Search, GitMerge } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -17,8 +17,8 @@ interface GitHubStyleHeaderProps {
   onPortfolioClick?: () => void;
   
   // Main Views (Tabs)
-  currentView: 'cycle' | 'projects';
-  onViewChange: (view: 'cycle' | 'projects') => void;
+  currentView: 'cycle' | 'workflow' | 'projects';
+  onViewChange: (view: 'cycle' | 'workflow' | 'projects') => void;
   
   // Controls
   language: Language;
@@ -74,20 +74,26 @@ export default function GitHubStyleHeader({
   }, [showControlsMenu]);
 
   // Translations
-  const getViewLabel = (view: 'cycle' | 'projects') => {
+  const getViewLabel = (view: 'cycle' | 'workflow' | 'projects') => {
     if (view === 'cycle') {
       return {
         DE: 'Impact Cycle',
         EN: 'Impact Cycle',
         ES: 'Ciclo de Impacto'
       }[language];
-    } else {
+    }
+    if (view === 'workflow') {
       return {
-        DE: 'Portfolio Übersicht',
-        EN: 'Portfolio Overview',
-        ES: 'Vista de Portafolio'
+        DE: 'Project Workflow',
+        EN: 'Project Workflow',
+        ES: 'Flujo de Proyecto'
       }[language];
     }
+    return {
+      DE: 'Portfolio Übersicht',
+      EN: 'Portfolio Overview',
+      ES: 'Vista de Portafolio'
+    }[language];
   };
 
   const getModeLabel = (m: Mode) => {
@@ -247,6 +253,18 @@ export default function GitHubStyleHeader({
           </button>
 
           <button
+            onClick={() => onViewChange('workflow')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-t-lg transition font-medium ${
+              currentView === 'workflow'
+                ? 'bg-slate-900 text-blue-400 border-b-2 border-blue-400'
+                : 'text-slate-400 hover:text-white hover:bg-slate-700'
+            }`}
+          >
+            <GitMerge size={18} />
+            <span>{getViewLabel('workflow')}</span>
+          </button>
+
+          <button
             onClick={() => onViewChange('projects')}
             className={`flex items-center gap-2 px-4 py-2 rounded-t-lg transition font-medium ${
               currentView === 'projects'
@@ -290,6 +308,14 @@ export default function GitHubStyleHeader({
               }`}
             >
               🔵
+            </button>
+            <button
+              onClick={() => onViewChange('workflow')}
+              className={`px-2 py-1 rounded text-xs ${
+                currentView === 'workflow' ? 'bg-blue-600' : 'hover:bg-slate-600'
+              }`}
+            >
+              <GitMerge size={14} />
             </button>
             <button
               onClick={() => onViewChange('projects')}
@@ -341,6 +367,18 @@ export default function GitHubStyleHeader({
           >
             <span>🔵</span>
             <span>{getViewLabel('cycle')}</span>
+          </button>
+
+          <button
+            onClick={() => onViewChange('workflow')}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition text-sm font-medium ${
+              currentView === 'workflow'
+                ? 'bg-blue-600 text-white'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            }`}
+          >
+            <GitMerge size={16} />
+            <span>{getViewLabel('workflow')}</span>
           </button>
 
           <button

@@ -27,6 +27,7 @@ import PortfolioProjectList from './components/PortfolioProjectList';
 import ChatInterface from './components/ChatInterface';
 import MobileMenu from './components/MobileMenu';
 import GitHubStyleHeader from './components/GitHubStyleHeader';
+import ProjectLifecycleView from './components/ProjectLifecycleView';
 import SystemsEngineeringHUD from './components/SystemsEngineeringHUD';
 import HealthHubSidebarContent, { type Project, type Weights, type CalculatedScores } from './components/HealthHubSidebarContent';
 import { usePortfolio } from '@/app/contexts/PortfolioContext';
@@ -63,16 +64,15 @@ function FlywheelPageContent() {
   const [selectedKPIs, setSelectedKPIs] = useState<string[]>([]);
   const [kpiValues, setKpiValues] = useState<KPIValue[]>([]);
   
-  // View State: Impact Cycle oder Projects List
-  const [view, setView] = useState<'cycle' | 'projects'>('cycle');
+  // View State: Impact Cycle, Project Workflow oder Projects List
+  const [view, setView] = useState<'cycle' | 'workflow' | 'projects'>('cycle');
   const [isChatOpen, setIsChatOpen] = useState(false); // Chatbot state
   
   // Check URL parameter for view on mount
   useEffect(() => {
     const viewParam = searchParams.get('view');
-    if (viewParam === 'projects') {
-      setView('projects');
-    }
+    if (viewParam === 'projects') setView('projects');
+    else if (viewParam === 'workflow') setView('workflow');
   }, [searchParams]);
   
   // Sync local state with LanguageContext
@@ -586,6 +586,16 @@ function FlywheelPageContent() {
           <Background color="#334155" gap={20} />
           <Controls />
         </ReactFlow>
+        )}
+
+        {view === 'workflow' && (
+          <ProjectLifecycleView
+            portfolioId={selectedPortfolio?.id ?? null}
+            lang={lang}
+            mode={mode}
+            onProjectsChange={loadPortfolioProjects}
+            onNavigateToProjects={() => setView('projects')}
+          />
         )}
 
         {view === 'projects' && selectedPortfolio && (
