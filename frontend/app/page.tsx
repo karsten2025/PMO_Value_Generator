@@ -28,6 +28,7 @@ import ChatInterface from './components/ChatInterface';
 import MobileMenu from './components/MobileMenu';
 import GitHubStyleHeader from './components/GitHubStyleHeader';
 import ProjectLifecycleView from './components/ProjectLifecycleView';
+import S6VitalityMonitor from './components/S6VitalityMonitor';
 import SystemsEngineeringHUD from './components/SystemsEngineeringHUD';
 import HealthHubSidebarContent, { type Project, type Weights, type CalculatedScores } from './components/HealthHubSidebarContent';
 import { usePortfolio } from '@/app/contexts/PortfolioContext';
@@ -65,7 +66,7 @@ function FlywheelPageContent() {
   const [kpiValues, setKpiValues] = useState<KPIValue[]>([]);
   
   // View State: Impact Cycle, Project Workflow oder Projects List
-  const [view, setView] = useState<'cycle' | 'workflow' | 'projects'>('cycle');
+  const [view, setView] = useState<'cycle' | 'workflow' | 'projects' | 's6-monitor'>('cycle');
   const [isChatOpen, setIsChatOpen] = useState(false); // Chatbot state
   
   // Check URL parameter for view on mount
@@ -73,6 +74,7 @@ function FlywheelPageContent() {
     const viewParam = searchParams.get('view');
     if (viewParam === 'projects') setView('projects');
     else if (viewParam === 'workflow') setView('workflow');
+    else if (viewParam === 's6-monitor') setView('s6-monitor');
   }, [searchParams]);
   
   // Sync local state with LanguageContext
@@ -598,6 +600,9 @@ function FlywheelPageContent() {
           />
         )}
 
+        {view === 's6-monitor' && (
+          <S6VitalityMonitor lang={lang} mode={mode} />
+        )}
         {view === 'projects' && selectedPortfolio && (
           <PortfolioProjectList
             portfolioId={selectedPortfolio.id}

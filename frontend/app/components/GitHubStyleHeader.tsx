@@ -17,8 +17,8 @@ interface GitHubStyleHeaderProps {
   onPortfolioClick?: () => void;
   
   // Main Views (Tabs)
-  currentView: 'cycle' | 'workflow' | 'projects';
-  onViewChange: (view: 'cycle' | 'workflow' | 'projects') => void;
+  currentView: 'cycle' | 'workflow' | 'projects' | 's6-monitor';
+  onViewChange: (view: 'cycle' | 'workflow' | 'projects' | 's6-monitor') => void;
   
   // Controls
   language: Language;
@@ -74,7 +74,7 @@ export default function GitHubStyleHeader({
   }, [showControlsMenu]);
 
   // Translations
-  const getViewLabel = (view: 'cycle' | 'workflow' | 'projects') => {
+  const getViewLabel = (view: 'cycle' | 'workflow' | 'projects' | 's6-monitor') => {
     if (view === 'cycle') {
       return {
         DE: 'Impact Cycle',
@@ -87,6 +87,13 @@ export default function GitHubStyleHeader({
         DE: 'Project Workflow',
         EN: 'Project Workflow',
         ES: 'Flujo de Proyecto'
+      }[language];
+    }
+    if (view === 's6-monitor') {
+      return {
+        DE: 'S6 Monitor',
+        EN: 'S6 Monitor',
+        ES: 'S6 Monitor'
       }[language];
     }
     return {
@@ -275,6 +282,20 @@ export default function GitHubStyleHeader({
             <span className="text-lg">📊</span>
             <span>{getViewLabel('projects')}</span>
           </button>
+
+          <button
+            onClick={() => onViewChange('s6-monitor')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-t-lg transition font-medium ${
+              currentView === 's6-monitor'
+                ? 'bg-slate-900 text-blue-400 border-b-2 border-blue-400'
+                : 'text-slate-400 hover:text-white hover:bg-slate-700'
+            }`}
+          >
+            <svg className="w-4 h-4 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg>
+            <span>{getViewLabel('s6-monitor')}</span>
+          </button>
         </div>
       </div>
 
@@ -324,6 +345,17 @@ export default function GitHubStyleHeader({
               }`}
             >
               📊
+            </button>
+            <button
+              onClick={() => onViewChange('s6-monitor')}
+              className={`px-2 py-1 rounded text-xs ${
+                currentView === 's6-monitor' ? 'bg-blue-600' : 'hover:bg-slate-600'
+              }`}
+              title={getViewLabel('s6-monitor')}
+            >
+              <svg className="w-3.5 h-3.5 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+              </svg>
             </button>
           </div>
 
@@ -391,6 +423,20 @@ export default function GitHubStyleHeader({
           >
             <span>📊</span>
             <span>{getViewLabel('projects')}</span>
+          </button>
+
+          <button
+            onClick={() => onViewChange('s6-monitor')}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition text-sm font-medium ${
+              currentView === 's6-monitor'
+                ? 'bg-blue-600 text-white'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            }`}
+          >
+            <svg className="w-4 h-4 text-orange-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg>
+            <span>{getViewLabel('s6-monitor')}</span>
           </button>
         </div>
       </div>
