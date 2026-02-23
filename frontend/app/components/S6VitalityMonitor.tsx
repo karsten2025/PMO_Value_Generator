@@ -137,7 +137,7 @@ export default function S6VitalityMonitor({ lang, mode }: S6VitalityMonitorProps
   const [isUnlocking, setIsUnlocking] = useState(false);
 
   // E-Mail Konfiguration
-  const adminEmail = "admin@dein-unternehmen.com";
+  const adminEmail = "karsten.zenk@gmail.com";
 
   const handleUnlock = async (e: React.FormEvent) => {
     e.preventDefault();
